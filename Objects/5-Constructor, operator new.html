@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../root-css/styles.css">
+</head>
+
+<body>
+    <div class="header" id="header"></div>
+    <div class="topnav" id="topnav"></div>
+    <div class="row">
+        <div class="column side" id="column side left"></div>
+        <div class="column middle">
+            <h2>Constructors and the <code>new</code> operator</h2>
+            <h3>Introduction</h3>
+            <p>So this is where we start to get into a wee bit more familiar territory (for me at least!). The
+                <code>let object = {...}</code> syntax allows us to create a single object. What if we want to create
+                lots of objects of the same type? We can use so called "constructor functions" to create objects. They are normal functions howver the following two conventions
+                should be observed:</p>
+
+                <ol>
+                    <li>The function name should be capitalised, and</li>
+                    <li>they should be used with the <code>new</code> operator</li>
+                </ol>
+            <p>Consider the user object example:</p>
+
+
+            <pre><code>
+    function User(name){
+        this.name = name;
+        this.isAdmin = false;
+    }
+
+    let user1 = new User("Thomas");
+    let user2 = new User("Fiona");
+
+    alert(`${user1.name} says hi! ${user2.name} says howdy!`);
+
+    <button onclick="example1()">Example 1</button>
+    </code></pre>
+        </div>
+        <div class="column side" id="column side right"></div>
+
+    </div>
+
+    <div class="footer" id="footer">
+    </div>
+
+
+</body>
+
+<script src="../root-js/JavaScriptInfoMenu.js"></script>
+<script src="js/5-ConstructorFunctions.js"></script>
+
+
+</html>
