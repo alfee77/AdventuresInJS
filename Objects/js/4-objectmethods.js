@@ -63,6 +63,7 @@ function example5() {
     age: 30,
     sayHi() {
       alert(`Hi ${this.name}!`);
+      alert(`there's a change!`);
     }
   }
 
