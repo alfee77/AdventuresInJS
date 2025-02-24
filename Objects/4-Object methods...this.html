@@ -222,25 +222,26 @@
 
 </code></pre>
             <h4>Solution</h4>
-            <pre><code>let calculator = {
-    read() {
-      this.a = +prompt("Enter a value for a: ", 1);
-      this.b = +prompt("Enter a value for b: ", 2);
-    },
-    sum() {
-      return this.a + this.b;
-    },
-    mul() {
-      return this.a * this.b;
-    },
+            <pre><code>
+    let calculator = {
+        read() {
+            this.a = +prompt("Enter a value for a: ", 1);
+            this.b = +prompt("Enter a value for b: ", 2);
+        },
+        sum() {
+            return this.a + this.b;
+        },
+        mul() {
+            return this.a * this.b;
+        },
 
-  }
+    }
 
-  calculator.read();
-  alert(`${calculator.a} + ${calculator.b} = ${calculator.sum()}`);
-  alert(`${calculator.a} * ${calculator.b} = ${calculator.mul()}`);
+    calculator.read();
+    alert(`${calculator.a} + ${calculator.b} = ${calculator.sum()}`);
+    alert(`${calculator.a} * ${calculator.b} = ${calculator.mul()}`);
 
-<button onclick="task2()">Solution</button>
+    <button onclick="task2()">Solution</button>
 
 </code></pre>
         </div>
@@ -249,7 +250,6 @@
     </div>
 
     <div class="footer" id="footer">
-
     </div>
 
 
