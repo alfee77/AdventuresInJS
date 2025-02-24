@@ -17,13 +17,15 @@
             <h3>Introduction</h3>
             <p>So this is where we start to get into a wee bit more familiar territory (for me at least!). The
                 <code>let object = {...}</code> syntax allows us to create a single object. What if we want to create
-                lots of objects of the same type? We can use so called "constructor functions" to create objects. They are normal functions howver the following two conventions
-                should be observed:</p>
+                lots of objects of the same type? We can use so called "constructor functions" to create objects. They
+                are normal functions howver the following two conventions
+                should be observed:
+            </p>
 
-                <ol>
-                    <li>The function name should be capitalised, and</li>
-                    <li>they should be used with the <code>new</code> operator</li>
-                </ol>
+            <ol>
+                <li>The function name should be capitalised, and</li>
+                <li>they should be used with the <code>new</code> operator</li>
+            </ol>
             <p>Consider the user object example:</p>
 
 
@@ -40,6 +42,53 @@
 
     <button onclick="example1()">Example 1</button>
     </code></pre>
+            <h3>Methods in a constructor function</h3>
+            <p>Using constructor functions to create objects gives a great deal of flexibility. The constructor function
+                may have parameters that define how to construct the object, and what to put in it.</p>
+
+            <p>Of course, we can add to this not only properties, but methods as well.</p>
+
+            <p>For instance, new User(name) below creates an object with the given name and the method sayHi:</p>
+
+            <pre><code>
+        
+    function User(name="Alistair", age=32, occupation="JSMonkey") {
+        this.name = name;
+        this.age = age;
+        this.occupation = occupation;
+            
+        this.sayHi = function () {
+            alert(`My name is: ${this.name}, and I'm ${this.age} years old. I fill my day working as a(n) ${this.occupation}`);
+        };
+    }
+            
+    let john = new User("John", 47, "Electrical Engineer");
+            
+    john.sayHi(); // My name is: John</span>
+                    
+    <span class="comment">/*
+    john = {
+        name: "John",
+        sayHi: function() { ... }
+    }
+    */</span>
+
+    <button onclick="example2()">Example 2</button>
+            </code></pre>
+            <p>To create complex objects, there’s a more advanced syntax, classes, that we’ll cover later.</p>
+            <h3>Summary</h3>
+            <ul>
+                <li>Constructor functions or, briefly, constructors, are regular functions, but there’s a common
+                    agreement to name them with capital letter first.</li>
+                <li>Constructor functions should only be called using <code>new</code>. Such a call implies a creation
+                    of empty <code>this</code> at the start and returning the populated one at the end.</li>
+            </ul>
+
+            <p>We can use constructor functions to make multiple similar objects.</p>
+
+            <p>JavaScript provides constructor functions for many built-in language objects: like Date for dates, Set
+                for sets and others that we plan to study.</p>
+
         </div>
         <div class="column side" id="column side right"></div>
 
