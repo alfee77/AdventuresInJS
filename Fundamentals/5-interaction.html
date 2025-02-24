@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../root-css/styles.css">
+</head>
+
+<body>
+    <div class = "header" id="header"></div>
+    <div class="topnav" id="topnav">
+
+    </div>
+    <div class="row">
+        <div class="column side" id="column side left"></div>
+        <div class="column middle">
+            <h2>Interaction</h2>
+            <p>Here we use a little bit of JavaScript to get the user's name and output it to the screen. The code uses
+                the <code>prompt()</code> function
+                to collect the users name and assign it to the <code>name</code> variable:</p>
+            <pre><code>
+    function theCode(){
+        let name = prompt("What is your name?:", "Sione Tuipulotu");
+        alert(`You are ${name}`);
+    }
+                    
+            </code></pre>
+            <p>Click the button to give the code a spin:</p>
+            <button onclick="theCode()">Click</button><br><br>
+            <div id="st"></div>
+        </div>
+        <div class="column side" id="column side right"></div>
+
+    </div>
+
+    <div class="footer" id="footer">
+        <p>Footer</p>
+    </div>
+
+
+</body>
+
+
+<script src="../root-js/JavaScriptInfoMenu.js"></script>
+<script src="js/5-interaction.js"></script>
+
+</html>

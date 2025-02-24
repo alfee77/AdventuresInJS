@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../root-css/styles.css">
+</head>
+
+<body>
+    <div class="header" id="header"></div>
+    <div class="topnav" id="topnav"></div>
+    <div class="row">
+        <div class="column side" id="column side left"></div>
+        <div class="column middle">
+            <h2>Object methods and the "this" keyword</h2>
+            <h3>Summary</h3>
+            <p>Objects are usually created to represent entities of the real world, like users, orders and so on:
+
+            <pre><code>
+    let user = {
+        name: "John",
+        age: 30
+    };
+
+</code></pre>
+            <p>And, in the real world, a user can act: select something from the shopping cart, login, logout etc.</p>
+
+            <p>Actions are represented in JavaScript by functions in properties. A function that is a property of an
+                object is referred to as a <em>method</em>.</p>
+
+            <h3>Examples</h3>
+            <p>Lets give the above user the ability to say "Hi!"</p>
+            <pre><code>
+    let user = {
+        name: "John",
+        age: 30
+    };
+              
+    user.sayHi = function(){
+        alert("Hi!");
+    }
+            
+    user.sayHi();
+    
+    <button onclick="example1()">Run</button>
+        </code></pre>
+
+            <p>So going back to the notes on creating functions on the hoof, this is an example of doing something in
+                code. The sayHi() function is added to the object user
+                in runtime. Examine closely how user.sayHi isnt created when the object is created, but afterwards.</p>
+
+            <p>It's acceptable to declare a function traditionally, and then add it to the object:</p>
+            <pre><code>
+    let user = {
+        name: "John",
+        age: 30
+    };
+
+    function sayHi(){
+        alert("Hi!");
+    }
+
+    user.sayHi = sayHi;
+
+    user.sayHi();
+    
+    <button onclick="example2()">Run</button>
+    </code></pre>
+
+            <p>We can also declare a function (thereby a method) when the object is created, in a form more explicitly
+                linked
+                with the <code>key:value</code> pair approach:</p>
+            <pre><code>
+    let user = {
+        name:"John",
+        age: 30,
+        sayHi: function(){
+            alert("Hi!");
+        }
+    }
+
+    user.sayHi();
+    
+    <button onclick="example3()">Run</button>
+    </code></pre>
+
+            <h3>Method shorthand</h3>
+            <p>A slightly more efficient way of doing this is using a method shorthand. The above code can be re-written
+                as:</p>
+            <pre><code>
+    let user = {
+        name:"John",
+        age: 30,
+        sayHi(){
+            alert("Hi!");
+        }
+    }
+
+    user.sayHi();
+    
+    <button onclick="example4()">Run</button>
+    </code></pre>
+
+
+            <p>It's worth noting that the preceding examples appear to acheive exactly the same thing; they do, but
+                there
+                are nuances between the approaches that will become apparent when we look at inheritance. In almost all
+                cases
+                the shorter form is preferred. </p>
+
+            <h3><code>this</code> in methods</h3>
+            <p>Oftentimes methods need to access variables in their own obects. In the examples above, the
+                <code>sayHi()</code> method
+                may need to access the name of the User.
+            </p>
+
+            <p>To access the variable, the object can use the <code>this</code> keyword. The value of <code>this</code>
+                is
+                the object used to call the method. For example:</p>
+
+            <pre><code>
+
+    let user = {
+        name: "John",
+        age: 30,
+        sayHi(){
+            alert(`Hi ${this.name}!`);
+        }
+    }
+
+    user.sayHi();
+    
+    <button onclick="example5()">Run</button>
+    </code></pre>
+
+
+            <h3>Arrow functions have no “this”</h3>
+            <p>Arrow functions are special: they don’t have their “own” this. If we reference this from such a function,
+                it’s taken from the outer “normal” function.</p>
+
+            <p>For instance, here arrow() uses this from the outer user.sayHi() method:</p>
+
+            <pre><code>
+    let user = {
+        firstName: "Ilya",
+        sayHi() {
+            let arrow = () => alert(this.firstName);
+            arrow();
+        }
+    };
+
+    user.sayHi(); // Ilya
+
+</code></pre>
+            <p>That’s a special feature of arrow functions, it’s useful when we actually do not want to have a separate
+                this, but rather to take it from the outer context. Later in the chapter Arrow functions revisited we’ll
+                go more deeply into arrow functions.</p>
+
+            <h3>Summary</h3>
+            <ul>
+                <li>Functions that are stored in object properties are called “methods”.</li>
+                <li>Methods allow objects to “act” like object.doSomething().</li>
+                <li>Methods can reference the object as this.</li>
+            </ul>
+            <p>The value of this is defined at run-time.</p>
+
+            <ul>
+                <li>When a function is declared, it may use this, but that this has no value until the function is
+                    called.</li>
+                <li>A function can be copied between objects.</li>
+                <li>When a function is called in the “method” syntax: object.method(), the value of this during the call
+                    is object.</li>
+            </ul>
+            <p>Please note that arrow functions are special: they have no this. When this is accessed inside an arrow
+                function, it is taken from outside.</p>
+
+
+            <h3>Tasks</h3>
+            <h4>Task 1 - Using "this" in object literal</h4>
+            <p>importance: 5</p>
+            <p>Here the function makeUser returns an object.</p>
+
+            <p>What is the result of accessing its ref? Why?</p>
+
+            <pre><code>
+    function makeUser() {
+        return {
+            name: "John",
+            ref: this
+        };
+    }
+
+    let user = makeUser();
+
+    alert( user.ref.name ); // What's the result?
+
+</code></pre>
+            <h4>Solution</h4>
+            <button onclick="task1()">Solution</button>
+
+            <h4>Create a calculator</h4>
+            <p>importance: 5</p>
+
+            <p>Create an object calculator with three methods:</p>
+            <ul>
+                <li>read() prompts for two values and saves them as object properties with names a and b respectively.
+                </li>
+                <li>sum() returns the sum of saved values.</li>
+                <li>mul() multiplies saved values and returns the result.</li>
+
+            </ul>
+
+            <pre><code>
+    let calculator = {
+    // ... your code ...
+    };
+
+    calculator.read();
+    alert( calculator.sum() );
+    alert( calculator.mul() );
+
+</code></pre>
+            <h4>Solution</h4>
+            <pre><code>let calculator = {
+    read() {
+      this.a = +prompt("Enter a value for a: ", 1);
+      this.b = +prompt("Enter a value for b: ", 2);
+    },
+    sum() {
+      return this.a + this.b;
+    },
+    mul() {
+      return this.a * this.b;
+    },
+
+  }
+
+  calculator.read();
+  alert(`${calculator.a} + ${calculator.b} = ${calculator.sum()}`);
+  alert(`${calculator.a} * ${calculator.b} = ${calculator.mul()}`);
+<button onclick="task2()">Task 2 - Solution</button>
+</code></pre>
+        </div>
+        <div class="column side" id="column side right"></div>
+
+    </div>
+
+    <div class="footer" id="footer">
+
+    </div>
+
+
+</body>
+
+<script src="../root-js/JavaScriptInfoMenu.js"></script>
+<script src="js/4-objectmethods.js"></script>
+
+
+</html>

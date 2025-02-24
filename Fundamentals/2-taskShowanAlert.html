@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../root-css/styles.css">
+    
+</head>
+
+<body>
+    <div class = "header" id="header"></div>
+    <div class="topnav" id="topnav"></div>
+    <div class="row">
+        <div class="column side" id="column side left"></div>
+        <div class="column middle">
+            <h2>Code Structure</h2>
+            <p>The purpose here is to show what code structure looks like. This page represents a means of calling JavaScript code embedded within the same html page.
+                This code can be found in the <code>&lt;script&gt; &lt;/script&gt;</code> after the <code>&lt;/body&gt;</code> tag:</p>
+            <p><pre><code>
+    &lt;/body&gt;
+
+    &lt;script&gt;
+
+        function showAnAlert(){ 
+            alert("I'm JavaScript"); 
+            document.getElementById("demo").innerHTML = "I'm JavaScript";
+        }
+
+    &lt;/script&gt;
+
+            </pre></code></p>
+            <p>This code is then assigned to the "onclick" attribute of the following button:</p>
+            <button onclick="showAnAlert()">Show Alert</button>
+            <p>Allowing us all to revel in it's glory!</p>
+
+            <p id="demo"></p>
+            <p id="demo1"></p>
+            <p id="demo2"></p>
+            <p id="demo3"></p>
+            <p id="demo4"></p>
+            <p id="demo5"></p>
+        </div>
+
+        <div class="column side" id="column side right"></div>
+    </div>
+
+
+    <div class="footer" id="footer">
+        <p>Footer</p>
+    </div>
+</body>
+
+<script>
+
+    function showAnAlert(){
+        alert("I'm JavaScript");
+    }
+</script>
+<script src="../root-js/JavaScriptInfoMenu.js"></script>
+
+</html>

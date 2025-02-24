@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../root-css/styles.css">
+</head>
+
+<body>
+    <div class="header" id="header"></div>
+    <div class="topnav" id="topnav"></div>
+    <div class="row">
+        <div class="column side" id="column side left"></div>
+        <div class="column middle">
+            <h2>Objects</h2>
+            <h3>Summary</h3>
+            <p>I'll start with the most startling observation (for me); objects in JavaScript are very different in form to objects in Java. 
+            Prior to learning JavaScript my understanding of an object was it represented an instantiated class, where a class represented 
+            a blueprint of a given object type. The class would define methods (functions) to access its member variables; methods would effectively 
+            act as the public access point to modify member variables. This is not what a JavaScript object is; it is more akin to a data dictionary 
+            in Python, where it uses key: value pairs to define object properties. So an object that represents a user, would look something like:
+
+               <pre><code>
+    let user = {
+        name: "John",
+        age: 30,
+        isAdmin: true
+    }
+               </code></pre>
+            <p>Functions can be set as properties of an object. When they are, they are referred to as a <em>methods</em>. Methods are studied in the next chapter. </p>
+               
+            <p>Objects are associative arrays with several special features.</p>
+                
+            <p>They store properties (key-value pairs), where:</p>
+            <ul>
+                <li>Property keys must be strings or symbols (usually strings).</li>
+                <li>Values can be of any type.</li>
+            </ul>    
+            <p>To access a property, we can use:</p>
+                
+            <ul>
+                <li>The dot notation: <code>obj.property.</code></li>
+                <li>Square brackets notation <code>obj["property"]</code>. Square brackets allow taking the key from a variable, like <code>obj[varWithKey]</code>.</li>
+            </ul>
+
+            <p>Additional operators:</p>
+            <ul>    
+                <li>To delete a property: <code>delete obj.prop</code>.</li>
+                <li>To check if a property with the given key exists: <code>"key" in obj</code>.</li>
+                <li>To iterate over an object: <code>for (let key in obj)</code> loop.</li>
+            </ul>
+            <p>What we’ve studied in this chapter is called a “plain object”, or just Object. 
+                There are many other kinds of objects in JavaScript:</p>
+                
+            <ul>
+                <li>Array to store ordered data collections,</li>
+                <li>Date to store the information about the date and time,</li>
+                <li>Error to store the information about an error.</li>
+                <li>…And so on.</li>
+            </ul>
+            <p>They have their special features that we’ll study later. Sometimes people say something like “Array type” or “Date type”, but formally they are not types of their own, but belong to a single “object” data type. And they extend it in various ways.</p>
+                
+            <p>Objects in JavaScript are very powerful. Here we’ve just scratched the surface of a topic that is really huge. We’ll be closely working with objects and learning more about them in further parts of the tutorial.</p>
+            <h3>Tasks</h3>
+            <h4>Task 1 - Hello, object</h4>
+            <p>importance: 5</p>
+            <p>Write the code, one line for each action:</p>
+            <ul>
+                <li>Create an empty object user.</li>
+                <li>Add the property name with the value John.</li>
+                <li>Add the property surname with the value Smith.</li>
+                <li>Change the value of the name to Pete.</li>
+                <li>Remove the property name from the object.</li>
+            </ul>
+            <h5>Solution</h5>
+            <pre>
+            <code>
+    function objectCreation(){
+        let user = {};
+        user.name: `John`;
+        user.surname: `Smith`;
+        alert(user.name + " " + user.surname);
+        user.name = `Pete`;
+        alert(user.name + " " + user.surname);
+        delete user.name;
+        alert(user.name + " " + user.surname);
+    }
+
+            </code>
+            </pre>
+            <button onclick="objectCreation()">Solution</button>
+
+            <h4>Task 2 - Check for emptiness</h4>
+            <p>importance: 5</p>
+            <p>Write the function <code>isEmpty(obj)</code> which returns true if the object has no properties, false
+                otherwise.</p>
+
+            <p>Should work like this when called upon:</p>
+
+            <pre><code>
+    function todaysSchedule(){
+        let schedule = {};
+
+        alert(isEmpty(schedule)); <span class="comment">//true</span>
+
+        schedule["8:30"] = "get up";
+
+        alert(isEmpty(schedule)); <span class="comment">//false</span>
+    }
+            </code></pre>
+
+            <h5>Solution</h5>
+            <pre>
+                <code>
+    function isEmpty(obj){
+        for(let prop in obj){   
+        <span class="comment">/*this for loop will only start if the object has stuff in it;
+        ergo if it starts, the object isn't empty, and the function should return false.*/</span>
+            return false;
+        }
+        return true;
+        <span class="comment">/*this stage is only reached if the for loop hasnt started;
+        i.e. the object is empty therefor the function should return true*/</span>
+    }
+                  
+                </code>
+                </pre>
+            <button onclick="todaysSchedule()">Solution</button>
+            
+            <h4>Task 3 - Sum object properties</h4>
+            <p>importance: 5</p>
+            <p>We have an object storing salaries of our team:</p>
+
+            <pre><code>
+    let salaries = {
+        John: 100,
+        Ann: 160,
+        Pete: 130
+    }
+            </code></pre>
+            <p>Write the code to sum all salaries and store in the variable sum. Should be 390 in the example above.</p>
+                
+            <p>If salaries is empty, then the result must be 0.</p>
+
+
+            <h5>Solution</h5>
+            <pre><code>
+    function taskThree(){
+        let salaries = {
+            John: 100,
+            Ann: 160,
+            Pete: 130
+        }
+                
+        let sum = 0;
+                
+        for(let key in salaries){
+            sum += salaries[key];
+        }
+                
+        alert(`The total wage bill is $${sum}`);
+    }
+                
+
+            </code></pre>
+            <button onclick="taskThree()">Solution</button>
+
+            <h4>Task 4 - Multiply numeric property values by 2</h4>
+            <p>importance: 3</p>
+            <p>Create a function <code>multiplyNumeric(obj)</code> that multiplies all numeric property values of obj by 2.</p>
+
+            <p>For instance:</p>
+
+<pre><code>
+    <span class = "comment">// before the call</span>
+    let menu = {
+        width: 200,
+        height: 300,
+        title: "My menu"
+    };
+
+    multiplyNumeric(menu);
+
+    <span class = "comment">// after the call</span>
+    menu = {
+        width: 400,
+        height: 600,
+        title: "My menu"
+    };
+</pre></code>
+
+            <p>Please note that multiplyNumeric does not need to return anything. It should modify the object in-place.</p>
+
+            <p>P.S. Use typeof to check for a number here.</p>
+
+            <h5>Solution</h5>
+            <pre><code>
+    function taskFour(){
+        let menu = {
+            width: 200, 
+            height: 300,
+            title: "My Menu"
+        };
+            
+        multiplyNumeric(menu);
+            
+        alert(`Width is now ${menu.width} and height is now ${menu.height}`);
+    }
+            
+    function multiplyNumeric(obj){
+        for (let key in obj){
+            if (typeof obj[key] == "number") obj[key] *= 2;
+        }
+    }
+            </code></pre>
+            
+
+            <button onclick="taskFour()">Solution</button>
+        </div>
+        <div class="column side" id="column side right"></div>
+
+    </div>
+
+    <div class="footer" id="footer">
+
+    </div>
+
+
+</body>
+
+<script src="../root-js/JavaScriptInfoMenu.js"></script>
+<script src="js/1-the basics.js"></script>
+
+
+</html>

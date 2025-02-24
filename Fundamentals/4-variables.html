@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../root-css/styles.css">
+    
+</head>
+
+<body>
+    <div class = "header" id="header"></div>
+    <div class="topnav" id="topnav"></div>
+    <div class="row">
+        <div class="column side" id="column side left"></div>
+        <div class="column middle">
+            <h2>Variables</h2>
+            <p>This is a really basic task that shows how a variable can be created and assigned a value using the <code>let</code> keyword. The code declares two variables:
+                <code>name</code> and <code>admin</code>. The string "John" is assigned to the variable <code>name</code>, and then the contents of the variable <code>name</code> are assigned to the variable <code>admin</code>. 
+                The call to the <code>alert()</code> function then displays the contents of the variable <code>admin</code>:
+            </p>
+            <p>
+                <pre><code>
+    'use strict' 
+    
+    function theCode(){
+        let admin;
+        let name;
+
+        name = "John";
+        admin = name;
+        alert(`"${admin}" has been assigned to the variable "admin"');
+    }
+                </code></pre>
+            </p>
+            <p>The above code has been embedded in the function <code>theCode()</code>, which is called by the "onclick" attribute of the following button:</p>
+            <button onclick="theCode()">Click</button>
+
+        </div>
+
+        <div class="column side" id="column side right">
+        </div>
+    </div>
+
+
+    <div class="footer" id="footer">
+        <p>Footer</p>
+    </div>
+</body>
+
+
+<script src="../root-js/JavaScriptInfoMenu.js"></script>
+<script src="js/4-variables.js"></script>
+
+</html>

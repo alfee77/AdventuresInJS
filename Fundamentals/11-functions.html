@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../root-css/styles.css">
+
+</head>
+
+<body>
+    <div class="header" id="header"></div>
+    <div class="topnav" id="topnav">
+
+    </div>
+    <div class="row">
+        <div class="column side" id="column side left"></div>
+        <div class="column middle">
+            <h2>Functions</h2>
+            <p>To create a function, it needs to be declared. It would typically look like this:</p>
+            <pre><code>
+    function message(){
+        alert(`Hello everyone!`);
+    }
+            </code></pre>
+            <p>The <code>function</code> keyword goes first, followed by the function name, followed by
+                a list of comma separated parameters between the parenthesis. The parameters are essentially
+                local variables that are passed to the function when they are formed. The parameters can also
+                have default values. The function body then follows between curly braces {}.</p>
+
+            <h3>A word on local and global variables</h3>
+            <p>A local variable is declared within a function, and a global function is declared outwith the
+                function. This then leads to a question of scope; the local variable can only be "reached" from
+                within the function. A global variable can be accessed from anywhere in the body of the code.</p>
+            <p> Consider the following code:</p>
+            <pre><code>
+    function outerFruit(){
+        let fruit = "banana";
+                    
+        eatFruit();
+        function eatFruit(){
+            let vegetable = `tomato`;
+            alert(`I like ${fruit}!`);
+            alert(`Is ${vegetable} really a vegatable? Or is it a fruit?`);
+        }
+        try{
+            alert(`Not so sure about ${vegetable}`);
+        }catch(err){
+            alert(`Just not possible! A ${err.name} has been thrown. ${err.message}`);
+        }
+    }
+            </code></pre>
+            <p>When the last line of code is run, a ReferenceError is thrown, confirming that vegetable
+            is not defined.</p>
+            <button onclick="outerFruit()">demo outerFruit()</button>
+            
+            <h3>Parameters</h3>
+            <p>Parameters are passed to functions when they are called; they are the variables stated in the
+                 brackets of the function. Consider the following piece of code:</p>
+                 <pre><code>
+    function announce(title, name){
+        alert(`Welcome ${title} ${name}`);
+    }
+                 </code></pre>
+                 <button onclick="demoAnnounce()">demo announce()</button>
+            <h3>In summary</h3>
+            <p>Functions may have local variables: those declared inside its body or its parameter list. Such variables
+                are only visible inside the function.
+                Parameters can have default values: 
+                <code>
+                    function sum(a = 1, b = 2) {...}
+                </code>.
+                Functions always return something. If there’s no return statement, then the result is undefined.</p>
+            <h3>Tasks</h3>
+            
+            <button onclick="testCheckAges()">testCheckAges</button><br>
+            <button onclick="testCheckAge()">testCheckAge</button><br>
+            <button onclick="testMin()">testMin</button><br>
+            <button onclick="testPow()">testPow</button><br>
+        </div>
+        <div class="column side" id="column side right"></div>
+
+    </div>
+
+    <div class="footer" id="footer">
+    </div>
+
+
+</body>
+
+<script src="../root-js/JavaScriptInfoMenu.js"></script>
+<script src="js/11-functions.js"></script>
+
+
+</html>
