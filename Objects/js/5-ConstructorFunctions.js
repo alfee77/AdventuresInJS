@@ -44,3 +44,26 @@ function task1(){
 
     alert( a == b ); // true
 }
+
+function task2(){
+    let calculator = new Calculator();
+    calculator.read();
+
+    alert( "Sum=" + calculator.sum() );
+    alert( "Mul=" + calculator.mul() );
+
+
+    function Calculator(){
+        this.read = function(){
+            this.a = +prompt("Enter a value for a: ", "0");
+            this.b = +prompt("Enter a value for b: ", "0");
+        }
+        this.sum = function(){
+            return this.a + this.b;
+
+        }
+        this.mul = function(){
+            return this.a * this.b;
+        }
+    }
+}
