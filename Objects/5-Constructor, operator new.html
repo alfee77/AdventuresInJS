@@ -89,6 +89,58 @@
             <p>JavaScript provides constructor functions for many built-in language objects: like Date for dates, Set
                 for sets and others that we plan to study.</p>
 
+            <h3>Tasks</h3>
+            <h4>Task 1 - Two functions, one object</h4>
+            <p>importance: 2</p>
+            <p>Is it possible to create functions A and B so that new A() == new B()?</p>
+
+            <pre><code>
+    function A() { ... }
+    function B() { ... }
+                    
+    let a = new A();
+    let b = new B();
+                    
+    alert( a == b ); // true
+    
+
+            </code></pre>
+            <p>If it is, then provide an example of their code.</p>
+            <h4>Solution</h4>
+            <pre><code>
+    let obj = {};
+    function A() { return obj }
+    function B() { return obj }
+
+    let a = new A();
+    let b = new B();
+
+    alert( a == b ); <span class="comment">// true</span>
+
+    <button onclick="task1()">Solution</button>
+            </code></pre>
+            <h4>Task 2 - Create new Calculator</h4>
+            <p>importance: 5</p>
+            <p>Create a constructor function Calculator that creates objects with 3 methods:</p>
+            <ol>
+                <li>read() prompts for two values and saves them as object properties with names a and b respectively.</li>
+                <li>sum() returns the sum of these properties.</li>
+                <li>mul() returns the multiplication product of these properties.</li>
+            </ol>
+            <p>For instance:</p>
+
+<pre><code>
+    let calculator = new Calculator();
+    calculator.read();
+
+    alert( "Sum=" + calculator.sum() );
+    alert( "Mul=" + calculator.mul() );
+
+</code></pre>
+
+<h4>Solution</h4>
+
+            
         </div>
         <div class="column side" id="column side right"></div>
 
