@@ -8,19 +8,18 @@ a, h1, h2, h3, h4, h5, p, li{
 
 pre code {
     display: block;
-    background: darkgray;
-    color: black;
+    background: black;
+    color: white;
     white-space: pre;
     -webkit-overflow-scrolling: touch;
     overflow-x: scroll;
-    max-width: 100%;
+    max-width: 70%;
     min-width: 100px;
     padding: 0;
 }
 
 .comment {
-    color:greenyellow;
-    /*Your CSS here*/
+    color:olivedrab;
   }
 
 body {

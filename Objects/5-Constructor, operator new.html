@@ -161,7 +161,59 @@
             return this.a * this.b;
         }
     }
+
     <button onclick="task2()">Solution</button>
+
+</code></pre>
+
+
+<h4>Task 3 - Create new Accumulator</h4>
+
+<p>importance: 5</p>
+<p>Create a constructor function Accumulator(startingValue).</p>
+
+<p>Object that it creates should:</p>
+<ul>
+    <li>Store the “current value” in the property value. The starting value is set to the argument of the constructor startingValue.</li>
+    <li>The read() method should use prompt to read a new number and add it to value.</li>    
+</ul>
+
+<p>In other words, the value property is the sum of all user-entered values with the initial value startingValue.</p>
+
+<p>Here’s the demo of the code:</p>
+
+<pre><code>
+    let accumulator = new Accumulator(1); // initial value 1
+
+    accumulator.read(); <span class="comment">// adds the user-entered value</span>
+    accumulator.read(); <span class="comment">// adds the user-entered value</span>
+
+    alert(accumulator.value); <span class="comment">// shows the sum of these values</span>
+
+</code></pre>
+
+<h4>Solution</h4>
+
+<pre><code>
+
+    let accumulator = new Accumulator(1); <span class="comment">// initial value 1</span>
+    
+    accumulator.read(); <span class="comment">// adds the user-entered value</span>
+    accumulator.read(); <span class="comment">// adds the user-entered value</span>
+
+    
+    alert(accumulator.value); <span class="comment">// shows the sum of these values</span>
+    
+    function Accumulator(startingValue){
+            
+        this.value = +startingValue;
+        this.read = function(){
+            this.value += +prompt("How much to add? ", 0);
+        }
+            
+    }
+
+    <button onclick="task3()">Solution</button>
 
 </code></pre>
 
