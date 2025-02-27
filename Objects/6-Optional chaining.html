@@ -15,12 +15,37 @@
         <div class="column middle">
             <h2>Optional chaining<code> ?</code> operator</h2>
             <h3>Introduction</h3>
-            
+            <p>No tasks in this chapter. Optional chaining provides an elegant way of handling the referencing of
+                non-exisitent nested properties.</p>
+            <p>The chapter provides an overview of the non-existent property function, which I'll attempt to summarise
+                here:</p>
+
+            <p>As an example, lets say we have <code>user</code> objects that holds information about users. Most (all?)
+                users will have an adress information stored in the <code> user.address </code> property. As part of
+                this address property, they will also have a <code>user.address.street</code> property
+                that contains the street information. But alas, what if the user never provided the address information?
+                In such a case, when we try to retrieve the <code>user.address.street</code> information, we'll get an
+                error:</p>
+
+            <pre><code>
+    let user = {}; <span class="comment">//a user object without an address</span>
+
+    alert(user.address.street);<span class="comment">//attempt to grab that non-existent address. FAIL!!</span>
+
+    <button onclick="example1()">Run</button>
+
+            </code></pre>
+
+            <p>The chapter in the tutorial demonstrates a number of ways to deal with this problem using <code>if</code>
+                or the conditional <code>?</code> operator. It even goes so far as to utilise the logical <code>&&</code>
+                operator. All are pretty ugly, unreadable, and frankly, unpleasant!</p>
+            <!-- <p></p>
+
             <ol>
                 <li></li>
                 <li></li>
-            </ol>
-            
+            </ol> -->
+
         </div>
         <div class="column side" id="column side right"></div>
 
