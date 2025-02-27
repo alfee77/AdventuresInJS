@@ -48,6 +48,7 @@ if (folder =="Objects"){
         "<a href='1-the basics.html'>Objects - the basics</a><br>" +
         "<a href='4-Object methods...this.html'>Object methods and the <code>this</code> keyword</a><br>" +
         "<a href='5-Constructor, operator new.html'>Constructor functions and the <code>new</code> operator</a><br>" +
+        "<a href='6-Optional chaining.html'>Optional chaining <code>?</code></a><br>" +
     "</ol>";
 }
 
