@@ -13,7 +13,7 @@
     <div class="row">
         <div class="column side" id="column side left"></div>
         <div class="column middle">
-            <h2>Optional chaining<code> ?</code> operator</h2>
+            <h2>Optional chaining; the <code>?.</code> construct</h2>
             <h3>Introduction</h3>
             <p>No tasks in this chapter. Optional chaining provides an elegant way of handling the referencing of
                 non-exisitent nested properties.</p>
@@ -33,26 +33,171 @@
     alert(user.address.street);<span class="comment">//attempt to grab that non-existent address. FAIL!!</span>
 
     <button onclick="example1()">Run</button>
-
+    
             </code></pre>
 
+            <p>(Cheeky note, I've actually wrapped the above code in a <code>try...catch</code> construct so we can
+                handle the error in run-time)</p>
+
             <p>The chapter in the tutorial demonstrates a number of ways to deal with this problem using <code>if</code>
-                or the conditional <code>?</code> operator. It even goes so far as to utilise the logical <code>&&</code>
-                operator. All are pretty ugly, unreadable, and frankly, unpleasant!</p>
-            <!-- <p></p>
+                or the conditional <code>?</code> operator. It even goes so far as to utilise the logical
+                <code>&&</code>
+                operator. All are pretty ugly, unreadable, and frankly, unpleasant!
+            </p>
 
-            <ol>
-                <li></li>
-                <li></li>
-            </ol> -->
+            <h3>Optional chaining</h3>
+            <p>The optional chaining <code>?.</code> operator stops the evaluation if the value before <code>?.</code>
+                is
+                <code>undefined</code> or <code>null</code> and returns <code>undefined</code>.
+            </p>
 
+            <p>For brevity, we’ll be saying that something “exists” if it’s not <code>null</code> and not
+                <code>undefined</code>.
+            </p>
+
+            <p>In other words <code>value?.prop:</code>:
+            <ul>
+                <li>works as <code>value.prop</code>, if value exists,</li>
+                <li>otherwise (when <code>value</code> is <code>undefined/null</code>) it returns
+                    <code>undefined</code>.
+                </li>
+            </ul>
+
+
+            <p>Here’s the safe way to access <code>user.address.street</code> using <code>?.</code>:</p>
+
+            <pre>
+                <code>
+    let user = {}; <span class="comment">// user has no address</span>
+
+    alert(user?.address?.street); <span class="comment">// undefined (no error)</span>
+
+    <button onclick="example2()">Run</button>
+                </code>
+            </pre>
+
+
+            <h3>Short-circuiting</h3>
+            <p>As it was said before, the <code>?.</code> immediately stops (“short-circuits”) the evaluation if the
+                left part
+                doesn’t exist.</p>
+
+            <p>So, if there are any further function calls or operations to the right of <code>?.</code>, they won’t be
+                made.</p>
+
+            <p>For instance:</p>
+
+            <pre>
+                <code>
+    let user = null;
+    let x = 0;
+    
+
+    user?.sayHi(x++); <span class="comment">// no "user", so the execution doesn't reach sayHi call and x++</span>
+
+    alert(x); <span class="comment">// 0, value not incremented</span>
+
+    <button onclick="example3()">Run</button>
+
+                </code>
+            </pre>
+            <h3>Other variants: ?.(), ?.[]</h3>
+            <p>
+                The optional chaining <code>?.</code> is not an operator, but a special syntax construct, that also
+                works with functions and square brackets.
+            </p>
+
+            <p>For example, <code>?.()</code> is used to call a function that may not exist.</p>
+
+            <p>In the code below, some of our users have admin method, and some don’t:</p>
+
+            <pre>
+                <code>
+    let userAdmin = {
+        admin() {
+            alert("I am admin");
+        }
+    };
+    
+    let userGuest = {};
+    
+    userAdmin.admin?.(); <span class="comment">// I am admin</span>
+    userGuest.admin?.(); <span class="comment">// nothing happens (no such method)</span>
+    
+    <button onclick="example4()">Run</button>
+
+                </code>
+            </pre>
+
+            <p>Here, in both lines we first use the dot (<code>userAdmin.admin</code>) to get admin property, because we assume that
+                the user object exists, so it’s safe read from it.</p>
+
+            <p>Then <code>?.()</code> checks the left part: if the admin function exists, then it runs (that’s so for <code>userAdmin</code>).
+                Otherwise (for <code>userGuest</code>) the evaluation stops without errors.</p>
+
+            <p>The <code>?.[]</code> syntax also works, if we’d like to use brackets [] to access properties instead of dot ..
+                Similar to previous cases, it allows to safely read a property from an object that may not exist.</p>
+            <pre>
+                <code>
+    let key = "firstName";
+
+    let user1 = {
+        firstName: "John"
+    };
+
+    let user2 = null;
+
+    alert( user1?.[key] ); <span class="comment">//John</span>
+    alert( user2?.[key] ); <span class="comment">// undefined</span>
+
+    <button onclick="example5()">Run</button>
+    
+                </code>
+            </pre>
+
+            <p>Also we can use <code>?.</code> with <code>delete</code>:</p>
+
+            <pre>
+                <code>
+    delete user?.name; // delete user.name if user exists
+                </code>
+            </pre>
+
+
+            <p>We can use <code>?.</code> for safe reading and deleting, but not writing</p>
+            <p>The optional chaining <code>?.</code> has no use on the left side of an assignment.</p>
+
+
+            <p>For example:</p>
+            <pre>
+                <code>
+    let user = null;
+    user?.name = "John"; <span class="comment">// Error, doesn't work</span>
+    <span class="comment">// because it evaluates to: undefined = "John"</span>
+                </code>
+            </pre>
+            <h3>Summary</h3>
+            <p>The optional chaining <code>?.</code> syntax has three forms:</p>
+            <ul>
+                <li><code>obj?.prop</code> – returns <code>obj.prop</code> if <code>obj</code> exists, otherwise <code>undefined</code>.</li>
+                <li><code>obj?.[prop]</code> – returns <code>obj[prop]</code> if <code>obj</code> exists, otherwise <code>undefined</code>.</li>
+                <li><code>obj.method?.()</code> – calls <code>obj.method()</code> if <code>obj.method</code> exists, otherwise returns <code>undefined</code>.</li>
+            </ul>
+
+
+            <p>As we can see, all of them are straightforward and simple to use. The ?. checks the left part for
+                null/undefined and allows the evaluation to proceed if it’s not so.</p>
+
+            <p>A chain of <code>?.</code> allows to safely access nested properties.</p>
+
+            <p>Still, we should apply <code>?.</code> carefully, only where it’s acceptable, according to our code logic, that the
+                left part doesn’t exist. So that it won’t hide programming errors from us, if they occur.</p>
         </div>
         <div class="column side" id="column side right"></div>
 
     </div>
 
-    <div class="footer" id="footer">
-    </div>
+    <div class="footer" id="footer"></div>
 
 
 </body>

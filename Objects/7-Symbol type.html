@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../root-css/styles.css">
+</head>
+
+<body>
+    <div class="header" id="header"></div>
+    <div class="topnav" id="topnav"></div>
+    <div class="row">
+        <div class="column side" id="column side left"></div>
+        <div class="column middle">
+            <h2>Symbol type</h2>
+            <h3>Introduction</h3>
+            <p>
+                There are two types that can serve as object keys. So far we have only been using <code>string</code>
+                type keys. By specification there is a second type, namely <code>symbol</code> that can be used. Note,
+                while it may have looked like we have been using number keys to access property values, JavaScript
+                actually resolves these into strings. For example:
+            </p>
+
+            <ul>
+                <li><code>obj[1]</code> resolves to <code>obj["1"]</code></li>
+                <li><code>obj[true]</code> resolves to <code>obj["true"]</code></li>
+            </ul>
+
+            <p>(I can't actually envisage a use case for using a boolean as an object key, but hey-ho)</p>
+
+        </div>
+        <div class="column side" id="column side right"></div>
+    </div>
+
+
+
+    <div class="footer" id="footer"></div>
+
+
+
+</body>
+
+<script src="../root-js/JavaScriptInfoMenu.js"></script>
+<script src="js/7-Symbol type.js"></script>
+
+
+</html>
