@@ -13,7 +13,7 @@
     <div class="row">
         <div class="column side" id="column side left"></div>
         <div class="column middle">
-            <h2>switch</h2>
+            <h2>14-The <code>switch</code> statement</h2>
 
             <p id="demo">The switch statement is useful as a more elegant solutuion to multiple nested ifs.
                 The following function is attached to the switch button. In the following example, the user
@@ -23,7 +23,7 @@
                 <code>case</code> statements can be grouped (see <code>case 2</code> and <code> case 3</code>).
             </p>
 
-            <p><button onclick="switchDemo()">Switch</button></p>
+            
             <pre><code>
     function switchDemo(){
         let a = +prompt('Input 0, 1, 2 or 3: ', ''); 
@@ -41,13 +41,16 @@
                 break;
             }    
     }
+
+    <button onclick="switchDemo()">Run</button>
+
             </code></pre>
 
 
             <h2>"if...else" statements</h2>
             <p>if...else is a natural alternative to the switch statement.</p>
             
-            <p><button onclick="ifElseDemo()">if...else</button></p>
+            
             <pre><code>
     function ifElseDemo(){
         let browser = prompt("What's your favourite browser?", "Edge");
@@ -63,13 +66,12 @@
             alert("Hopefully this looks OK!?!?");
         }
     }
+
+    <button onclick="ifElseDemo()">Run</button>
+
             </code></pre>
             
-            <p id="demo1"></p>
-            <p id="demo2"></p>
-            <p id="demo3"></p>
-            <p id="demo4"></p>
-            <p id="demo5"></p>
+            
         </div>
 
         <div class="column side" id="column side right"></div>
@@ -82,7 +84,7 @@
 </body>
 
 <script src="../root-js/JavaScriptInfoMenu.js"></script>
-<script src="js/7-switches.js"></script>
+<script src="js/14-switches.js"></script>
 
 
 </html>

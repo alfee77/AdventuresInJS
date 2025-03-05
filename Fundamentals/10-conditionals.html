@@ -13,7 +13,7 @@
     <div class="row">
         <div class="column side" id="column side left"></div>
         <div class="column middle">
-            <h2>Conditional branching: "if..."</h2>
+            <h2>10-Conditional branching: "if..."</h2>
             <h4>Task 1</h4>
             <p> The first exercise is to ask the user what the official name of JavaScript is (it's ECMAScript!), and display an appropriate response to the answer. So the logic would be as follows:</p>
             
@@ -23,28 +23,22 @@
             <p> The code to achieve this logic is embedded in the function <code>officialNameOfJS()</code>:</p>
             <br>
             <pre><code>
-    function officialNameOfJS(){ 
-        let nameOfJavaScript = prompt("What is the official name of JavaScript?", "BlurbyScript");
-                    
-                    
+    let nameOfJavaScript = prompt("What is the official name of JavaScript?", "BlurbyScript");               
                 
-        if (nameOfJavaScript == "ECMAScript"){
-            document.getElementById("demo").innerHTML = "Right! ECMAScript is the actual name!";
-        } else{
-            document.getElementById("demo").innerHTML = `The official name of JavaScript is not \"${nameOfJavaScript}\", it is ECMAScript!`;
-        }
-                
+    if (nameOfJavaScript == "ECMAScript"){
+        document.getElementById("demo").innerHTML = "Right! ECMAScript is the actual name!";
+    } else{
+        document.getElementById("demo").innerHTML = `The official name of JavaScript is not \"${nameOfJavaScript}\", it is ECMAScript!`;
     }
+
+    <button onClick="officialNameOfJS()">Run</button>
+
             </code></pre>
-            <p>This code is attached to the <code>onClick</code> attribute of this button, so go ahead and click!</p>
-            <button onClick="officialNameOfJS()">Ask!</button>
+            
+            
             <p id="demo">Code output:<br><br><br></p>
             <h4>Task 2</h4>
-            <p id="demo1"><br></p>
-            <p id="demo2"><br></p>
-            <p id="demo3"><br></p>
-            <p id="demo4"><br></p>
-            <p id="demo5"><br></p>
+           
         </div>
         <div class="column side" id="column side right"></div>
 
@@ -59,7 +53,7 @@
 </body>
 
 <script src="../root-js/JavaScriptInfoMenu.js"></script>
-<script src="js/6-conditionals.js"></script>
+<script src="js/10-conditionals.js"></script>
 
 
 </html>

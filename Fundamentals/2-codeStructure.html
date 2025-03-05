@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../root-css/styles.css">
+    
+</head>
+
+<body>
+    <div class = "header" id="header"></div>
+    <div class="topnav" id="topnav"></div>
+    <div class="row">
+        <div class="column side" id="column side left"></div>
+        <div class="column middle">
+            <h2>2-Code Structure</h2>
+            <h3>Appending script in <code>&lt;script&gt; &lt;/script&gt;</code> tags</h3>
+            <p>The purpose here is to show what code structure looks like. This page represents a means of calling JavaScript code embedded within the same html page.
+                This code can be found in the <code>&lt;script&gt; &lt;/script&gt;</code> after the <code>&lt;/body&gt;</code> tag:</p>
+            <p><pre><code>
+    &lt;/body&gt;
+
+    &lt;script&gt;
+
+        function showAnAlert(){ 
+            alert("I'm JavaScript"); 
+            document.getElementById("demo").innerHTML = "I'm JavaScript";
+        }
+
+    &lt;/script&gt;
+
+    <button onclick="example1()">Run</button>
+
+            </pre></code></p>
+            
+            <h3>Embedding code in an external .js file</h3>
+
+            <p>This takes exactlly the same code segment, but embeds it in an external .js file.
+                This code can be found in the file referenced in the <code>src</code> of the <code>&lt;script&gt; &lt;/script&gt;</code> tags after the <code>&lt;/body&gt;</code> tag:</p>
+            <pre><code>
+    &lt;/body&gt; 
+    &lt;script src="js/taskShowanAlerttextJS.js"&gt;&lt;/script&gt; 
+            </code></pre>
+            <p> The function <code>showAnAlert()</code> can now be found embedded in the <code>taskShowanAlertextJS.js</code> file.</p>
+            <pre><code>
+    function showAnAlert(){ 
+        alert("I'm JavaScript"); 
+        document.getElementById("demo").innerHTML = "I'm JavaScript";
+    }
+
+    <button onclick="example2()">Run</button>
+
+</code></pre>
+            
+        </div><!-- End of middle  -->
+
+        <div class="column side" id="column side right"></div>
+    </div>
+
+
+    <div class="footer" id="footer"></div>
+</body>
+
+<script>
+
+    function example1(){
+        alert("I'm JavaScript");
+    }
+</script>
+<script src="../root-js/JavaScriptInfoMenu.js"></script>
+<script src="js/2-codeStructure.js"></script>
+
+</html>

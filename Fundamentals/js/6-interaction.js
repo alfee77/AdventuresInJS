@@ -1,6 +1,6 @@
 'use strict'
 
-function theCode(){
+function example1(){
     let name = prompt("What is your name?:", "Sione Tuipulotu");
     alert(`You are ${name}`);
 

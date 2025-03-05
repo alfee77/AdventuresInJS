@@ -1,6 +1,6 @@
 'use strict'
 
-function theCode(){
+function example1(){
     let admin;
     let name;
 

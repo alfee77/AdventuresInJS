@@ -16,7 +16,7 @@
     <div class="row">
         <div class="column side" id="column side left"></div>
         <div class="column middle">
-            <h2>Functions</h2>
+            <h2>15-Functions</h2>
             <p>To create a function, it needs to be declared. It would typically look like this:</p>
             <pre><code>
     function message(){
@@ -49,20 +49,25 @@
             alert(`Just not possible! A ${err.name} has been thrown. ${err.message}`);
         }
     }
+
+    <button onclick="outerFruit()">Run</button>
+
             </code></pre>
             <p>When the last line of code is run, a ReferenceError is thrown, confirming that vegetable
             is not defined.</p>
-            <button onclick="outerFruit()">demo outerFruit()</button>
+            
             
             <h3>Parameters</h3>
             <p>Parameters are passed to functions when they are called; they are the variables stated in the
-                 brackets of the function. Consider the following piece of code:</p>
-                 <pre><code>
+                brackets of the function. Consider the following piece of code:</p>
+                <pre><code>
     function announce(title, name){
         alert(`Welcome ${title} ${name}`);
     }
-                 </code></pre>
-                 <button onclick="demoAnnounce()">demo announce()</button>
+
+    <button onclick="demoAnnounce()">Run</button>
+                </code></pre>
+                 
             <h3>In summary</h3>
             <p>Functions may have local variables: those declared inside its body or its parameter list. Such variables
                 are only visible inside the function.
@@ -89,7 +94,7 @@
 </body>
 
 <script src="../root-js/JavaScriptInfoMenu.js"></script>
-<script src="js/11-functions.js"></script>
+<script src="js/15-functions.js"></script>
 
 
 </html>
