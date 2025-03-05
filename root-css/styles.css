@@ -13,9 +13,10 @@ pre code {
     white-space: pre;
     -webkit-overflow-scrolling: touch;
     overflow-x: scroll;
-    max-width: 70%;
+    max-width: 90%;
     min-width: 100px;
     padding: 0;
+    align-items: center;
 }
 
 .comment {
@@ -24,10 +25,7 @@ pre code {
 
 body {
     margin: 0;
-}
-
-.inlinecode {
-    background-color: lightgray;
+    /* background: linear-gradient(rgb(47, 150, 163), rgb(48, 62, 143)); */
 }
 
 .header {
@@ -88,6 +86,8 @@ body {
 /* Middle column */
 .column.middle {
     width: 50%;
+    align-items: center;
+    justify-content: center;
 }
 
 /* Clear floats after the columns */
