@@ -17,6 +17,7 @@ pre code {
     min-width: 100px;
     padding: 0;
     align-items: center;
+    cursor: pointer;
 }
 
 .comment {
@@ -115,12 +116,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
 
-  .image-container-right{
+.image-container-right{
     display: flex;
     justify-content: right;
     align-items: right;
-  }
+}
 
 

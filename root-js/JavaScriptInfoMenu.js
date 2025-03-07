@@ -4,7 +4,8 @@ document.getElementById("header").innerHTML =
 document.getElementById("topnav").innerHTML =
     "<a href='../Fundamentals/0-index.html'>Fundamentals</a>" +
     "<a href='../Code_Quality/0-index.html'>Code Quality</a>" +
-    "<a href='../Objects/0-index.html'>Objects</a>";
+    "<a href='../Objects/0-index.html'>Objects</a>" +
+    "<a href='../Promises_asyn-await/0-index.html'>Promises</a>";
 
 let loc = window.location.pathname;
 let dir = loc.substring(0, loc.lastIndexOf('/'));
@@ -53,6 +54,14 @@ if (folder =="Objects"){
         "<a href='5-Constructor, operator new.html'>5-Constructor functions and the <code>new</code> operator</a><br>" +
         "<a href='6-Optional chaining.html'>6-Optional chaining; the <code>?.</code> construct</a><br>" +
         "<a href='7-Symbol type.html'>7-Symbol type</a><br>" +
+    "</ol>";
+}
+
+if (folder =="Promises_asyn-await"){
+    document.getElementById("column side left").innerHTML =
+    "<h2>JavaScript.info - " + folder + "</h2>" +
+    "<ol>" +
+        "<a href='1-introduction.html'>1-Introduction</a><br>" +
     "</ol>";
 }
 

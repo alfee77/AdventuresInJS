@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="../root-css/styles.css">
+        
+    </head>
+    <body>
+        <div class = "header" id="header"></div>
+        
+        <div class="topnav" id="topnav"></div>
+
+        <div class="row">
+            <div class="column side" id="column side left"></div>
+        
+            <div class="column middle">
+                <h2>1-Introduction: callbacks</h2>
+                <p>
+                    Asynchronous programming is a programming that is done perhaps 'non-sequentially'. Probably a poor discription, but essentially a function may start, and
+                    be depenedent on the completion of another function or script, and therefore needs to wait for that other code element is complete before continuing.
+                </p>
+                <pre>
+                    <code>
+    function example1() {
+        setTimeout(() => { document.getElementById("output").innerHTML = "Ready...."; }, 1000);
+        setTimeout(() => { document.getElementById("output").innerHTML += "Steady...."; }, 2000);
+        setTimeout(() => { document.getElementById("output").innerHTML += "Go!"; }, 3000);
+        setTimeout(() => { document.getElementById("output").innerHTML = "And they are off!"; }, 3500);
+    }
+
+    <button onclick="example1()">Run</button>
+                    </code></pre>
+                
+                <p id="output"> . </p>
+                
+            </div>
+        
+            <div class="column side" id="column side right"></div>
+            
+        </div>
+
+        <div class="footer" id="footer"></div>
+ 
+    </body>
+
+    <script src="../root-js/JavaScriptInfoMenu.js"></script>
+    <script src="js/1-introduction.js"></script>
+    
+    
+
+</html>
