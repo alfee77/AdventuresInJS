@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../root-css/styles.css">
+
+</head>
+
+<body>
+    <div class="header" id="header"></div>
+
+    <div class="topnav" id="topnav"></div>
+
+    <div class="row">
+        <div class="column side" id="column side left"></div>
+
+        <div class="column middle">
+            <h1>Methods of primitives</h1>
+            <p>Quick reminder as to what the primitive data types in JavaScript are:</p>
+            <p><code>string</code>, <code>number</code>, <code>bigint</code>, <code>boolean</code>, <code>symbol</code>,
+                <code>null</code> and <code>undefined</code>
+            </p>
+            <p>JavaScript allows us to work with primitives as if they were objects - epic :). However, primitives are
+                <i>not</i> objects. Primitive variables are capable of storing a single data type, unlike objects which
+                can have multiple values as properties. One of the best things about an object is we can store a
+                function as a property:
+            </p>
+            <pre>
+                <code>
+    let myCar = {
+        manufacturer: "Kia",
+        model: "Niro",
+        Date of registration: 30/09/2021,
+        tootHorn(){
+            alert(`Beep beep!`);
+        }
+    }
+
+    function example1(){
+        myCar.tootHorn();
+    }
+
+    <button onclick="example1()">Run</button>
+                </code>
+            </pre>
+
+            <p>So here's an example of an object, <code>myCar{...}</code> with the method tootHorn. I mean what kind of
+                a car doesn't have a horn eh? One must be able to toot.</p>
+            <p>Many inbuilt objects exist in JavaScript. For example, Dates, errors, DOM and HTML elements etc. Much
+                like <code>myCar</code>, these objects come with their own properties, many of which are methods.
+                However, it must be born in mind that objects are "heavier" than primitives. They require a bit more
+                "under the hood" to come into existence.</p>
+
+        </div>
+
+        <div class="column side" id="column side right"></div>
+
+    </div>
+
+    <div class="footer" id="footer"></div>
+
+</body>
+
+<script src="../root-js/JavaScriptInfoMenu.js"></script>
+<script src="js/1-methodsOfPrimitives.js"></script>
+
+
+
+</html>

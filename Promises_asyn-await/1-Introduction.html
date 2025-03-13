@@ -1,52 +1,205 @@
 <!DOCTYPE html>
 
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="../root-css/styles.css">
-        
-    </head>
-    <body>
-        <div class = "header" id="header"></div>
-        
-        <div class="topnav" id="topnav"></div>
 
-        <div class="row">
-            <div class="column side" id="column side left"></div>
-        
-            <div class="column middle">
-                <h2>1-Introduction: callbacks</h2>
-                <p>
-                    Asynchronous programming is a programming that is done perhaps 'non-sequentially'. Probably a poor discription, but essentially a function may start, and
-                    be depenedent on the completion of another function or script, and therefore needs to wait for that other code element is complete before continuing.
-                </p>
-                <pre>
-                    <code>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../root-css/styles.css">
+
+</head>
+
+<body>
+    <div class="header" id="header"></div>
+
+    <div class="topnav" id="topnav"></div>
+
+    <div class="row">
+        <div class="column side" id="column side left"></div>
+
+        <div class="column middle">
+            <h2>1-Introduction: callbacks</h2>
+            <p>
+                Asynchronous programming is a programming that is done perhaps 'non-sequentially'. Probably a poor
+                discription, but essentially a function may start, and
+                be depenedent on the completion of another function or script, and therefore needs to wait for that
+                other code element is complete before continuing.
+            </p>
+            <p>As an introduction, we'll consider three types of asynchrony; timer, events and network activity.</p>
+            <h3>Timers</h3>
+            <p>Consider the following piece of code that utilises the <code>setTimeout()</code> function:</p>
+
+            <pre><code>
     function example1() {
         setTimeout(() => { document.getElementById("output").innerHTML = "Ready...."; }, 1000);
         setTimeout(() => { document.getElementById("output").innerHTML += "Steady...."; }, 2000);
         setTimeout(() => { document.getElementById("output").innerHTML += "Go!"; }, 3000);
         setTimeout(() => { document.getElementById("output").innerHTML = "And they are off!"; }, 3500);
     }
+    setTimeout(fun)
 
     <button onclick="example1()">Run</button>
-                    </code></pre>
-                
-                <p id="output"> . </p>
-                
-            </div>
-        
-            <div class="column side" id="column side right"></div>
+            </code></pre>
+            <p id="output"> . </p>
+
+            <p>Looking closely at it's anatomy, the <code>setTimeout()</code> function takes the following form:</p>
+
+            <code>
+                &nbsp;&nbsp;setTimeout( callbackFunction, timeinms[optional], param1[optional], ...paramN[optional] );
+            </code>
+            <p>Where:</p>
+            <ul>
+                <li><code>callbackFunction</code> is the function to be called after the timer expires</li>
+                <li><code>timeinms</code> is the time in ms before callbackFunction is called</li>
+                <li><code>param1...paramN</code> are optional parameters that can be passed to the <code>callbackFunction</code></li>
+            </ul>
+
+            <h3>Events</h3>
+            <p>Events are another example of asynchrony. Most JavaScript programs are event driven. For example, the web browser will
+                generate an event when a mouse is clicked, or a key is pressed, the mouse is moved and so on. JavaScript programs will
+                register callback functions that will be called by the web browser when the specific event occurs. Said callback functions
+                are called <i>event handlers</i> or <i>event listeners</i>; they are registered with <code>addEventListener()</code>:</p>
+
+            <pre>
+                <code>
+    <span class="comment">//Ask the browser to return an object representing the HTML &lt;button&gt;
+    //element that matches the button description (OK) below</span>
+    let okay = document.querySelector('button.OK');
+    alert(okay);
+
+    <span class="comment">//Now register a callback function to be invoked when the user
+    //clicks that button.</span>
+    okay.addEventListener('click', applyUpdate);
+
+    function applyUpdate(){
+        alert('Update applied!');
+        console.log(`Fuckin genius Al!`)
+    }
+
+    <button id="OK" class="OK">OK</button>
+                </code>
+            </pre>
+
             
+            <p>
+                Quite lovely, isn't it? In this example, the call to <code>document.querySelector('button.OK')</code> returns an object that represents
+                a button with the class id "OK" in the current form. We then call <code>addEventListener('click', applyUpdate)</code> on that object to register the callback function
+                <code>applyUpdate()</code> when the button is clicked.
+            </p>
+            <h3>Network Events</h3>
+            <p>
+                The final piece of asynchrony we'll cover in this introduction is network requests. JavaScript running in a browser can fetch data
+                from a web server with a piece of code like this:            
+            </p>
+
+                
+                <pre>
+                    <code>
+    function getCurrentVersionNumber(versionCallback){ <span class="comment">//note callback argument</span>
+        <span class="comment">//Make scripted HTTP request to backend version API</span>
+    
+        let request = new XMLHttpRequest();
+        request.open("GET", "http://www.example.com/api/version");
+        request.send();
+    
+        <span class="comment">//Register a call back that will be invoked when the response arrives</span>
+        request.onload = function() {
+            alert(`Sumfink back`);
+            if(request.status === 200){
+                <span class="comment">//If HTTP status is good, get version number and callback</span>
+                let currentVersion = parseFloat(request.responseText);
+                versionCallback(null, currentVersion);
+                console.log("I'm back!");
+            } else {
+                <span class="comment">//otherwise report an error to the callback</span>
+                versionCallback(this.response.statusText, null);
+                alert("It's fucked!");
+            }
+        };
+    
+    
+    
+    }
+    
+    getCurrentVersionNumber(applyUpdate);
+                    </code>
+                </pre>
+
+<p>This too is really quite lovely. Except for the fact it doesnt work! This is down to Cross Origin Resource Sharing (CORS) policy on the http://www.example.com/api/version. However, if we try it with the weather one...</p>
+<pre>
+    <code>
+
+    window.addEventListener('load', pageLoaded());
+
+    function pageLoaded() {
+        let long;
+        let lat;
+        let temperatureDescription = document.querySelector(".temperature-description");
+        let temperatureDegree = document.querySelector(".temperature-degree");
+        let location = document.querySelector(".location");
+        let dateTime = document.querySelector(".date-time");
+
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(success);
+
+            async function success(myPosition) {
+                <span class="comment">// console.log(myPosition);</span>
+                long = myPosition.coords.longitude;
+                lat = myPosition.coords.latitude;
+                console.log(Date(myPosition.timestamp));
+
+                const apicall = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=9220f1568b4e8b1b2fe4c044af2c541f`;
+
+                let prom = await fetch(apicall);
+                let response;
+
+                if (prom.ok) {
+                    response = await prom.json();
+                }
+
+                const desc = response.weather[0].description;
+                const temp = Math.round(response.main.temp - 273.15);
+                const loc = response.name;
+                const dateTimeInfo = Date(myPosition.timestamp);            
+
+                <span class="comment">//set DOM Elements from the API call</span>
+                temperatureDescription.textContent == desc;
+                temperatureDegree.textContent += temp;
+                location.textContent += loc;
+                dateTime.textContent += dateTimeInfo;
+                
+                console.log(location);
+
+
+            } <span class="comment">//success()</span>
+        }<span class="comment">//if OK to use location</span>
+    }<span class="comment">//pageLoaded()</span>
+
+</code>
+</pre>
+
+        <ul>
+            <li class="temperature-description">Description: </li>
+            <li class="temperature-degree">Temperature: </li>
+            <li class="location">Location: </li>
+            <li class="date-time">Time of check: </li>
+        </ul>
+
+        <p>There is a <i>lot</i> to unpick here!</p>
+
         </div>
 
-        <div class="footer" id="footer"></div>
- 
-    </body>
+        <div class="column side" id="column side right"></div>
 
-    <script src="../root-js/JavaScriptInfoMenu.js"></script>
-    <script src="js/1-introduction.js"></script>
-    
-    
+    </div>
+
+    <div class="footer" id="footer"></div>
+
+</body>
+
+<script src="../root-js/JavaScriptInfoMenu.js"></script>
+<script src="js/1-introduction.js"></script>
+
+
 
 </html>
