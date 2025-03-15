@@ -1,4 +1,4 @@
-alert("Are we running?")
+
 
 document.getElementById("header").innerHTML =
     "<h1>Adventures in JavaScript</h1>";
