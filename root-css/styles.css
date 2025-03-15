@@ -25,24 +25,29 @@ pre code {
 
 body {
     margin: 0;
-    /* background: linear-gradient(rgb(47, 150, 163), rgb(48, 62, 143)); */
 }
 
 .header {
+    float: center;
+    display: block;
     background-color: #f1f1f1;
     padding: 20px;
     text-align: center;
-}
+}/* The navbar container */
 
 .header a{
-    
     display: block;
     color: black;
     text-align: center;
     padding: 24px 26px;
     text-decoration: none;
 }
-/* The navbar container */
+
+.header a :hover{
+    color: white;
+    background: #333;
+}
+
 .topnav {
     overflow: hidden;
     background-color: #333;
