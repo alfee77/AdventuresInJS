@@ -1,3 +1,4 @@
+'use strict';
 let myCar = {
     manufacturer: "Kia",
     model: "Niro",
@@ -9,4 +10,17 @@ let myCar = {
 
 function example1(){
     myCar.tootHorn();
+}
+
+function example2() {
+    let str = "Hello";
+
+    alert( str.toUpperCase() ); // HELLO
+}
+
+function task1(){
+    let hello = "hi";
+    hello.test = 5;
+
+    alert(hello.test);
 }

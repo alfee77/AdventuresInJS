@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="../root-css/styles.css">
+</head>
+
+<body>
+    <div class="header" id="header"></div>
+    <div class="topnav" id="topnav"></div>
+    <div class="row">
+        <div class="column side" id="column side left"></div>
+        <div class="column middle">
+            <h2>Numbers</h2>
+            <p> There are two types of numbers in JavaScript; </p>
+            <ol>
+                <li>Regular numbers, that elsewhere may be referred to as "double precision floating point numbers" (as
+                    per <a href="https://en.wikipedia.org/wiki/IEEE_754">IEEE-754</a>). These numbers are made up of 64
+                    bits. It
+                    is worth noting that JavaScript doesnt really distinguish between integers and floating points</li>
+
+                <li>BigInt numbers represent integers of arbitrary length. They are sometimes needed because a regular
+                    integer number can’t safely exceed (253-1) or be less than -(253-1), as we mentioned earlier in the
+                    chapter Data types. As bigints are used in a few special areas, we devote them to a special chapter
+                    BigInt.</li>
+            </ol>
+
+            <h2>Summary</h2>
+            <p>To write numbers with many zeroes:</p>
+
+            <p>
+                Append "e" with the zeroes count to the number. Like: 123e6 is the same as 123 with 6 zeroes 123000000.
+                A negative number after "e" causes the number to be divided by 1 with given zeroes. E.g. 123e-6 means
+                0.000123 (123 millionths).</p>
+            <p>For different numeral systems:</p>
+
+
+            <ul>
+                <li>Can write numbers directly in hex (0x), octal (0o) and binary (0b) systems.</li>
+                <li>parseInt(str, base) parses the string str into an integer in numeral system with given base, 2 ≤
+                    base ≤ 36.</li>
+                <li>num.toString(base) converts a number to a string in the numeral system with the given base.</li>
+            </ul>
+            <p>For regular number tests:</p>
+
+            <ul>
+                <li><code>isNaN(value)</code> converts its argument to a number and then tests it for being NaN</li>
+                <li><code>Number.isNaN(value)</code> checks whether its argument belongs to the number type, and if so,
+                    tests it for being NaN</li>
+                <li><code>isFinite(value)</code> converts its argument to a number and then tests it for not being
+                    NaN/Infinity/-Infinity</li>
+                <li><code>Number.isFinite(value)</code> checks whether its argument belongs to the number type, and if
+                    so, tests it for not being NaN/Infinity/-Infinity</li>
+            </ul>
+            <p>For converting values like 12pt and 100px to a number:</p>
+
+
+            <p>Use parseInt/parseFloat for the “soft” conversion, which reads a number from a string and then returns
+                the value they could read before the error.</p>
+            <p>For fractions:</p>
+
+            <ul>
+                <li>Round using <code>Math.floor</code>, <code>Math.ceil</code>, <code>Math.trunc</code>,
+                    <code>Math.round</code> or <code>num.toFixed(precision)</code>.
+                </li>
+                <li>Make sure to remember there’s a loss of precision when working with fractions.</li>
+            </ul>
+
+            <p>For additional functions, see the Math object when you need them. The library is very small but can cover
+                basic needs.</p>
+
+            <h2>Tasks</h2>
+            <h3>Task 1 - Sum numbers from the visitor</h3>
+            <p>importance: 5</p>
+            <p>Create a script that prompts the visitor to enter two numbers and then shows their sum.</p>
+
+            <h3>Solution</h3>
+            <pre>
+                <code>
+    function task1(){
+        let a = +prompt("Enter first number: ");
+        let b = +prompt("Enter second number: ");
+    
+        alert(typeof(a));
+        alert(typeof(b));
+    
+        alert(a+b);
+    }
+
+    <button onclick="task1()">Run</button>
+                </code>
+            </pre>
+
+
+            <h3>Task2 - Why 6.35.toFixed(1) == 6.3?</h3>
+            <p>importance: 4</p>
+            <p>According to the documentation Math.round and toFixed both round to the nearest number: 0..4 lead down
+                while 5..9 lead up.</p>
+
+            <p>For instance:</p>
+
+            <pre>
+                <code>
+    alert( 1.35.toFixed(1) ); <span class="comment">// 1.4</span>
+                </code>
+            </pre>
+            <p>In the similar example below, why is 6.35 rounded to 6.3, not 6.4?</p>
+
+            <pre>
+                <code>
+    alert( 6.35.toFixed(1) ); <span class="comment">// 6.3</span>
+                </code>
+            </pre>
+
+            <p>How to round 6.35 the right way?</p>
+            <button onclick="task2()">Run</button>
+
+            <p>The answer to this lies in the loss of precision that is experienced. In the act of converting 6.35 to a
+                binary number, (which all pooters must do!), in binary terms, 6.35 is an irrational number. By using the
+                toString()
+                method from the number wrapper object, we can actually see this in action:</p>
+            <p id="noField">6.35.toFixed(20) returns </p>
+            <p>This apparent deviation from the specified 6.35 is caused by translating 6.35 to binary. </p>
+
+            <h3>Task 3 - Repeat until the input is a number</h3>
+            <p>importance: 5</p>
+            <p>Create a function readNumber which prompts for a number until the visitor enters a valid numeric value.
+            </p>
+
+            <p>The resulting value must be returned as a number.</p>
+
+            <p>The visitor can also stop the process by entering an empty line or pressing “CANCEL”. In that case, the
+                function should return null.</p>
+
+            <h3>Solution</h3>
+            <pre>
+                <code>
+    function task3(){
+        function readNumber(){
+            let userNo;
+    
+            do {
+                userNo = prompt("Enter a number: ", 0);
+            }while(!isFinite(userNo))
+        
+            return userNo;  
+        }
+    
+    
+        alert(`Number entered: ${readNumber()}`);
+    
+    }
+
+    <button onclick="task3()">Run</button>
+                </code>
+            </pre>
+
+            <h3>Task 4 - An occasional infinite loop</h3>
+            <p>importance: 4</p>
+
+            <p>This loop is infinite. It never ends. Why?</p>
+
+            <pre>
+                <code>
+    let i = 0;
+    while (i != 10) {
+        i += 0.2;
+    }
+                </code>
+            </pre>
+
+            <h3>Solution</h3>
+            <p> If we run this code, and we convert 0.2 to a binary number (as JavaScript will do under the hood), there
+                is a loss of
+                precision when it comes to converting the floating point number. If we use node.js to run a wee snippet
+                of this, we
+                can see that in actual fact, 0.2 becomes 0.20000000000000001110.</p>
+
+            <pre>
+                <code>
+    > 0.2.toFixed(20)
+    '0.20000000000000001110'
+    >
+                </code>
+             </pre>
+
+            <p>Ergo, when incrementing i by 0.2, we are actually incrementing it by 0.20000000000000001110, meaining we
+                never actually
+                hit the integer 10. To demonstrate, lets wrap this in a for... loop and interate between 9.6 and 10.2
+                (which should only require
+                three iterations of +0.2) and see what we actually get:</p>
+
+            <pre>
+                <code>
+    function task4(){
+        let i=9.6;
+        for(let n=0; n&lt;3; n++){
+            i += 0.2;
+            console.log(i);
+        }
+    }
+
+    Output:
+    9.799999999999999
+    9.999999999999998
+    10.199999999999998
+
+
+    <button onclick="task4()">Run</button>
+                </code>
+            </pre>
+
+            <p>So we can conclude we never actually hit the integer 10, and the condition <code>i=10</code> will never
+                be satisfied.</p>
+
+            <h3>Task 5 - A random number from min to max</h3>
+            <p>importance: 2</p>
+            <p>The built-in function Math.random() creates a random value from 0 to 1 (not including 1).</p>
+
+            <p>Write the function random(min, max) to generate a random floating-point number from min to max (not
+                including max).</p>
+
+            <p>Examples of its work:</p>
+            <pre>
+                <code>
+    alert( random(1, 5) ); // 1.2345623452
+    alert( random(1, 5) ); // 3.7894332423
+    alert( random(1, 5) ); // 4.3435234525
+                </code>
+            </pre>
+
+            <h3>Solution</h3>
+
+            <pre>
+                <code>
+    function task5(){
+        function random(min, max){
+            return Math.random()*(max-min)+min;
+        }
+    
+        alert(random(1, 5))
+    }
+
+    <button onclick="task5()">Run</button>
+
+                </code>
+            </pre>
+
+            <h3>Task 6 - A random integer from min to max</h3>
+            <p>importance: 2</p>
+            <p>Create a function randomInteger(min, max) that generates a random integer number from min to max
+                including both min and max as possible values.</p>
+
+            <p>Any number from the interval min..max must appear with the same probability.</p>
+
+            <p>Examples of its work:</p>
+
+            <pre>
+                <code>
+    alert( randomInteger(1, 5) ); // 1
+    alert( randomInteger(1, 5) ); // 3
+    alert( randomInteger(1, 5) ); // 5
+                </code>
+            </pre>
+            <p>You can use the solution of the previous task as the base.</p>
+
+            <h3>Solution</h3>
+            <pre>
+                <code>
+    function task6(){
+        function randomInt(min, max){
+            return Math.round(Math.random()*(max-min)+min);
+        }
+    
+        alert(randomInt(1, 5))
+    }
+
+    <button onclick="task6()">Run</button>
+                </code>
+            </pre>
+            <p>Apparently this is incorrect, as it's not truly random... Canny be bovva'd fixing it.</p>
+
+        </div>
+
+        <div class="column side" id="column side right"></div>
+
+    </div>
+
+    <div class="footer" id="footer"></div>
+
+
+</body>
+
+<script src="../root-js/JavaScriptInfoMenu.js"></script>
+<script src="js/2-numbers.js"></script>
+
+
+</html>

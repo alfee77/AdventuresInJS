@@ -46,12 +46,62 @@
                 </code>
             </pre>
 
-            <p>So here's an example of an object, <code>myCar{...}</code> with the method tootHorn. I mean what kind of
-                a car doesn't have a horn eh? One must be able to toot.</p>
+            <p>So here's an example of an object, <code>myCar{...}</code> with the method <code>tootHorn()</code>. I
+                mean what kind of a car doesn't have a horn eh? One must be able to toot.</p>
             <p>Many inbuilt objects exist in JavaScript. For example, Dates, errors, DOM and HTML elements etc. Much
                 like <code>myCar</code>, these objects come with their own properties, many of which are methods.
                 However, it must be born in mind that objects are "heavier" than primitives. They require a bit more
                 "under the hood" to come into existence.</p>
+
+            <p>So the paradox facing the original developer of JavaScript is; yeh - lets have primitive data types
+                that hold simple/low overhead variables, but how do we give these things methods to carry
+                day to day operations on it?
+            </p>
+
+            <p>The solution looks a little bit awkward, but here it is:</p>
+
+            <ul>
+                <li>Primitives are still primitive. A single value, as desired.</li>
+                <li>The language allows access to methods and properties of strings, numbers, booleans and symbols.</li>
+                <li>In order for that to work, a special “object wrapper” that provides the extra functionality is
+                    created, and then is destroyed.</li>
+            </ul>
+
+            <p>To allow access to the methods and properties of these primitive data types, the language provides
+                wrapper objects, namely
+                <code>String</code>, <code>Number</code>, <code>Bigint</code>, <code>Boolean</code> and
+                <code>Symbol</code>. Consider the following which implicitly cracks into the String object wrapper:
+            </p>
+
+            <pre>
+        <code>
+    let str = "Hello";
+
+    alert( str.toUpperCase() ); <span class="comment">// HELLO</span>
+
+    <button onclick="example2()">Run</button>
+        </code>
+    </pre>
+            <p>Note it is not necessary to explicitly wrap the String in the object wrapper; the methods are available
+                implicitly.</p>
+
+            <h2>Tasks</h2>
+            <h3>Task 1 - adding properties to a primitive?</h3>
+            <pre>
+            <code>
+    function task1(){
+        let hello = "hi";
+        hello.test = 5;
+
+        alert(hello.test);
+    }
+
+    <button onclick="task1()">Run</button>
+            </code>
+        </pre>
+            <p>If the <code>'use strict'</code> directive is used, running this code will result in an error. Otherwise, running this code will
+                post "undefined" in the alert box. This is because the object wrapper is created when the value 5 is 
+                added to the hello.test property, however as soon as the value is applied the object wrapper is disposed of.</p>
 
         </div>
 
