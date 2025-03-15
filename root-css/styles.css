@@ -21,7 +21,7 @@ pre code {
 
 .comment {
     color:olivedrab;
-  }
+}
 
 body {
     margin: 0;
@@ -32,6 +32,15 @@ body {
     background-color: #f1f1f1;
     padding: 20px;
     text-align: center;
+}
+
+.header a{
+    
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 24px 26px;
+    text-decoration: none;
 }
 /* The navbar container */
 .topnav {
