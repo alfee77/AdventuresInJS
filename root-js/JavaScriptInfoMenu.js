@@ -82,7 +82,7 @@ if (folder == "Asynchrony") {
 
 
 document.getElementById("column side right").innerHTML =
-    "<div class='image-container-right'> <img src='..\\root-images\\me.png' alt='me!'></div>"
+    "<div class='image-container-right'> <img src='https://alfee77.github.io/AdventuresInJS/root-images/me.png' alt='me!'></div>"
 
 
 document.getElementById("footer").innerHTML =
