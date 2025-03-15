@@ -4,7 +4,7 @@ document.getElementById("header").innerHTML =
     "<h1>Adventures in JavaScript</h1>";
 
 document.getElementById("topnav").innerHTML =
-    "<a href='./Fundamentals/0-index.html'>Fundamentals</a>" +
+    "<a href='../Fundamentals/0-index.html'>Fundamentals</a>" +
     "<a href='../Code_Quality/0-index.html'>Code Quality</a>" +
     "<a href='../Objects/0-index.html'>Objects</a>" +
     "<a href='../Data_types/0-index.html'>Data Types</a>" +
