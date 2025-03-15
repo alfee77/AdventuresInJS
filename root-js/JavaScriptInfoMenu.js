@@ -7,7 +7,7 @@ document.getElementById("topnav").innerHTML =
     "<a href='https://alfee77.github.io/AdventuresInJS/Fundamentals/0-index.html'>Fundamentals</a>" +
     "<a href='https://alfee77.github.io/AdventuresInJS/Code_Quality/0-index.html'>Code Quality</a>" +
     "<a href='https://alfee77.github.io/AdventuresInJS/Objects/0-index.html'>Objects</a>" +
-    "<a href='https://alfee77.github.io/AdventuresInJS/Data_types/0-index.html'>Data Types</a>" +
+    "<a href='https://alfee77.github.io/AdventuresInJS/Data_Types/0-index.html'>Data Types</a>" +
     "<a href='https://alfee77.github.io/AdventuresInJS/Asynchrony/0-index.html'>Asynchrony</a>";
 
 let loc = window.location.pathname;
