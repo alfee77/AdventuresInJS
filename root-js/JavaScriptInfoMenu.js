@@ -60,7 +60,7 @@ if (folder == "Objects") {
         "</ol>";
 }
 
-if (folder == "Data_types") {
+if (folder == "Data_Types") {
     document.getElementById("column side left").innerHTML =
         "<h2>" + folder + "</h2>" +
         "<ol>" +
