@@ -4,11 +4,11 @@ document.getElementById("header").innerHTML =
     "<h1>Adventures in JavaScript</h1>";
 
 document.getElementById("topnav").innerHTML =
-    "<a href='../Fundamentals/0-index.html'>Fundamentals</a>" +
-    "<a href='../Code_Quality/0-index.html'>Code Quality</a>" +
-    "<a href='../Objects/0-index.html'>Objects</a>" +
-    "<a href='../Data_types/0-index.html'>Data Types</a>" +
-    "<a href='../Asynchrony/0-index.html'>Asynchrony</a>";
+    "<a href='./Fundamentals/0-index.html'>Fundamentals</a>" +
+    "<a href='./Code_Quality/0-index.html'>Code Quality</a>" +
+    "<a href='./Objects/0-index.html'>Objects</a>" +
+    "<a href='./Data_types/0-index.html'>Data Types</a>" +
+    "<a href='./Asynchrony/0-index.html'>Asynchrony</a>";
 
 let loc = window.location.pathname;
 let dir = loc.substring(0, loc.lastIndexOf('/'));
