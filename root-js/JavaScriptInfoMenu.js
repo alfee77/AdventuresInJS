@@ -1,7 +1,7 @@
 
 
 document.getElementById("header").innerHTML =
-    "<h1>Adventures in JavaScript</h1>";
+    "<a href=https://alfee77.github.io/AdventuresInJS/><h1>Adventures in JavaScript</h1></a>";
 
 document.getElementById("topnav").innerHTML =
     "<a href='https://alfee77.github.io/AdventuresInJS/Fundamentals/0-index.html'>Fundamentals</a>" +
