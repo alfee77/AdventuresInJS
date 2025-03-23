@@ -10,7 +10,7 @@ function task1(){
 
 
 
-document.getElementById("noField").innerHTML += 6.35.toFixed(20)+".";
+document.getElementById("noField").innerHTML += 6.35.toFixed(20);
 
 function task3(){
     function readNumber(){

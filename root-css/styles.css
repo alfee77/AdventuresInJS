@@ -1,6 +1,7 @@
 
 a, h1, h2, h3, h4, h5, p, li{
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    
 }
 * {
     box-sizing: border-box;
@@ -19,6 +20,8 @@ a, h1, h2, h3, h4, h5, p, li{
     outline: solid grey;
     margin-left: 2%;
     cursor: pointer;
+    text-wrap-mode: wrap;
+    
 
 }
 
@@ -140,4 +143,21 @@ body {
     align-items: right;
 }
 
+.task {
+    margin-bottom:2%;
+    outline: solid gray;
+    padding: 0% 2% 2% 2%;
+    width: 80%;
+    offset-position: initial;
+    background-color: lightgray;
+}
+
+.task-solution{
+    margin-left:2%;
+    background-color: papayawhip;
+    padding: 0% 2% 2% 2%;
+    width: 80%;
+    outline: solid gray;
+
+}
 

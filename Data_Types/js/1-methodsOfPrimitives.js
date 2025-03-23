@@ -4,7 +4,7 @@ let myCar = {
     model: "Niro",
     Date_of_registration: 30/9/2021,
     tootHorn(){
-        alert(`Beep beep!`);
+        alert(`Beep beep! said the ${this.manufacturer} ${this.model}`);
     }
 }
 
