@@ -24,6 +24,8 @@ pre code {
     background: gray;
     padding: 5%;
     font-family: monospace;
+    color: white;
+    white-space: pre;
 
 }
 
