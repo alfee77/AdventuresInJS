@@ -23,6 +23,7 @@ pre code {
     display: block;
     background: gray;
     padding: 20%;
+    font: monospace;
 
 }
 
