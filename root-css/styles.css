@@ -22,7 +22,7 @@ pre code {
 .codeLines {
     display: block;
     background: gray;
-    padding: 1%;
+    padding: 5%;
     font-family: monospace;
 
 }
