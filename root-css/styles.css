@@ -19,6 +19,13 @@ code {
     cursor: pointer;
 }
 
+.codeLines }
+    display: block;
+    background: gray;
+    padding: 20%;
+
+}
+
 .comment {
     color:olivedrab;
 }
