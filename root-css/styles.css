@@ -19,7 +19,7 @@ pre code {
     cursor: pointer;
 }
 
-.codeLines }
+.codeLines {
     display: block;
     background: gray;
     padding: 20%;
