@@ -28,19 +28,19 @@
             <p>Consider the user object example:</p>
 
 
-            <pre><code>
-    function User(name){
-        this.name = name;
-        this.isAdmin = false;
-    }
+            <div class="codeLines">
+function User(name){
+    this.name = name;
+    this.isAdmin = false;
+}
 
-    let user1 = new User("Thomas");
-    let user2 = new User("Fiona");
+let user1 = new User("Thomas");
+let user2 = new User("Fiona");
 
-    alert(`${user1.name} says hi! ${user2.name} says howdy!`);
+alert(`${user1.name} says hi! ${user2.name} says howdy!`);
 
-    <button onclick="example1()">Example 1</button>
-    </code></pre>
+<button onclick="example1()">Example 1</button>
+    </div>
             <h3>Methods in a constructor function</h3>
             <p>Using constructor functions to create objects gives a great deal of flexibility. The constructor function
                 may have parameters that define how to construct the object, and what to put in it.</p>
@@ -49,31 +49,31 @@
 
             <p>For instance, new User(name) below creates an object with the given name and the method sayHi:</p>
 
-            <pre><code>
+            <div class="codeLines">
         
-    function User(name="Alistair", age=32, occupation="JSMonkey") {
-        this.name = name;
-        this.age = age;
-        this.occupation = occupation;
-            
-        this.sayHi = function () {
-            alert(`My name is: ${this.name}, and I'm ${this.age} years old. I fill my day working as a(n) ${this.occupation}`);
-        };
-    }
-            
-    let john = new User("John", 47, "Electrical Engineer");
-            
-    john.sayHi(); <span class="comment">//My name is: John</span>
-                    
-    <span class="comment">/*
-    john = {
-        name: "John",
-        sayHi: function() { ... }
-    }
-    */</span>
+function User(name="Alistair", age=32, occupation="JSMonkey") {
+    this.name = name;
+    this.age = age;
+    this.occupation = occupation;
+        
+    this.sayHi = function () {
+        alert(`My name is: ${this.name}, and I'm ${this.age} years old. I fill my day working as a(n) ${this.occupation}`);
+    };
+}
+        
+let john = new User("John", 47, "Electrical Engineer");
+        
+john.sayHi(); <span class="comment">//My name is: John</span>
+                
+<span class="comment">/*
+john = {
+    name: "John",
+    sayHi: function() { ... }
+}
+*/</span>
 
-    <button onclick="example2()">Example 2</button>
-            </code></pre>
+<button onclick="example2()">Example 2</button>
+            </div>
             <p>To create complex objects, there’s a more advanced syntax, classes, that we’ll cover later.</p>
             <h3>Summary</h3>
             <ul>
@@ -93,31 +93,31 @@
             <p>importance: 2</p>
             <p>Is it possible to create functions A and B so that new A() == new B()?</p>
 
-            <pre><code>
-    function A() { ... }
-    function B() { ... }
-                    
-    let a = new A();
-    let b = new B();
-                    
-    alert( a == b ); // true
-    
+            <div class="codeLines">
+function A() { ... }
+function B() { ... }
+                
+let a = new A();
+let b = new B();
+                
+alert( a == b ); // true
 
-            </code></pre>
+            </div>
             <p>If it is, then provide an example of their code.</p>
             <h4>Solution</h4>
-            <pre><code>
-    let obj = {};
-    function A() { return obj }
-    function B() { return obj }
+            <div class="codeLines">
+let obj = {};
+function A() { return obj }
+function B() { return obj }
 
-    let a = new A();
-    let b = new B();
+let a = new A();
+let b = new B();
 
-    alert( a == b ); <span class="comment">// true</span>
+alert( a == b ); <span class="comment">// true</span>
 
-    <button onclick="task1()">Solution</button>
-            </code></pre>
+<button onclick="task1()">Solution</button>
+
+            </div>
             <h4>Task 2 - Create new Calculator</h4>
             <p>importance: 5</p>
             <p>Create a constructor function Calculator that creates objects with 3 methods:</p>
@@ -128,93 +128,93 @@
             </ol>
             <p>For instance:</p>
 
-<pre><code>
-    let calculator = new Calculator();
-    calculator.read();
+<div class="codeLines">
+let calculator = new Calculator();
+calculator.read();
 
-    alert( "Sum=" + calculator.sum() );
-    alert( "Mul=" + calculator.mul() );
+alert( "Sum=" + calculator.sum() );
+alert( "Mul=" + calculator.mul() );
 
-</code></pre>
+            </div>
 
-<h4>Solution</h4>
+            <h4>Solution</h4>
 
-<pre><code>
-    let calculator = new Calculator();
-    calculator.read();
+            <div class="codeLines">
+let calculator = new Calculator();
+calculator.read();
 
-    alert( "Sum=" + calculator.sum() );
-    alert( "Mul=" + calculator.mul() );
+alert( "Sum=" + calculator.sum() );
+alert( "Mul=" + calculator.mul() );
 
 
-    function Calculator(){
-        this.read = function(){
-            this.a = +prompt("Enter a value for a: ", "0");
-            this.b = +prompt("Enter a value for b: ", "0");
-        }
-        this.sum = function(){
-            return this.a + this.b;
-
-        }
-        this.mul = function(){
-            return this.a * this.b;
-        }
+function Calculator(){
+    this.read = function(){
+        this.a = +prompt("Enter a value for a: ", "0");
+        this.b = +prompt("Enter a value for b: ", "0");
     }
+    this.sum = function(){
+        return this.a + this.b;
 
-    <button onclick="task2()">Solution</button>
-
-</code></pre>
-
-
-<h4>Task 3 - Create new Accumulator</h4>
-
-<p>importance: 5</p>
-<p>Create a constructor function Accumulator(startingValue).</p>
-
-<p>Object that it creates should:</p>
-<ul>
-    <li>Store the “current value” in the property value. The starting value is set to the argument of the constructor startingValue.</li>
-    <li>The read() method should use prompt to read a new number and add it to value.</li>    
-</ul>
-
-<p>In other words, the value property is the sum of all user-entered values with the initial value startingValue.</p>
-
-<p>Here’s the demo of the code:</p>
-
-<pre><code>
-    let accumulator = new Accumulator(1); // initial value 1
-
-    accumulator.read(); <span class="comment">// adds the user-entered value</span>
-    accumulator.read(); <span class="comment">// adds the user-entered value</span>
-
-    alert(accumulator.value); <span class="comment">// shows the sum of these values</span>
-
-</code></pre>
-
-<h4>Solution</h4>
-
-<pre><code>
-
-    let accumulator = new Accumulator(1); <span class="comment">// initial value 1</span>
-    
-    accumulator.read(); <span class="comment">// adds the user-entered value</span>
-    accumulator.read(); <span class="comment">// adds the user-entered value</span>
-
-    
-    alert(accumulator.value); <span class="comment">// shows the sum of these values</span>
-    
-    function Accumulator(startingValue){
-            
-        this.value = +startingValue;
-        this.read = function(){
-            this.value += +prompt("How much to add? ", 0);
-        }
-            
     }
+    this.mul = function(){
+        return this.a * this.b;
+    }
+}
 
-    <button onclick="task3()">Solution</button>
+<button onclick="task2()">Solution</button>
 
-</code></pre>
+            </div>
+
+
+            <h4>Task 3 - Create new Accumulator</h4>
+
+            <p>importance: 5</p>
+            <p>Create a constructor function Accumulator(startingValue).</p>
+
+            <p>Object that it creates should:</p>
+            <ul>
+                <li>Store the “current value” in the property value. The starting value is set to the argument of the constructor startingValue.</li>
+                <li>The read() method should use prompt to read a new number and add it to value.</li>    
+            </ul>
+
+            <p>In other words, the value property is the sum of all user-entered values with the initial value startingValue.</p>
+
+            <p>Here’s the demo of the code:</p>
+
+            <div class="codeLines">
+let accumulator = new Accumulator(1); // initial value 1
+
+accumulator.read(); <span class="comment">// adds the user-entered value</span>
+accumulator.read(); <span class="comment">// adds the user-entered value</span>
+
+alert(accumulator.value); <span class="comment">// shows the sum of these values</span>
+
+            </div>
+
+            <h4>Solution</h4>
+
+            <div class="codeLines">
+
+let accumulator = new Accumulator(1); <span class="comment">// initial value 1</span>
+
+accumulator.read(); <span class="comment">// adds the user-entered value</span>
+accumulator.read(); <span class="comment">// adds the user-entered value</span>
+
+
+alert(accumulator.value); <span class="comment">// shows the sum of these values</span>
+
+function Accumulator(startingValue){
+        
+    this.value = +startingValue;
+    this.read = function(){
+        this.value += +prompt("How much to add? ", 0);
+    }
+        
+}
+
+<button onclick="task3()">Solution</button>
+
+            </div>
 
             
         </div>

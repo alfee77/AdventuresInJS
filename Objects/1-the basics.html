@@ -21,13 +21,13 @@
             act as the public access point to modify member variables. This is not what a JavaScript object is; it is more akin to a data dictionary 
             in Python, where it uses key: value pairs to define object properties. So an object that represents a user, would look something like:
 
-               <pre><code>
-    let user = {
-        name: "John",
-        age: 30,
-        isAdmin: true
-    }
-               </code></pre>
+               <div class="codeLines">
+let user = {
+    name: "John",
+    age: 30,
+    isAdmin: true
+}
+               </div>
             <p>Functions can be set as properties of an object. When they are, they are referred to as a <em>methods</em>. Methods are studied in the next chapter. </p>
                
             <p>Objects are associative arrays with several special features.</p>
@@ -74,24 +74,21 @@
                 <li>Remove the property name from the object.</li>
             </ul>
             <h5>Solution</h5>
-            <pre>
-            <code>
-    function objectCreation(){
-        let user = {};
-        user.name: `John`;
-        user.surname: `Smith`;
-        alert(user.name + " " + user.surname);
-        user.name = `Pete`;
-        alert(user.name + " " + user.surname);
-        delete user.name;
-        alert(user.name + " " + user.surname);
-    }
+            <div class="codeLines">
+function objectCreation(){
+    let user = {};
+    user.name: `John`;
+    user.surname: `Smith`;
+    alert(user.name + " " + user.surname);
+    user.name = `Pete`;
+    alert(user.name + " " + user.surname);
+    delete user.name;
+    alert(user.name + " " + user.surname);
+}
 
-    <button onclick="objectCreation()">Run</button>
+<button onclick="objectCreation()">Run</button>
 
-            </code>
-            </pre>
-            
+            </div>>
 
             <h4>Task 2 - Check for emptiness</h4>
             <p>importance: 5</p>
@@ -100,76 +97,72 @@
 
             <p>Should work like this when called upon:</p>
 
-            <pre><code>
-    function todaysSchedule(){
-        let schedule = {};
+            <div class="codeLines">
+function todaysSchedule(){
+    let schedule = {};
 
-        alert(isEmpty(schedule)); <span class="comment">//true</span>
+    alert(isEmpty(schedule)); <span class="comment">//true</span>
 
-        schedule["8:30"] = "get up";
+    schedule["8:30"] = "get up";
 
-        alert(isEmpty(schedule)); <span class="comment">//false</span>
-    }
-            </code></pre>
+    alert(isEmpty(schedule)); <span class="comment">//false</span>
+}
+            </div>
 
             <h5>Solution</h5>
-            <pre>
-                <code>
-    function isEmpty(obj){
-        for(let prop in obj){   
-        <span class="comment">/*this for loop will only start if the object has stuff in it;
-        ergo if it starts, the object isn't empty, and the function should return false.*/</span>
-            return false;
-        }
-        return true;
-        <span class="comment">/*this stage is only reached if the for loop hasnt started;
-        i.e. the object is empty therefor the function should return true*/</span>
+            <div class="codeLines">
+function isEmpty(obj){
+    for(let prop in obj){   
+    <span class="comment">/*this for loop will only start if the object has stuff in it;
+    ergo if it starts, the object isn't empty, and the function should return false.*/</span>
+        return false;
     }
+    return true;
+    <span class="comment">/*this stage is only reached if the for loop hasnt started;
+    i.e. the object is empty therefor the function should return true*/</span>
+}
 
-    <button onclick="todaysSchedule()">Run</button>
+<button onclick="todaysSchedule()">Run</button>
                   
-                </code>
-                </pre>
-            
+            </div>           
             
             <h4>Task 3 - Sum object properties</h4>
             <p>importance: 5</p>
             <p>We have an object storing salaries of our team:</p>
 
-            <pre><code>
-    let salaries = {
-        John: 100,
-        Ann: 160,
-        Pete: 130
-    }
-            </code></pre>
+            <div class="codeLines">
+let salaries = {
+    John: 100,
+    Ann: 160,
+    Pete: 130
+}
+            </div>
             <p>Write the code to sum all salaries and store in the variable sum. Should be 390 in the example above.</p>
                 
             <p>If salaries is empty, then the result must be 0.</p>
 
 
             <h5>Solution</h5>
-            <pre><code>
-    function taskThree(){
-        let salaries = {
-            John: 100,
-            Ann: 160,
-            Pete: 130
-        }
-                
-        let sum = 0;
-                
-        for(let key in salaries){
-            sum += salaries[key];
-        }
-                
-        alert(`The total wage bill is $${sum}`);
+            <div class="codeLines">
+function taskThree(){
+    let salaries = {
+        John: 100,
+        Ann: 160,
+        Pete: 130
     }
+            
+    let sum = 0;
+            
+    for(let key in salaries){
+        sum += salaries[key];
+    }
+            
+    alert(`The total wage bill is $${sum}`);
+}
 
-    <button onclick="taskThree()">Run</button>
-                
-
-            </code></pre>
+<button onclick="taskThree()">Run</button>
+            
+            </div>
             
 
             <h4>Task 4 - Multiply numeric property values by 2</h4>
@@ -178,50 +171,51 @@
 
             <p>For instance:</p>
 
-<pre><code>
-    <span class = "comment">// before the call</span>
-    let menu = {
-        width: 200,
-        height: 300,
-        title: "My menu"
-    };
+<div class="codeLines">
+<span class = "comment">// before the call</span>
+let menu = {
+    width: 200,
+    height: 300,
+    title: "My menu"
+};
 
-    multiplyNumeric(menu);
+multiplyNumeric(menu);
 
-    <span class = "comment">// after the call</span>
-    menu = {
-        width: 400,
-        height: 600,
-        title: "My menu"
-    };
-</pre></code>
+<span class = "comment">// after the call</span>
+menu = {
+    width: 400,
+    height: 600,
+    title: "My menu"
+};
+
+</div>
 
             <p>Please note that multiplyNumeric does not need to return anything. It should modify the object in-place.</p>
 
             <p>P.S. Use typeof to check for a number here.</p>
 
             <h5>Solution</h5>
-            <pre><code>
-    function taskFour(){
-        let menu = {
-            width: 200, 
-            height: 300,
-            title: "My Menu"
-        };
-            
-        multiplyNumeric(menu);
-            
-        alert(`Width is now ${menu.width} and height is now ${menu.height}`);
+            <div class="codeLines">
+function taskFour(){
+    let menu = {
+        width: 200, 
+        height: 300,
+        title: "My Menu"
+    };
+        
+    multiplyNumeric(menu);
+        
+    alert(`Width is now ${menu.width} and height is now ${menu.height}`);
+}
+        
+function multiplyNumeric(obj){
+    for (let key in obj){
+        if (typeof obj[key] == "number") obj[key] *= 2;
     }
-            
-    function multiplyNumeric(obj){
-        for (let key in obj){
-            if (typeof obj[key] == "number") obj[key] *= 2;
-        }
-    }
+}
 
-    <button onclick="taskFour()">Run</button>
-            </code></pre>
+<button onclick="taskFour()">Run</button>
+            </div>
             
 
             

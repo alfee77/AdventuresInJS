@@ -14,11 +14,11 @@
             <div class="column middle">
                 <h2>Function Expressions</h2>
                 <p> The classical way to write a function looks like this:</p>
-                <pre><code>
-    function sayHi(){ 
-        alert(`Hi!`); 
-    } 
-                </code></pre>
+                <div class="codeLines">
+function sayHi(){ 
+    alert(`Hi!`); 
+} 
+                </div>
                 <p>The function is declared, assigned a name, any arguments are defined in the parenthesis, and the body of 
                 the function's code is embedded in the curly brackets {}. This code may then be assigned to the onclick attribute
                 of an HTML button, and off you go!</p>
@@ -27,11 +27,11 @@
                 
                 
                 <p> However, it is also possible to create a function in runtime "on the hoof". Examine the following code:</p>
-                <pre><code>
-    let sayHello = function(){ 
-        alert(`Hello!`);
-    }
-                </code></pre>
+                <div class="codeLines">
+let sayHello = function(){ 
+    alert(`Hello!`);
+}
+                </div>
                 <p>This function is <i>created</i> on the assignment side of an expression (i.e. to the right
                     hand side of the <code>=</code>), and is immediately assigned to the variable <code>sayHello</code>.
                 </p>
@@ -58,26 +58,26 @@
                 <p>We can make use of this phenomena. When clicked the following button will ask the user for an answer, and depending on the answer given will direct the code to a given function.</p>
                 
                 <p>The code looks like this:</p>
-                <pre><code>
-    function ask(question, yes, no) { 
-        let answer = confirm(question); 
-        if (answer) yes() 
-        else no();    
-    } 
-                      
-    function clickedOk() { 
-        alert( "You agreed." ); 
-    } 
-                      
-    function clickedCancel() { 
-        alert( "You canceled the execution." ); 
-    } 
-                </code></pre>
+                <div class="codeLines">
+function ask(question, yes, no) { 
+    let answer = confirm(question); 
+    if (answer) yes() 
+    else no();    
+} 
+                    
+function clickedOk() { 
+    alert( "You agreed." ); 
+} 
+                    
+function clickedCancel() { 
+    alert( "You canceled the execution." ); 
+} 
+                </div>
 
                 <p>When the function <code>ask()</code> is called, it is done so in the following form:</p>
-                <pre><code>
-    ask('Do you agree?', clickedOK, clickedCancel);
-                </code></pre>
+                <div class="codeLines">
+ask('Do you agree?', clickedOK, clickedCancel);
+                </div>
                 <p>Observations: </p>
                 <p>When the function <code>ask()</code> is declared, it is defined with 3 arguments; <code>"question"</code>, <code>"yes" and "no"</code>. 
                     Due to JavaScript's loosely typed nature, these arguments aren't typed when they are declared. The content of the function is very 

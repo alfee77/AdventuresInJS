@@ -35,49 +35,43 @@
 
             <p>A value of this type can be created using <code>Symbol()</code>:</p>
 
-            <pre><code>
-    let id = Symbol();
+            <div class="codeLines">
+let id = Symbol();
 
-            </code></pre>
+            </div>
             <p>Upon creation, we can give symbols a description (also called a symbol name), mostly useful for debugging
                 purposes:</p>
 
-            <pre>
-                <code>
-    <span class="comment">// id is a symbol with the description "id"</span>
-    let id = Symbol("id");
-                </code>
-            </pre>
+            <div class="codeLines">
+<span class="comment">// id is a symbol with the description "id"</span>
+let id = Symbol("id");
+            </div>
 
             <p>Symbols are guaranteed to be unique. Even if we create many symbols with exactly the same description,
                 they are different values. The description is just a label that doesn’t affect anything.</p>
 
             <p>For instance, here are two symbols with the same description – they are not equal:</p>
-            <pre>
-                <code>
-    let id1 = Symbol("id");
-    let id2 = Symbol("id");
-    
-    alert(id1 === id2); <span class="comment">// false</span>
+            <div class="codeLines">
+let id1 = Symbol("id");
+let id2 = Symbol("id");
 
-    <button onclick="example1()">Run</button>
-                </code>
-            </pre>
+alert(id1 === id2); <span class="comment">// false</span>
+
+<button onclick="example1()">Run</button>
+            </div>>
             
             <h3>Symbols in an object literal:</h3>
             <p>It is necessary when using symbols in an object literal, to enclose the symbol in square brackets <code>[]</code> :</p>
             
-            <pre>
-                <code>
-    let id1 = Symbol("id");
-    let user = {
-        name: "John",
-        age: 32,
-        [id]: 123 <span class="comment">//not "id"</span>
-    }
+            <div class="codeLines">
+let id1 = Symbol("id");
+let user = {
+    name: "John",
+    age: 32,
+    [id]: 123 <span class="comment">//not "id"</span>
+}
 
-                </code>
-            </pre>
+            </div>
 
             <p>That's because we need the variable <code>id</code> as the key, not the string "id".</p>
 
@@ -86,43 +80,38 @@
 
             <p>For instance:</p>
 
-            <pre>
-        <code>
-    let id = Symbol("id");
-    let user = {
-        name: "John",
-        age: 30,
-        [id]: 123
-    };
-    for (let key in user) alert(key); <span class="comment">// name, age (no symbols)</span>
-    <span class="comment">// the direct access by the symbol works</span>
-    alert( "Direct: " + user[id] ); <span class="comment">// Direct: 123</span>
+            <div class="codeLines">
+let id = Symbol("id");
+let user = {
+    name: "John",
+    age: 30,
+    [id]: 123
+};
+for (let key in user) alert(key); <span class="comment">// name, age (no symbols)</span>
+<span class="comment">// the direct access by the symbol works</span>
+alert( "Direct: " + user[id] ); <span class="comment">// Direct: 123</span>
 
-    <button onclick="example2()">Run</button>
-        </code>
-    </pre>
+<button onclick="example2()">Run</button>
+            
+</div>
             <p><code>Object.keys(user)</code> also ignores them. That’s a part of the general “hiding symbolic properties” principle.
                 If another script or a library loops over our object, it won’t unexpectedly access a symbolic property.
             </p>
 
             <p>In contrast, Object.assign copies both string and symbol properties:</p>
 
-            <code>
-        <pre>
-            <code>
-                
-    let id = Symbol("id");
-    let user = {
-        [id]: 123
-    };
-    let clone = Object.assign({}, user);
-    alert( clone[id] ); <span class="comment">// 123</span>
+            <div class="codeLines">
+            
+let id = Symbol("id");
+let user = {
+    [id]: 123
+};
+let clone = Object.assign({}, user);
+alert( clone[id] ); <span class="comment">// 123</span>
 
-    <button onclick="example3()">Run</button>
+<button onclick="example3()">Run</button>
 
-            </code>
-        </pre>
-    </code>
+            </div>
             <p>There’s no paradox here. That’s by design. The idea is that when we clone an object or merge objects, we
                 usually want all properties to be copied (including symbols like id).</p>
         </div>

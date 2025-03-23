@@ -17,13 +17,12 @@
             <h3>Summary</h3>
             <p>Objects are usually created to represent entities of the real world, like users, orders and so on:
 
-            <pre><code>
-    let user = {
-        name: "John",
-        age: 30
-    };
-
-</code></pre>
+            <div class="codeLines">
+let user = {
+    name: "John",
+    age: 30
+};
+            </div>
             <p>And, in the real world, a user can act: select something from the shopping cart, login, logout etc.</p>
 
             <p>Actions are represented in JavaScript by functions in properties. A function that is a property of an
@@ -31,76 +30,79 @@
 
             <h3>Examples</h3>
             <p>Lets give the above user the ability to say "Hi!"</p>
-            <pre><code>
-    let user = {
-        name: "John",
-        age: 30
-    };
-              
-    user.sayHi = function(){
-        alert("Hi!");
-    }
+            <div class="codeLines">
+let user = {
+    name: "John",
+    age: 30
+};
             
-    user.sayHi();
-    
-    <button onclick="example1()">Run</button>
-        </code></pre>
+user.sayHi = function(){
+    alert("Hi!");
+}
+        
+user.sayHi();
+
+<button onclick="example1()">Run</button>
+            </div>
 
             <p>So going back to the notes on creating functions on the hoof, this is an example of doing something in
                 code. The sayHi() function is added to the object user
                 in runtime. Examine closely how user.sayHi isnt created when the object is created, but afterwards.</p>
 
             <p>It's acceptable to declare a function traditionally, and then add it to the object:</p>
-            <pre><code>
-    let user = {
-        name: "John",
-        age: 30
-    };
+            <div class="codeLines">
+let user = {
+    name: "John",
+    age: 30
+};
 
-    function sayHi(){
-        alert("Hi!");
-    }
+function sayHi(){
+    alert("Hi!");
+}
 
-    user.sayHi = sayHi;
+user.sayHi = sayHi;
 
-    user.sayHi();
-    
-    <button onclick="example2()">Run</button>
-    </code></pre>
+user.sayHi();
+
+<button onclick="example2()">Run</button>
+
+    </div>
 
             <p>We can also declare a function (thereby a method) when the object is created, in a form more explicitly
                 linked
                 with the <code>key:value</code> pair approach:</p>
-            <pre><code>
-    let user = {
-        name:"John",
-        age: 30,
-        sayHi: function(){
-            alert("Hi!");
-        }
+            <div class="codeLines">
+let user = {
+    name:"John",
+    age: 30,
+    sayHi: function(){
+        alert("Hi!");
     }
+}
 
-    user.sayHi();
-    
-    <button onclick="example3()">Run</button>
-    </code></pre>
+user.sayHi();
+
+<button onclick="example3()">Run</button>
+
+    </div>
 
             <h3>Method shorthand</h3>
             <p>A slightly more efficient way of doing this is using a method shorthand. The above code can be re-written
                 as:</p>
-            <pre><code>
-    let user = {
-        name:"John",
-        age: 30,
-        sayHi(){
-            alert("Hi!");
-        }
-    }
+            <div class="codeLines">
 
-    user.sayHi();
+let user = {
+    name:"John",
+    age: 30,
+    sayHi(){
+        alert("Hi!");
+    }
+}
+
+user.sayHi();
     
-    <button onclick="example4()">Run</button>
-    </code></pre>
+<button onclick="example4()">Run</button>
+    </div>
 
 
             <p>It's worth noting that the preceding examples appear to acheive exactly the same thing; they do, but
@@ -119,20 +121,20 @@
                 is
                 the object used to call the method. For example:</p>
 
-            <pre><code>
+            <div class="codeLines">
 
-    let user = {
-        name: "John",
-        age: 30,
-        sayHi(){
-            alert(`Hi ${this.name}!`);
-        }
+let user = {
+    name: "John",
+    age: 30,
+    sayHi(){
+        alert(`Hi ${this.name}!`);
     }
+}
 
-    user.sayHi();
-    
-    <button onclick="example5()">Run</button>
-    </code></pre>
+user.sayHi();
+
+<button onclick="example5()">Run</button>
+    </div>
 
 
             <h3>Arrow functions have no “this”</h3>
@@ -141,18 +143,18 @@
 
             <p>For instance, here arrow() uses this from the outer user.sayHi() method:</p>
 
-            <pre><code>
-    let user = {
-        firstName: "Ilya",
-        sayHi() {
-            let arrow = () => alert(this.firstName);
-            arrow();
-        }
-    };
+            <div class="codeLines">
+let user = {
+    firstName: "Ilya",
+    sayHi() {
+        let arrow = () => alert(this.firstName);
+        arrow();
+    }
+};
 
-    user.sayHi(); // Ilya
+user.sayHi(); // Ilya
 
-</code></pre>
+</div>
             <p>That’s a special feature of arrow functions, it’s useful when we actually do not want to have a separate
                 this, but rather to take it from the outer context. Later in the chapter Arrow functions revisited we’ll
                 go more deeply into arrow functions.</p>
@@ -183,19 +185,19 @@
 
             <p>What is the result of accessing its ref? Why?</p>
 
-            <pre><code>
-    function makeUser() {
-        return {
-            name: "John",
-            ref: this
-        };
-    }
+            <div class="codeLines">
+function makeUser() {
+    return {
+        name: "John",
+        ref: this
+    };
+}
 
-    let user = makeUser();
+let user = makeUser();
 
-    alert( user.ref.name ); // What's the result?
+alert( user.ref.name ); // What's the result?
 
-            </code></pre>
+            </div>
             <h4>Solution</h4>
             <button onclick="task1()">Solution</button>
 
@@ -211,39 +213,39 @@
 
             </ul>
 
-            <pre><code>
-    let calculator = {
-    // ... your code ...
-    };
+            <div class="codeLines">
+let calculator = {
+// ... your code ...
+};
 
-    calculator.read();
-    alert( calculator.sum() );
-    alert( calculator.mul() );
+calculator.read();
+alert( calculator.sum() );
+alert( calculator.mul() );
 
-</code></pre>
+</div>
             <h4>Solution</h4>
-            <pre><code>
-    let calculator = {
-        read() {
-            this.a = +prompt("Enter a value for a: ", 1);
-            this.b = +prompt("Enter a value for b: ", 2);
-        },
-        sum() {
-            return this.a + this.b;
-        },
-        mul() {
-            return this.a * this.b;
-        },
+            <div class="codeLines">
+let calculator = {
+    read() {
+        this.a = +prompt("Enter a value for a: ", 1);
+        this.b = +prompt("Enter a value for b: ", 2);
+    },
+    sum() {
+        return this.a + this.b;
+    },
+    mul() {
+        return this.a * this.b;
+    },
 
-    }
+}
 
-    calculator.read();
-    alert(`${calculator.a} + ${calculator.b} = ${calculator.sum()}`);
-    alert(`${calculator.a} * ${calculator.b} = ${calculator.mul()}`);
+calculator.read();
+alert(`${calculator.a} + ${calculator.b} = ${calculator.sum()}`);
+alert(`${calculator.a} * ${calculator.b} = ${calculator.mul()}`);
 
-    <button onclick="task2()">Solution</button>
+<button onclick="task2()">Solution</button>
 
-</code></pre>
+</div>
         </div>
         <div class="column side" id="column side right"></div>
 

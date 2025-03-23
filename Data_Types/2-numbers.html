@@ -77,21 +77,19 @@
             <p>Create a script that prompts the visitor to enter two numbers and then shows their sum.</p>
 
             <h3>Solution</h3>
-            <pre>
-                <code>
-    function task1(){
-        let a = +prompt("Enter first number: ");
-        let b = +prompt("Enter second number: ");
-    
-        alert(typeof(a));
-        alert(typeof(b));
-    
-        alert(a+b);
-    }
+            <div class="codeLines">
+function task1(){
+    let a = +prompt("Enter first number: ");
+    let b = +prompt("Enter second number: ");
 
-    <button onclick="task1()">Run</button>
-                </code>
-            </pre>
+    alert(typeof(a));
+    alert(typeof(b));
+
+    alert(a+b);
+}
+
+<button onclick="task1()">Run</button>
+            </div>
 
 
             <h3>Task2 - Why 6.35.toFixed(1) == 6.3?</h3>
@@ -101,18 +99,14 @@
 
             <p>For instance:</p>
 
-            <pre>
-                <code>
-    alert( 1.35.toFixed(1) ); <span class="comment">// 1.4</span>
-                </code>
-            </pre>
+            <div class="codeLines">
+alert( 1.35.toFixed(1) ); <span class="comment">// 1.4</span>
+            </div>
             <p>In the similar example below, why is 6.35 rounded to 6.3, not 6.4?</p>
 
-            <pre>
-                <code>
-    alert( 6.35.toFixed(1) ); <span class="comment">// 6.3</span>
-                </code>
-            </pre>
+            <div class="codeLines">
+alert( 6.35.toFixed(1) ); <span class="comment">// 6.3</span>
+            </div>
 
             <p>How to round 6.35 the right way?</p>
             <button onclick="task2()">Run</button>
@@ -121,7 +115,9 @@
                 binary number, (which all pooters must do!), in binary terms, 6.35 is an irrational number. By using the
                 toString()
                 method from the number wrapper object, we can actually see this in action:</p>
-            <p id="noField">6.35.toFixed(20) returns </p>
+            <div class="codeLines">
+6.35.toFixed(20)
+            </div>
             <p>This apparent deviation from the specified 6.35 is caused by translating 6.35 to binary. </p>
 
             <h3>Task 3 - Repeat until the input is a number</h3>
@@ -135,41 +131,37 @@
                 function should return null.</p>
 
             <h3>Solution</h3>
-            <pre>
-                <code>
-    function task3(){
-        function readNumber(){
-            let userNo;
+            <div class="codeLines">
+function task3(){
+    function readNumber(){
+        let userNo;
+
+        do {
+            userNo = prompt("Enter a number: ", 0);
+        }while(!isFinite(userNo))
     
-            do {
-                userNo = prompt("Enter a number: ", 0);
-            }while(!isFinite(userNo))
-        
-            return userNo;  
-        }
-    
-    
-        alert(`Number entered: ${readNumber()}`);
-    
+        return userNo;  
     }
 
-    <button onclick="task3()">Run</button>
-                </code>
-            </pre>
+
+    alert(`Number entered: ${readNumber()}`);
+
+}
+
+<button onclick="task3()">Run</button>
+            </div>
 
             <h3>Task 4 - An occasional infinite loop</h3>
             <p>importance: 4</p>
 
             <p>This loop is infinite. It never ends. Why?</p>
 
-            <pre>
-                <code>
-    let i = 0;
-    while (i != 10) {
-        i += 0.2;
-    }
-                </code>
-            </pre>
+            <div class="codeLines">
+let i = 0;
+while (i != 10) {
+    i += 0.2;
+}
+            </div>
 
             <h3>Solution</h3>
             <p> If we run this code, and we convert 0.2 to a binary number (as JavaScript will do under the hood), there
@@ -178,13 +170,11 @@
                 of this, we
                 can see that in actual fact, 0.2 becomes 0.20000000000000001110.</p>
 
-            <pre>
-                <code>
+            <div class="codeLines">
     > 0.2.toFixed(20)
     '0.20000000000000001110'
     >
-                </code>
-             </pre>
+            </div>
 
             <p>Ergo, when incrementing i by 0.2, we are actually incrementing it by 0.20000000000000001110, meaining we
                 never actually
@@ -192,25 +182,23 @@
                 (which should only require
                 three iterations of +0.2) and see what we actually get:</p>
 
-            <pre>
-                <code>
-    function task4(){
-        let i=9.6;
-        for(let n=0; n&lt;3; n++){
-            i += 0.2;
-            console.log(i);
-        }
+            <div class="codeLines">
+function task4(){
+    let i=9.6;
+    for(let n=0; n&lt;3; n++){
+        i += 0.2;
+        console.log(i);
     }
+}
 
-    Output:
-    9.799999999999999
-    9.999999999999998
-    10.199999999999998
+Output:
+9.799999999999999
+9.999999999999998
+10.199999999999998
 
 
-    <button onclick="task4()">Run</button>
-                </code>
-            </pre>
+<button onclick="task4()">Run</button>
+                </div>
 
             <p>So we can conclude we never actually hit the integer 10, and the condition <code>i=10</code> will never
                 be satisfied.</p>
@@ -223,30 +211,26 @@
                 including max).</p>
 
             <p>Examples of its work:</p>
-            <pre>
-                <code>
-    alert( random(1, 5) ); // 1.2345623452
-    alert( random(1, 5) ); // 3.7894332423
-    alert( random(1, 5) ); // 4.3435234525
-                </code>
-            </pre>
+            <div class="codeLines">
+alert( random(1, 5) ); // 1.2345623452
+alert( random(1, 5) ); // 3.7894332423
+alert( random(1, 5) ); // 4.3435234525
+            </div>
 
             <h3>Solution</h3>
 
-            <pre>
-                <code>
+            <div class="codeLines">
     function task5(){
-        function random(min, max){
-            return Math.random()*(max-min)+min;
-        }
-    
-        alert(random(1, 5))
+    function random(min, max){
+        return Math.random()*(max-min)+min;
     }
 
-    <button onclick="task5()">Run</button>
+    alert(random(1, 5))
+}
 
-                </code>
-            </pre>
+<button onclick="task5()">Run</button>
+
+            </div>
 
             <h3>Task 6 - A random integer from min to max</h3>
             <p>importance: 2</p>
@@ -257,32 +241,29 @@
 
             <p>Examples of its work:</p>
 
-            <pre>
-                <code>
-    alert( randomInteger(1, 5) ); // 1
-    alert( randomInteger(1, 5) ); // 3
-    alert( randomInteger(1, 5) ); // 5
-                </code>
-            </pre>
+            <div class="codeLines">
+alert( randomInteger(1, 5) ); // 1
+alert( randomInteger(1, 5) ); // 3
+alert( randomInteger(1, 5) ); // 5
+            </div>
             <p>You can use the solution of the previous task as the base.</p>
 
             <h3>Solution</h3>
-            <pre>
-                <code>
-    function task6(){
-        function randomInt(min, max){
-            return Math.round(Math.random()*(max-min)+min);
-        }
-    
-        alert(randomInt(1, 5))
+            <div class="codeLines">
+function task6(){
+    function randomInt(min, max){
+        return Math.round(Math.random()*(max-min)+min);
     }
 
-    <button onclick="task6()">Run</button>
-                </code>
-            </pre>
+    alert(randomInt(1, 5))
+}
+
+<button onclick="task6()">Run</button>
+            </div>
             <p>Apparently this is incorrect, as it's not truly random... Canny be bovva'd fixing it.</p>
 
         </div>
+
 
         <div class="column side" id="column side right"></div>
 

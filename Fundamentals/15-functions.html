@@ -18,11 +18,11 @@
         <div class="column middle">
             <h2>Functions</h2>
             <p>To create a function, it needs to be declared. It would typically look like this:</p>
-            <pre><code>
-    function message(){
-        alert(`Hello everyone!`);
-    }
-            </code></pre>
+            <div class="codeLines">
+function message(){
+    alert(`Hello everyone!`);
+}
+            </div>
             <p>The <code>function</code> keyword goes first, followed by the function name, followed by
                 a list of comma separated parameters between the parenthesis. The parameters are essentially
                 local variables that are passed to the function when they are formed. The parameters can also
@@ -33,26 +33,26 @@
                 function. This then leads to a question of scope; the local variable can only be "reached" from
                 within the function. A global variable can be accessed from anywhere in the body of the code.</p>
             <p> Consider the following code:</p>
-            <pre><code>
-    function outerFruit(){
-        let fruit = "banana";
-                    
-        eatFruit();
-        function eatFruit(){
-            let vegetable = `tomato`;
-            alert(`I like ${fruit}!`);
-            alert(`Is ${vegetable} really a vegatable? Or is it a fruit?`);
-        }
-        try{
-            alert(`Not so sure about ${vegetable}`);
-        }catch(err){
-            alert(`Just not possible! A ${err.name} has been thrown. ${err.message}`);
-        }
+            <div class="codeLines">
+function outerFruit(){
+    let fruit = "banana";
+                
+    eatFruit();
+    function eatFruit(){
+        let vegetable = `tomato`;
+        alert(`I like ${fruit}!`);
+        alert(`Is ${vegetable} really a vegatable? Or is it a fruit?`);
     }
+    try{
+        alert(`Not so sure about ${vegetable}`);
+    }catch(err){
+        alert(`Just not possible! A ${err.name} has been thrown. ${err.message}`);
+    }
+}
 
-    <button onclick="outerFruit()">Run</button>
+<button onclick="outerFruit()">Run</button>
 
-            </code></pre>
+            </div>
             <p>When the last line of code is run, a ReferenceError is thrown, confirming that vegetable
             is not defined.</p>
             
@@ -60,13 +60,13 @@
             <h3>Parameters</h3>
             <p>Parameters are passed to functions when they are called; they are the variables stated in the
                 brackets of the function. Consider the following piece of code:</p>
-                <pre><code>
-    function announce(title, name){
-        alert(`Welcome ${title} ${name}`);
-    }
+                <div class="codeLines">
+function announce(title, name){
+    alert(`Welcome ${title} ${name}`);
+}
 
-    <button onclick="demoAnnounce()">Run</button>
-                </code></pre>
+<button onclick="demoAnnounce()">Run</button>
+                </div>
                  
             <h3>In summary</h3>
             <p>Functions may have local variables: those declared inside its body or its parameter list. Such variables

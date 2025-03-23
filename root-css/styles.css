@@ -20,12 +20,17 @@ pre code {
 }
 
 .codeLines {
-    display: block;
+    /* display: block; */
+    max-width: 80%;
+    overflow-x: scroll;
     background: gray;
-    padding: 5%;
+    padding-left: 5%;
     font-family: monospace;
     color: white;
     white-space: pre;
+    outline: solid red;
+    margin-left: 10%;
+    cursor: pointer;
 
 }
 

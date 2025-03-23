@@ -22,18 +22,18 @@
             </div>
             <p> The code to achieve this logic is embedded in the function <code>officialNameOfJS()</code>:</p>
             <br>
-            <pre><code>
-    let nameOfJavaScript = prompt("What is the official name of JavaScript?", "BlurbyScript");               
-                
-    if (nameOfJavaScript == "ECMAScript"){
-        document.getElementById("demo").innerHTML = "Right! ECMAScript is the actual name!";
-    } else{
-        document.getElementById("demo").innerHTML = `The official name of JavaScript is not \"${nameOfJavaScript}\", it is ECMAScript!`;
-    }
+            <div class="codeLines">
+let nameOfJavaScript = prompt("What is the official name of JavaScript?", "BlurbyScript");               
+            
+if (nameOfJavaScript == "ECMAScript"){
+    document.getElementById("demo").innerHTML = "Right! ECMAScript is the actual name!";
+} else{
+    document.getElementById("demo").innerHTML = `The official name of JavaScript is not \"${nameOfJavaScript}\", it is ECMAScript!`;
+}
 
-    <button onClick="officialNameOfJS()">Run</button>
+<button onClick="officialNameOfJS()">Run</button>
 
-            </code></pre>
+            </div>
             
             
             <p id="demo">Code output:<br><br><br></p>
