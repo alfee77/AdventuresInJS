@@ -5,37 +5,25 @@ a, h1, h2, h3, h4, h5, p, li{
 * {
     box-sizing: border-box;
 }
-pre code {
-    display: block;
-    background: black;
-    color: white;
-    white-space: pre;
-    -webkit-overflow-scrolling: touch;
-    overflow-x: scroll;
-    max-width: 90%;
-    min-width: 100px;
-    padding: 0%;
-    align-items: center;
-    cursor: pointer;
-}
+
 
 .codeLines {
     /* display: block; */
     max-width: 80%;
     overflow-x: scroll;
-    background: gray;
-    padding-left: 5%;
+    background: darkslategray;
+    padding-left: 2%;
     font-family: monospace;
     color: white;
     white-space: pre;
-    outline: solid red;
-    margin-left: 10%;
+    outline: solid grey;
+    margin-left: 2%;
     cursor: pointer;
 
 }
 
 .comment {
-    color:olivedrab;
+    color:rgb(153, 194, 83);
 }
 
 body {
