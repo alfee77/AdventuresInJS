@@ -80,9 +80,13 @@ alert( str.toUpperCase() ); <span class="comment">// HELLO</span>
             <p>Note it is not necessary to explicitly wrap the String in the object wrapper; the methods are available
                 implicitly.</p>
 
-            <h2>Tasks</h2>
-            <h3>Task 1 - adding properties to a primitive?</h3>
-            <div class="codeLines">
+
+            <div class="task">
+                <h2>Tasks</h2>
+
+                <h3>Task 1 - adding properties to a primitive?</h3>
+                <p>Consider the following code:</p>
+                <div class="codeLines">
 function task1(){
     let hello = "hi";
     hello.test = 5;
@@ -92,13 +96,16 @@ function task1(){
 
 <button onclick="task1()">Run</button>
         
+                </div>
+                <p>What do you think? Will it work?</p>
+                <div class="task-solution">
+                    <h3>Solution</h3>
+                    <p>If the <code>'use strict'</code> directive is used, running this code will result in an error. Otherwise, running this code will
+                    post "undefined" in the alert box. This is because the object wrapper is created when the value 5 is 
+                    added to the hello.test property, however as soon as the value is applied the object wrapper is disposed of.</p>
+                </div>
+            </div>
         </div>
-            <p>If the <code>'use strict'</code> directive is used, running this code will result in an error. Otherwise, running this code will
-                post "undefined" in the alert box. This is because the object wrapper is created when the value 5 is 
-                added to the hello.test property, however as soon as the value is applied the object wrapper is disposed of.</p>
-
-        </div>
-
         <div class="column side" id="column side right"></div>
 
     </div>
