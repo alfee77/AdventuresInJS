@@ -1,5 +1,28 @@
 'use strict'
 
+let empty = null;                           //An empty object
+let point = {                               //An object with two numeric valies
+    x: 0,
+    y: 0,
+};
+
+let book = {                                //A more complex object
+    author: {                               //the value of this property is itself
+        firstname: "David",                 //an object - cooooool!
+        surname: "Flanagan"
+    },
+    for: "all audiences",
+    "main title": "JavaScript",             //These property names include spaces,
+    "sub-title": "The Definitive Guide",    //and hyphens, so use string literals
+};
+
+alert(`The book is ${book["main title"]}, ${book["sub-title"]} and is written by ${book.author.firstname} ${book.author.surname}. It is intended for ${book.for}!`);
+
+let o = new Object();       //Create an empty object, the same as {}
+let a = new Array();        //Create an empty array, the same as []
+let d = new Date();         //Create a Date object representing the current time
+let r = new Map();          //creates a Map object for key value mapping
+
 function objectCreation(){
 
     let user = {}

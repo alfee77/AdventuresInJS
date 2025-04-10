@@ -7,6 +7,18 @@ a, h1, h2, h3, h4, h5, p, li{
     box-sizing: border-box;
 }
 
+.info {
+    /* display: block; */
+    max-width: 50%;
+    /*background: gray;*/
+    padding: 2%;
+    font-size:small;    
+    outline: solid grey;
+    margin-left: 2%;
+    cursor: pointer;
+    text-wrap-mode: wrap;
+}
+
 
 .codeLines {
     /* display: block; */
@@ -21,8 +33,6 @@ a, h1, h2, h3, h4, h5, p, li{
     margin-left: 2%;
     cursor: pointer;
     text-wrap-mode: wrap;
-    
-
 }
 
 .comment {
