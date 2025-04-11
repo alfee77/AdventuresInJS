@@ -8,37 +8,139 @@
 </head>
 
 <body>
-    <div class = "header" id="header"></div>
+    <div class="header" id="header"></div>
     <div class="topnav" id="topnav"></div>
     <div class="row">
         <div class="column side" id="column side left"></div>
         <div class="column middle">
             <h2>Conditional branching: "if..."</h2>
-            <h4>Task 1</h4>
-            <p> The first exercise is to ask the user what the official name of JavaScript is (it's ECMAScript!), and display an appropriate response to the answer. So the logic would be as follows:</p>
-            
-            <div class="image-container-center">
-                <img src=".\images\cond1.png" alt="If/Else">
-            </div>
-            <p> The code to achieve this logic is embedded in the function <code>officialNameOfJS()</code>:</p>
-            <br>
+            <h3>The "if" statement</h3>
+            <p>The <code>if(...)</code> statement evaluates the condition in parentheses and if the condition is true,
+                executes a block of code. For example:</p>
             <div class="codeLines">
-let nameOfJavaScript = prompt("What is the official name of JavaScript?", "BlurbyScript");               
-            
-if (nameOfJavaScript == "ECMAScript"){
-    document.getElementById("demo").innerHTML = "Right! ECMAScript is the actual name!";
-} else{
-    document.getElementById("demo").innerHTML = `The official name of JavaScript is not \"${nameOfJavaScript}\", it is ECMAScript!`;
+let year = prompt(`What year was I born?`, '');
+
+if (year == 1977) alert(`Correct`);
+
+<button onclick="myFirstIf()">Run</button>
+            </div>
+            <p>This is pimpsicles, but the condition can be far more complex, as can be the subsequent block of code.
+                Note: wrap the subsequent block of code in curly braces:</p>
+            <div class="codeLines">
+let year = prompt(`What year was I born?`, '');
+let month = prompt(`What month was I born?`, ``);
+
+if (year==1977 && month==`September`){
+    alert(`Correct. I was born in ${month}, ${year}.`);
+    alert(`Gosh you are brilliant!`);
 }
 
-<button onClick="officialNameOfJS()">Run</button>
-
+<button onclick="mySecondIf()">Run</button>
             </div>
+
+
+            <h3>Boolean conversion</h3>
+            <p>The <code>if (…)</code> statement evaluates the expression in its parentheses and converts the result to
+                a boolean.</p>
+
+            <p>Let’s recall the conversion rules from the chapter Type Conversions:</p>
+
+            <ul>
+                <li>A number 0, an empty string "", <code>null</code>, <code>undefined</code>, and NaN all become false.
+                    Because of that they are called “falsy” values.</li>
+                <li>Other values become true, so they are called “truthy”.</li>
+            </ul>
+            <p>So, the code under this condition would never execute:</p>
+
+            <div class="codeLines">
+if (0) { <span class="comment">// 0 is falsy</span>
+    ...
+}
+            </div>
+            <p>…and inside these conditions – it always will:</p>
+
+            <div class="codeLines">
+if (1) { <span class="comment">// 1 is truthy</span>
+    ...
+}
+if("There's a string in here!") { <span class="comment">// A string with stuff in it is truthy</span>
+    ...
+}
+            </div>
+            <h3>The "else" clause</h3>
+            <p>Note, in the examples above asking my age, if the user gets it wrong, there is no code to execute. This
+                is where the "else" clause becomes handy. Tweaking the above code to incorporate an <code>else</code> block would
+                give a more complete block of code:</p>
             
+            <div class="codeLines">
+let year = prompt(`What year was I born?`, '');
+let month = prompt(`What month was I born?`, ``);
+
+if (year==1977 && month==`September`){
+    alert(`Correct. I was born in ${month}, ${year}.`);
+    alert(`Gosh you are brilliant!`);
+}else{
+    alert(`Nope, not right, sorry!`);
+}
+
+<button onclick="myFirstElse()">Run</button>
+            </div>
+            <h3>The "else if" clause</h3>
+            <p>The else if construct allows us to test multiple conditions. Consider the following further tweaks to the code:</p>
             
-            <p id="demo">Code output:<br><br><br></p>
+            <div class="codeLines">
+let year = prompt(`What year was I born?`, '');
+let month = prompt(`What month was I born?`, ``);
+
+if (year==1977 && month==`September`){
+    alert(`Correct. I was born in ${month}, ${year}.`);
+    alert(`Gosh you are brilliant!`);
+} else if (year==1977){
+    alert(`Right year, but wrong month.`);
+} else if (month==`September`){
+    alert('Right month, but wrong year!');
+} else {
+    alert(`Nope, not right, sorry!`);
+}
+                
+<button onclick="myFirstIfElse()">Run</button>
+            </div>
+
+            <h3>Tasks</h3>
+            <div class="task">
+                <h4>Task 1 - What is the official name of JavaScript?</h4>
+                <p> The first exercise is to ask the user what the official name of JavaScript is (it's ECMAScript!),
+                    and display an appropriate response to the answer. So the logic would be as follows:</p>
+
+                <div class="image-container-center">
+                    <img src=".\images\cond1.png" alt="If/Else">
+                </div>
+                <div class="task-solution">
+                    <h4>Solution</h4>
+                    <p> The code to achieve this logic is embedded in the function <code>officialNameOfJS()</code>:</p>
+                    <div class="codeLines">
+let nameOfJavaScript = prompt("What is the official name of JavaScript?", "ECMAScript");
+let outputResponse = `In response to your claim that the offical name of JavaScript is: "${nameOfJavaScript}"...`<br><br> 
+
+if (nameOfJavaScript == "ECMAScript"){
+    outputResponse += `Right! \"${nameOfJavaScript}\" is the actual name!`;
+} else{
+    outputResponse +=  `The official name of JavaScript is not \"${nameOfJavaScript}\", it is ECMAScript!`;
+}
+
+document.getElementById("demo").innerHTML = outputResponse;
+
+<button onClick="officialNameOfJS()">Run</button>
+                    </div>
+                    
+                    <div class="output">
+                        <h3>Output:</h3>
+                        <p id="demo"><br><br><br></p>
+                    </div>
+                </div>
+            </div>
             <h4>Task 2</h4>
-           
+
         </div>
         <div class="column side" id="column side right"></div>
 

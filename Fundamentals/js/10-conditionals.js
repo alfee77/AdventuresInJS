@@ -1,9 +1,64 @@
 "use strict"
 
+function myFirstIf(){
+    let year = prompt(`What year was I born?`, '');
+
+    if (year == 1977) alert(`Correct`);
+}
+
+function mySecondIf(){
+    let year = prompt(`What year was I born?`, '');
+    let month = prompt(`What month was I born?`, ``);
+
+    if (year==1977 && month==`September`){
+        alert(`Correct. I was born in ${month}, ${year}.`);
+        alert(`Gosh you are brilliant!`);
+    }
+}
+function myThirdIf(){
+    let year = prompt(`What year was I born?`, '');
+    let month = prompt(`What month was I born?`, ``);
+
+    if (year==1977 && month==`September`){
+        alert(`Correct. I was born in ${month}, ${year}.`);
+        alert(`Gosh you are brilliant!`);
+    }else {
+        alert(`Nope, not right, sorry!`);
+    }
+}
+
+function myFirstElse(){
+    let year = prompt(`What year was I born?`, '');
+    let month = prompt(`What month was I born?`, ``);
+
+    if (year==1977 && month==`September`){
+        alert(`Correct. I was born in ${month}, ${year}.`);
+        alert(`Gosh you are brilliant!`);
+    }else{
+        alert(`Nope, not right, sorry!`);
+    }
+}
+
+function myFirstIfElse(){
+    let year = prompt(`What year was I born?`, '');
+    let month = prompt(`What month was I born?`, ``);
+
+    if (year==1977 && month==`September`){
+        alert(`Correct. I was born in ${month}, ${year}.`);
+        alert(`Gosh you are brilliant!`);
+    } else if (year==1977){
+        alert(`Right year, but wrong month.`);
+    } else if (month==`September`){
+        alert('Right month, but wrong year!');
+    } else {
+        alert(`Nope, not right, sorry!`);
+    }
+        
+}
+
 function officialNameOfJS(){
     let nameOfJavaScript = prompt("What is the official name of JavaScript?", "ECMAScript");
-    let outputResponse = `Code output:<br>
-                          In response to your claim that the offical name of JavaScript is: "${nameOfJavaScript}"...<br> `
+    let outputResponse = `In response to your claim that the offical name of JavaScript is: "${nameOfJavaScript}"...<br><br> `
 
 
     if (nameOfJavaScript == "ECMAScript"){

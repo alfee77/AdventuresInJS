@@ -5,9 +5,9 @@ function checkAgeAnd(){
 
 
     if (!(age >= 14 && age <= 90)){
-        document.getElementById("demo1").innerHTML = `The age ${age} is NOT between 14 and 90`;
+        document.getElementById("demo1").innerHTML += `The age ${age} is NOT between 14 and 90<br>`;
     } else{
-        document.getElementById("demo1").innerHTML = `The age ${age} is between 14 and 90`;
+        document.getElementById("demo1").innerHTML += `The age ${age} is between 14 and 90`;
     }
 }
 
@@ -30,9 +30,9 @@ function login(){
         if (password=="TheMaster"){
             document.getElementById("demo3").innerHTML = "Welcome!";
         } else if (password == null || password == ""){
-            document.getElementById("demo3").innerHTML = "Login cancelled";
+            document.getElementById("demo3").innerHTML += "Login cancelled";
         } else {
-            document.getElementById("demo3").innerHTML = "Wrong Password!";
+            document.getElementById("demo3").innerHTML += "Wrong Password!";
         }
     } else if (username == null || username =="") {
         alert("Login cancelled");
