@@ -79,6 +79,14 @@ alert( str.toUpperCase() ); <span class="comment">// HELLO</span>
             </div>
             <p>Note it is not necessary to explicitly wrap the String in the object wrapper; the methods are available
                 implicitly.</p>
+            
+            <div class="info">
+                <p>⚠️<strong>Constructors <code>String/Number/Boolean</code> are for internal use only</strong></p>
+                <p>Some languages like Java allow us to explicitly create "wrapper objects" for primitives 
+                    using a syntax like new Number(1) or new Boolean(false).</p>
+                <p>In JavaScript, that's also possible for historical reasons, but highly <strong>unrecommended</strong>
+                Things will go crazy in several places.</p>
+            </div>
 
 
             <div class="task">

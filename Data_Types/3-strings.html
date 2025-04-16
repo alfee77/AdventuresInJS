@@ -12,7 +12,670 @@
         <div class="row">
             <div class="column side" id="column side left"></div>
             <div class="column middle">
-                <h2>Data Types</h2>
+                <h2>Strings</h2>
+                <p>In JavaScript, the textual data is stored as strings. There is no separate type for a single character.</p>
+
+                <p>The internal format for strings is always UTF-16, it is not tied to the page encoding.</p>
+
+                <h3>Quotes</h3>
+                <p>Let’s recall the kinds of quotes.</p>
+
+                <p>Strings can be enclosed within either single quotes, double quotes or backticks:</p>
+
+                <div class="codeLines">
+let single = 'single-quoted';
+let double = "double-quoted";
+
+let backticks = `backticks`;
+                </div>
+                <p>Single and double quotes are essentially the same. Backticks, however, allow us to embed any expression into the string, by wrapping it in ${…}:</p>
+
+                <div class="codeLines">
+function sum(a, b) {
+    return a + b;
+}
+
+alert(`1 + 2 = ${sum(1, 2)}.`); <span class="comment">// 1 + 2 = 3.</span>
+                </div>
+                <p>Another advantage of using backticks is that they allow a string to span multiple lines:</p>
+                <div class="codeLines">
+let guestList = `Guests:
+ * John
+ * Pete
+ * Mary
+`;
+            
+
+alert(guestList); // a list of guests, multiple lines
+                </div>
+                <p>Looks natural, right? But single or double quotes do not work this way.</p>
+
+                <p>If we use them and try to use multiple lines, there’ll be an error:</p>
+
+                <div class="codeLines">
+let guestList = "Guests: <span class="comment">// Error: Unexpected token ILLEGAL</span>
+  * John";
+                </div>
+                <p>Single and double quotes come from ancient times of language creation, when the need for multiline strings was not taken into account. 
+                    Backticks appeared much later and thus are more versatile.</p>
+
+                <p>Backticks also allow us to specify a “template function” before the first backtick. The syntax is: func`string`. The function func is 
+                    called automatically, receives the string and embedded expressions and can process them. This feature is called “tagged templates”, it’s 
+                    rarely seen, but you can read about it in the MDN: Template literals.</p>
+
+                <h3>Special characters</h3>
+                <p>
+                    It is still possible to create multiline strings with single and double quotes by using a so-called “newline character”, written as \n,
+                    which denotes a line break:
+                </p>
+                <div class="codeLines">
+let guestList = "Guests:\n * John\n * Pete\n * Mary";
+
+alert(guestList); <span class="comment">// a multiline list of guests, same as above</span>
+                </div>
+
+                <p>As a simpler example, these two lines are equal, just written differently:</p>
+                <div class="codeLines">
+let str1 = "Hello\nWorld"; // two lines using a "newline symbol"
+
+<span class="comment">// two lines using a normal newline and backticks</span>
+let str2 = `Hello
+World`;
+
+alert(str1 == str2); <span class="comment">// true</span>
+                </div>
+
+                <p>There are other, less common special characters:</p>
+
+                <table>
+                    <tr>
+                        <th>Character</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td>\n</td>
+                        <td>New line</td>
+                    </tr>
+                    <tr>
+                        <td>\r</td>
+                        <td>In Windows text files a combination of two characters \r\n represents a new break, while on non-Windows OS it’s just \n. That’s for historical reasons, most Windows software also understands \n.</td>
+                    </tr>
+                    <tr>
+                        <td>\', \", \`</td>
+                        <td>Quotes</td>
+                    </tr>
+                    <tr>
+                        <td>\\</td>
+                        <td>Backslash</td>
+                    </tr>
+                    <tr>
+                        <td>\t</td>
+                        <td>Tab</td>
+                    </tr>
+                    <tr>
+                        <td>\b, \f, \v</td>
+                        <td>Backspace, Form Feed, Vertical Tab – mentioned for completeness, coming from old times, not used nowadays (you can forget them right now).</td>
+                    </tr>
+                </table>	
+
+                <p>As you can see, all special characters start with a backslash character \. It is also called an “escape character”.</p>
+
+                <p>Because it’s so special, if we need to show an actual backslash \ within the string, we need to double it:</p>
+                <div class="codeLines">
+alert( `The backslash: \\` ); <span class="comment">// The backslash: \</span>
+                </div>
+                <p>So-called “escaped” quotes \', \", \` are used to insert a quote into the same-quoted string.</p>
+
+                <p>For instance:</p>
+
+                <div class="codeLines">
+alert( 'I\'m the Walrus!' ); <span class="comment">// I'm the Walrus!</span>
+                </div>
+                <p>As you can see, we have to prepend the inner quote by the backslash \', because otherwise it would indicate the string end.</p>
+
+                <p>Of course, only the quotes that are the same as the enclosing ones need to be escaped. So, as a more elegant solution, we could switch to double quotes or backticks instead:</p>
+
+                <div class="codeLines">
+alert( "I'm the Walrus!" ); <span class="comment">// I'm the Walrus!</span>
+                </div>
+                
+                <p>Besides these special characters, there’s also a special notation for Unicode codes \u…, it’s rarely used and is covered in the optional chapter about Unicode.</p>
+
+                <h3>String length</h3>
+                <p>The length property has the string length:</p>
+
+                <div class="codeLines">
+alert( `My\n`.length ); <span class="comment">// 3</span>
+                </div>
+                <p>Note that \n is a single “special” character, so the length is indeed 3.</p>
+
+                <div class="info">
+                    <p>ℹ️<strong>length is a property</strong></p>
+                    <p>People with a background in some other languages sometimes mistype by calling str.length() instead of just str.length. That doesn’t work.
+                    Please note that str.length is a numeric property, not a function. There is no need to add parenthesis after it. Not .length(), but .length.</p>
+                </div>
+
+                <h3>Accessing characters</h3>
+                <p>To get a character at position pos, use square brackets [pos] or call the method str.at(pos). The first character starts from the zero position:</p>
+
+                <div class="codeLines">
+let str = `Hello`;
+
+<span class="comment">// the first character</span>
+alert( str[0] ); <span class="comment">// H</span>
+alert( str.at(0) ); <span class="comment">// H</span>
+
+<span class="comment">// the last character</span>
+alert( str[str.length - 1] ); <span class="comment">// o</span>
+alert( str.at(-1) );
+                </div>
+
+                <p>As you can see, the .at(pos) method has a benefit of allowing negative position. If pos is negative, then it’s counted from the end of the string.</p>
+
+                <p>So .at(-1) means the last character, and .at(-2) is the one before it, etc.</p>
+
+                <p>The square brackets always return undefined for negative indexes, for instance:</p>
+                <div class="codeLines">
+let str = `Hello`;
+
+alert( str[-2] ); <span class="comment">// undefined</span>
+alert( str.at(-2) ); <span class="comment">// l</span>
+                </div>
+
+                <p>We can also iterate over characters using for..of:</p>
+                
+                <div class="codeLines">
+for (let char of "Hello") {
+  alert(char); <span class="comment">// H,e,l,l,o (char becomes "H", then "e", then "l" etc)</span>
+}
+                </div>
+
+                <h3>Strings are immutable</h3>
+                <p>Strings can’t be changed in JavaScript. It is impossible to change a character.</p>
+
+                <p>Let’s try it to show that it doesn’t work:</p>
+                <div class="codeLines">
+let str = 'Hi';
+
+str[0] = 'h'; <span class="comment">// error</span>
+alert( str[0] ); <span class="comment">// doesn't work</span>
+                </div>
+
+                <p>The usual workaround is to create a whole new string and assign it to str instead of the old one.</p>
+
+                <p>For instance:</p>
+
+                <div class="codeLines">
+let str = 'Hi';
+
+str = 'h' + str[1]; <span class="comment">// replace the string</span>
+
+alert( str ); <span class="comment">// hi</span>
+                </div>
+
+                <p>In the following sections we’ll see more examples of this.</p>
+
+                <h3>Changing the case</h3>
+                <p>Methods toLowerCase() and toUpperCase() change the case:</p>
+                <div class="codeLines">
+alert( 'Interface'.toUpperCase() ); <span class="comment">// INTERFACE</span>
+alert( 'Interface'.toLowerCase() ); <span class="comment">// interface</span>
+                </div>
+
+                <p>Or, if we want a single character lowercased:</p>
+                <div class="codeLines">
+
+alert( 'Interface'[0].toLowerCase() ); <span class="comment">// 'i'</span>
+                </div>
+                
+                <h3>Searching for a substring</h3>
+                <p>There are multiple ways to look for a substring within a string.</p>
+                
+                <h4>str.indexOf</h4>
+                <p>The first method is <code>str.indexOf(substr, pos)</code>.</p>
+
+                <p>It looks for the <code>substr</code> in <code>str</code>, starting from the given position pos, and returns the position where the match was found or -1 if nothing can be found.</p>
+
+                <p>For instance:</p>
+                <div class="codeLines">
+
+let str = 'Widget with id';
+
+alert( str.indexOf('Widget') ); <span class="comment">// 0, because 'Widget' is found at the beginning</span>
+alert( str.indexOf('widget') ); <span class="comment">// -1, not found, the search is case-sensitive</span>
+
+alert( str.indexOf("id") ); <span class="comment">// 1, "id" is found at the position 1 (..idget with id)</span>
+                </div>  
+
+                <p>The optional second parameter allows us to start searching from a given position.</p>
+
+                <p>For instance, the first occurrence of "id" is at position 1. To look for the next occurrence, let’s start the search from position 2:</p>
+                
+                <div class="codeLines">
+
+let str = 'Widget with id';
+
+alert( str.indexOf('id', 2) ) <span class="comment">// 12</span>
+                </div>
+
+                <p>If we’re interested in all occurrences, we can run indexOf in a loop. Every new call is made with the position after the previous match:</p>
+                <div class="codeLines">
+let str = 'As sly as a fox, as strong as an ox';
+
+let target = 'as'; // let's look for it
+
+let pos = 0;
+while (true) {
+  let foundPos = str.indexOf(target, pos);
+  if (foundPos == -1) break;
+
+  alert( `Found at ${foundPos}` );
+  pos = foundPos + 1; <span class="comment">// continue the search from the next position</span>
+}
+                </div>
+
+                <p>The same algorithm can be layed out shorter:</p>
+
+                <div class="codeLines">
+let str = "As sly as a fox, as strong as an ox";
+let target = "as";
+
+let pos = -1;
+while ((pos = str.indexOf(target, pos + 1)) != -1) {
+  alert( pos );
+}
+
+                </div>
+
+                <div class="info">
+                    <p>ℹ️<strong><code>str.lastIndexOf(substr, position)</code></strong></p>
+
+                    <p>There is also a similar method <code>str.lastIndexOf(substr, position)</code> that searches from the end of a string to its beginning. It would list
+                         the occurrences in the reverse order.</p>
+                </div>
+                <p>There is a slight inconvenience with indexOf in the if test. We can’t put it in the if like this:</p>
+
+                <div class="codeLines">
+let str = "Widget with id";
+
+if (str.indexOf("Widget")) {
+    alert("We found it"); <span class="comment">// doesn't work!</span>
+}
+                </div>
+                
+                <p>The alert in the example above doesn’t show because <code>str.indexOf("Widget")</code> returns 0 (meaning that it found the match at the starting position). 
+                    Right, but if considers 0 to be false.</p>
+
+                <p>So, we should actually check for -1, like this:</p>
+                <div class="codeLines">
+
+let str = "Widget with id";
+
+if (str.indexOf("Widget") != -1) {
+    alert("We found it"); <span class="comment">// works now!</span>
+}
+                </div>
+                <h4>includes, startsWith, endsWith</h4>
+
+                <p>The more modern method str.includes(substr, pos) returns true/false depending on whether str contains substr within.</p>
+
+                <p>It’s the right choice if we need to test for the match, but don’t need its position:</p>
+
+                <div class="codeLines">
+alert( "Widget with id".includes("Widget") ); <span class="comment">// true</span>
+
+alert( "Hello".includes("Bye") ); <span class="comment">// false</span>
+                </div>
+                <p>The optional second argument of str.includes is the position to start searching from:</p>
+
+                <div class="codeLines">
+alert( "Widget".includes("id") ); <span class="comment">// true</span>
+alert( "Widget".includes("id", 3) ); <span class="comment">// false, from position 3 there is no "id"</span>
+                </div>
+                
+                <p>The methods str.startsWith and str.endsWith do exactly what they say:</p>
+                <div class="codeLines">
+alert( "Widget".startsWith("Wid") ); <span class="comment">// true, "Widget" starts with "Wid"</span>
+alert( "Widget".endsWith("get") ); <span class="comment">// true, "Widget" ends with "get"</span>
+                </div>
+
+                <h3>Getting a substring</h3>
+                <p>There are 3 methods in JavaScript to get a substring: substring, substr and slice.</p>
+
+                <h4>str.slice(start [, end])</h4>
+                <p>Returns the part of the string from start to (but not including) end.</p>
+
+                <p>For instance:</p>
+                <div class="codeLines">
+let str = "stringify";
+alert( str.slice(0, 5) ); <span class="comment">// 'strin', the substring from 0 to 5 (not including 5)</span>
+alert( str.slice(0, 1) ); <span class="comment">// 's', from 0 to 1, but not including 1, so only character at 0</span>
+                </div>
+
+                <p>If there is no second argument, then slice goes till the end of the string:</p>
+
+                <div class="codeLines">
+let str = "stringify";
+alert( str.slice(2) ); <span class="comment">// 'ringify', from the 2nd position till the end</span>
+                </div>
+
+                <p>Negative values for start/end are also possible. They mean the position is counted from the string end:</p>
+
+                <div class="codeLines">
+let str = "stringify";
+
+<span class="comment">// start at the 4th position from the right, end at the 1st from the right</span>
+alert( str.slice(-4, -1) ); <span class="comment">// 'gif'</span>
+str.substring(start [, end])
+                </div>
+
+                <p>Returns the part of the string between start and end (not including end).</p>
+
+                <p>This is almost the same as slice, but it allows start to be greater than end (in this case it simply swaps start and end values).</p>
+
+                <p>For instance:</p>
+                <div class="codeLines">
+let str = "stringify";
+
+<span class="comment">// these are same for substring</span>
+alert( str.substring(2, 6) ); <span class="comment">// "ring"</span>
+alert( str.substring(6, 2) ); <span class="comment">// "ring"</span>
+
+<span class="comment">// ...but not for slice:</span>
+alert( str.slice(2, 6) ); <span class="comment">// "ring" (the same)</span>
+alert( str.slice(6, 2) ); <span class="comment">// "" (an empty string)</span>
+                </div>
+                
+                <p>Negative arguments are (unlike slice) not supported, they are treated as 0.</p>
+
+                <h4>str.substr(start [, length]) - DEPRECATED!!! Use str.substring() instead</h4>
+                <p>Returns the part of the string from start, with the given length.</p>
+
+                <p>In contrast with the previous methods, this one allows us to specify the length instead of the ending position:</p>
+
+                <div class="codeLines">
+let str = "stringify";
+alert( str.substr(2, 4) ); <span class="comment">// 'ring', from the 2nd position get 4 characters</span>
+                </div>
+
+                <p>The first argument may be negative, to count from the end:</p>
+
+                <div class="codeLines">
+let str = "stringify";
+alert( str.substr(-4, 2) ); <span class="comment">// 'gi', from the 4th position get 2 characters</span>
+                </div>
+                
+                <p>This method resides in the Annex B of the language specification. It means that only browser-hosted Javascript engines should support it, and it’s not recommended to use it. In practice, it’s supported everywhere.</p>
+
+                <p>Let’s recap these methods to avoid any confusion:</p>
+                <table>
+                    <tr>
+                        <th>method</th>
+                        <th>selects…</th>
+                        <th>negatives</th>
+                    </tr>
+                    <tr>
+                        <td>slice(start, end)</td>
+                        <td>from start to end (not including end)</td>
+                        <td>allows negatives</td>
+                    </tr>
+                    <tr>
+                        <td>substring(start, end)</td>
+                        <td>between start and end (not including end)</td>
+                        <td>negative values mean 0</td>
+                    </tr>
+                    <tr>
+                        <td>substr(start, length)</td>
+                        <td>from start get length characters</td>
+                        <td>allows negative start</td>
+                    </tr>
+                </table>
+                        
+                        
+                        
+                        
+                <div class="info">
+                    <p>ℹ️<strong>Which one to choose?</strong></p>
+                    <p>All of them can do the job. Formally, substr has a minor drawback: it is described not in the core JavaScript 
+                        specification, but in Annex B, which covers browser-only features that exist mainly for historical reasons. 
+                        So, non-browser environments may fail to support it. But in practice it works everywhere.</p>
+                    
+                    <p>Of the other two variants, slice is a little bit more flexible, it allows negative arguments and shorter to write.</p>
+                    
+                    <p>So, for practical use it’s enough to remember only slice.</p>
+                </div>
+
+                <h3>Comparing strings</h3>
+                <p>As we know from the chapter Comparisons, strings are compared character-by-character in alphabetical order.</p>
+
+                <p>Although, there are some oddities.</p>
+
+                <p>A lowercase letter is always greater than the uppercase:</p>
+
+                <div class="codeLines">
+alert( 'a' > 'Z' ); <span class="comment">// true</span>
+                </div>
+                <p>Letters with diacritical marks are “out of order”:</p>
+                <div class="codeLines">
+alert( 'Österreich' > 'Zealand' ); <span class="comment">// true</span>
+                </div>
+
+                <p>This may lead to strange results if we sort these country names. Usually people would expect Zealand to come after Österreich in the list.</p>
+
+                <p>To understand what happens, we should be aware that strings in Javascript are encoded using UTF-16. That is: each character has a corresponding numeric code.</p>
+
+                <p>There are special methods that allow to get the character for the code and back:</p>
+
+                <h4>str.codePointAt(pos)</h4>
+                <p>Returns a decimal number representing the code for the character at position pos:</p>
+
+                <div class="codeLines">
+<span class="comment">// different case letters have different codes</span>
+alert( "Z".codePointAt(0) ); <span class="comment">// 90</span>
+alert( "z".codePointAt(0) ); <span class="comment">// 122</span>
+alert( "z".codePointAt(0).toString(16) ); <span class="comment">// 7a (if we need a hexadecimal value)</span>
+                </div>
+
+                <h4>String.fromCodePoint(code)</h4>
+                <p>Creates a character by its numeric code</p>
+                
+                <div class="codeLines">
+alert( String.fromCodePoint(90) ); <span class="comment">// Z</span>
+alert( String.fromCodePoint(0x5a) ); <span class="comment">// Z (we can also use a hex value as an argument)</span>
+                </div>
+                
+                <p>Now let’s see the characters with codes 65..220 (the latin alphabet and a little bit extra) by making a string of them:</p>
+
+                <div class="codeLines">
+let str = '';
+
+for (let i = 65; i <= 220; i++) {
+  str += String.fromCodePoint(i);
+}
+alert( str );
+<span class="comment">
+    // Output:
+    // ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
+    // ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜ
+</span>
+                </div>
+                <p>See? Capital characters go first, then a few special ones, then lowercase characters, and Ö near the end of the output.</p>
+
+                <p>Now it becomes obvious why a > Z.</p>
+
+                <p>The characters are compared by their numeric code. The greater code means that the character is greater. The code for a (97) is greater than the code for Z (90).</p>
+
+                <ul>
+                    <li>All lowercase letters go after uppercase letters because their codes are greater.</li>
+                    <li>Some letters like Ö stand apart from the main alphabet. Here, its code is greater than anything from a to z.</li>
+                </ul>
+                
+                <h4>Correct comparisons</h4>
+                <p>The “right” algorithm to do string comparisons is more complex than it may seem, because alphabets are different for different languages.</p>
+
+                <p>So, the browser needs to know the language to compare.</p>
+
+                <p>Luckily, modern browsers support the internationalization standard ECMA-402.</p>
+
+                <p>It provides a special method to compare strings in different languages, following their rules.</p>
+
+                <p>The call str.localeCompare(str2) returns an integer indicating whether str is less, equal or greater than str2 according to the language rules:</p>
+
+                <ul>
+                    <li>Returns a negative number if str is less than str2.</li>
+                    <li>Returns a positive number if str is greater than str2.</li>
+                    <li>Returns 0 if they are equivalent.</li>
+                </ul>
+
+                <p>For instance:</p>
+                <div class="codeLines">
+alert( 'Österreich'.localeCompare('Zealand') ); <span class="comment">// -1</span>
+                </div>
+
+                <p>This method actually has two additional arguments specified in the documentation, which allows it to specify the language (by default taken from the environment, 
+                    letter order depends on the language) and setup additional rules like case sensitivity or should "a" and "á" be treated as the same etc.</p>
+
+                <h3>Summary</h3>
+                <ul>
+                    <li>There are 3 types of quotes. Backticks allow a string to span multiple lines and embed expressions ${…}.</li>
+                    <li>We can use special characters, such as a line break \n.</li>
+                    <li>To get a character, use: [] or at method.</li>
+                    <li>To get a substring, use: slice or substring.</li>
+                    <li>To lowercase/uppercase a string, use: toLowerCase/toUpperCase.</li>
+                    <li>To look for a substring, use: indexOf, or includes/startsWith/endsWith for simple checks.</li>
+                    <li>To compare strings according to the language, use: localeCompare, otherwise they are compared by character codes.</li>
+                </ul>
+
+                <p>There are several other helpful methods in strings:</p>
+
+                <ul>
+                    <li>str.trim() – removes (“trims”) spaces from the beginning and end of the string.</li>
+                    <li>str.repeat(n) – repeats the string n times.</li>
+                    <li>…and more to be found in the manual.</li>
+                </ul>
+                
+                <p>Strings also have methods for doing search/replace with regular expressions. But that’s big topic, so it’s explained in a separate tutorial section Regular expressions.</p>
+
+                <p>Also, as of now it’s important to know that strings are based on Unicode encoding, and hence there’re issues with comparisons. There’s more about Unicode in the chapter Unicode, String internals.</p>
+
+                <h3>Tasks</h3>
+                <div class="task">
+                    <h4>Task 1 - Uppercase the first character</h4>
+                    <p>importance: 5</p>
+                    <p>Write a function <code>ucFirst(str)</code> that returns the string <code>str</code> with the uppercased first character, for instance:</p>
+                        
+                    <div class=codeLines>
+ucFirst("john") == "John";
+                    </div>
+                    <div class="solution>">
+                        <div class="codeLines">
+function task1(){
+    function ucFirst(str){
+        if(str) {
+            let newWord = str[0].toUpperCase() + str.slice(1);
+            return newWord;
+        }else{
+            alert("No string provided!");
+            return "Error!";
+        }
+    }
+
+    firstUpperCase = ucFirst(prompt("Enter a word: ", "lowercase"));
+    alert(firstUpperCase);
+}
+
+<button onClick="task1()">Run</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="task">
+                    <h4>Task 2 - Check for Spam!</h4>
+                    <p>importance: 5</p>
+                    <p>Write a function checkSpam(str) that returns true if str contains ‘viagra’ or ‘XXX’, otherwise false.</p>
+
+                    <p>The function must be case-insensitive:</p> 
+                    <div class=codeLines>
+checkSpam('buy ViAgRA now') == true
+checkSpam('free xxxxx') == true
+checkSpam("innocent rabbit") == false
+                    </div>
+                    <div class="solution">
+                        <div class="codeLines">
+function task2(){
+    function checkSpam(str){
+        let lowercase = str.toLowerCase();
+        return (lowercase.includes("viagra") || lowercase.includes("xxx"));
+    }
+
+    alert(checkSpam('buy ViAgRA now'));
+    alert(checkSpam('free xxXXXxx'));
+    alert(checkSpam("innocent rabbit"));
+}
+
+<button onClick="task2()">Run</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="task">
+                    <h4>Task 3 - Truncate the text</h4>
+                    <p>importance: 5</p>
+                    <p>Create a function truncate(str, maxlength) that checks the length of the str and, if it exceeds maxlength – replaces the 
+                    end of str with the ellipsis character "…", to make its length equal to maxlength.</p>
+
+                    <p>The result of the function should be the truncated (if needed) string.</p>
+
+                    <p>For instance: </p>
+                    <div class=codeLines>
+truncate("What I'd like to tell on this topic is:", 20) == "What I'd like to te…"
+
+truncate("Hi everyone!", 20) == "Hi everyone!"
+                    </div>
+                    <div class="solution">
+                        <div class="codeLines">
+function task3(){
+    function truncate(str, maxlength){
+        if (str.length > maxlength){
+            return str.slice(0, maxlength) + "…";
+        }else{
+            return str;
+        };
+    }
+
+    alert(truncate('Goodness gracious me', 5));
+    alert(truncate('free xxXXXxx', 8));
+    alert(truncate("innocent rabbit", 75));
+}
+
+<button onClick="task3()">Run</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="task">
+                    <h4>Task 4 - Extract the money</h4>
+                    <p>importance: 4</p>
+                    <p>We have a cost in the form "$120". That is: the dollar sign goes first, and then the number.</p>
+
+                    <p>Create a function extractCurrencyValue(str) that would extract the numeric value from such string and return it.</p>
+                        
+                    <p>The example:</p>
+                    <div class=codeLines>
+alert( extractCurrencyValue('$120') === 120 ); <span class="comment">// true</span>
+                    </div>
+                    <div class="solution">
+                        <div class="codeLines">
+function task4(){
+    function extractCurrencyValue(str){
+        return(str.slice(1, str.length));
+    }
+
+    alert(extractCurrencyValue('$120'));
+    alert(extractCurrencyValue('$1200000'));
+}
+
+<button onClick="task4()">Run</button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="column side" id="column side right"></div>
             
@@ -26,7 +689,7 @@
     </body>
 
     <script src="../root-js/JavaScriptInfoMenu.js"></script>
-    <script src="js/0-index.js"></script>
+    <script src="js/3-strings.js"></script>
     
 
 </html>

@@ -12,21 +12,254 @@
         <div class="row">
             <div class="column side" id="column side left"></div>
             <div class="column middle">
-                <h2>Data Types</h2>
+                <h2>Arrays</h2>
+                <p>Objects allow you to store keyed collections of values; this is fine and dandy, but sometimes we need to store things
+                    in an ordered fashion. Objects dont provide methods for ordering such an ordered collection. Arrays are a special data structure
+                    that is used to store these sorts of collections.
+                </p>
+                <h3>Declaration</h3>
+                <p>JavaScript provides two syntaxes for creating empty arrays:</p>
+                <div class="codeLines">
+let arr = new Array();
+let arr = [];
+                </div>
+                <p>Almost all of the time the second syntax is used. The array can be initialised with stuff in the brackets:</p>
+                <div class="codeLines">
+let vegetables = ["Potato", "Tomato", "Pepper"];
+                </div>
+                <p>Array elements are numbered, starting at 0. We can access an element by putting it's number in the square brackets:</p>
+                <div class="codeLines">
+let vegetables = ["Potato", "Tomato", "Pepper"];
+
+alert(vegetables[0]); <span class="comment">//Potato</span>
+alert(vegetables[1]); <span class="comment">//Tomato</span>
+alert(vegetables[2]); <span class="comment">//Pepper</span>
+                </div>
+                <p>We can replace an element:</p>
+                <div class="codeLines">
+vegetables[2] = Carrot <span class="comment">//now ["Potato, "Tomato", "Carrot"]</span>
+                </div>
+                <p>...Or add a new one to the array:</p>
+            <div class="codeLines">
+vegetables[3] = "Mushrooms"; <span class="comment">//now ["Potato, "Tomato", "Carrot", "Mushrooms"] </span>
+                </div>
+                <p>The total count of the array is its <code>length</code>:</p>
+                <div class="codeLines">
+let vegetables = ["Potato", "Tomato", "Pepper"];
+
+alert(vegetables.length); <span class="comment">//3</span>
+                </div>
+                <p>We can also use <code>alert</code> to show the whole array:</p>
+        
+                <div class="codeLines">
+let vegetables = ["Potato", "Tomato", "Pepper"];
+
+alert(vegetables); <span class="comment">//Potato, Tomato, Pepper</span>
+                </div>
+
+                <p>An array can store elements of any type. For instance:</p>
+
+                <div class="codeLines">
+<span class="comment">//mix of values</span>
+let arr = ["Potato", { name: "Alistair"}, true, function() { alert("Hello!")}];
+
+<span class="comment">//get the object at index 1, and then alert the value associated with the "name" key:</span>
+alert(arr[1].name);
+
+<span class="comment">//get the function at index 3 and run it:</span>
+arr[3]();
+
+<button onclick="example1()">Run</button>
+                </div>
+                <div class="info">
+                    <p>ℹ️<strong> Trailing comma</p></strong>
+                    <p>In JavaScript, an array, just like an object, may end with a trailing comma:</p>
+                    <div class="codeLines">
+let vegetables = [
+    "Potato",
+    "Tomato",
+    "Pepper",
+];
+                    </div>
+                </div>
+                <h3>Get last elements with "at"</h3>
+                <div class="info">
+                    <p>⚠️<strong> A recent addition to JavaScript</p></strong>
+                    <p>This is a recent addition to the language. Old browsers may need polyfills.</p>
+                </div>
+                <p>Let’s say we want the last element of the array.</p>
+
+                <p>Some programming languages allow the use of negative indexes for the same purpose, like vegetables[-1].</p>
+
+                <p>Although, in JavaScript it won’t work. The result will be undefined, because the 
+                    index in square brackets is treated literally.</p>
+
+                <p>We can explicitly calculate the last element index and then access it: <code>vegetables[vegetables.length - 1]</code>.</p>
+
+                <div class="codeLines">
+let vegetables = ["Potato", "Tomato", "Pepper"];
+
+alert( vegetables[vegetables.length-1] ); <span class="comment">// Plum</span>
+                </div>
+<p>Perhaps this is a bit cumbersome (although I'm not sure I agree)? There’s a shorter
+    syntax: vegetables.at(-1):</p>
+
+<div class="codeLines">
+let vegetables = ["Potato", "Tomato", "Pepper"];
+
+<span class="comment">// same as vegetables[vegetables.length-1]</span>
+alert( vegetables.at(-1) ); // Pepper
+</div>
+                <p>In other words, <code>arr.at(i)</code>:</p>
+                <ul>
+                    <li>is exactly the same as arr[i], if i >= 0.</li>
+                    <li>for negative values of i, it steps back from the end of the array.</li>
+                </ul>
+            
+                <h3>Queues, stacks and deques</h3>
+                <p>Arrays can be used to facilitate queues, stacks and deques. JavaScript provides 
+                methods to support these data structures, including methods pop/push, shift/unshift.</p>
+                <h4>Queue</h4>
+                <p>In computing science, a queue is something that adds an element to the end of the
+                queue via the <code>push()</code> method, and bumps off the element at the front of the queue via the
+                <code>shift()</code> method. (note the <code>deshift()</code> method allows you to put it, or something 
+                else, back on) Think of a queue as a left-to-right entity, following a first-in last-out rule set:</p>
+                <img src="images/queue.png" alt="">
+
+                <h4>Stack</h4>
+                <p>A stack is something that has elements added to the top of it via the <code>push()</code> method, and 
+                then taken off the top via the <code>pop()</code> method. Think of a stack as a top down entity, following 
+                a first-in first-out rule set:</p>
+                <img src="images/stack.png" alt="">
+                <p>Looking at each of these methods in turn.</p>
+                <h4>pop()</h4>
+                <p>See below our example array. If we call the <code>pop()</code> method, it will extract the last item (Pepper) from the list. 
+                The <code>pop()</code> method returns whatever is at the top of the array (in this case, the string "Pepper"), and leaves the array
+                bereft of it's last item:</p>
+                <div class="codeLines">
+let vegetables = ["Potato", "Tomato", "Pepper"];
+
+alert(vegetables.pop());
+
+alert(vegetables);
+
+<button onclick="example2()">Run</button>
+                </div>
+
+                <h4>push()</h4>
+                <p>Sticking with the trusty <code>vegetables[]</code>, calling the push method and passing an argument to it causes 
+                the array to grow!</p>
+                <div class="codeLines">
+let vegetables = ["Potato", "Tomato", "Pepper"];
+
+vegetables.push("Carrot");
+
+alert(vegetables);
+
+<button onclick="example3()">Run</button>
+                </div>
+                <h4>shift()</h4>
+                <p>These <code>vegetables[]</code> have seen some action!. Calling the <code>shift()</code> method rips the fella from the front 
+                of the queue:</p>
+                <div class="codeLines">
+let vegetables = ["Potato", "Tomato", "Pepper"];
+
+alert(vegetables.shift());
+
+alert(vegetables);
+
+<button onclick="example4()">Run</button>
+                </div>
+                <p>Note: <code>shift()</code>, like <code>pop()</code>, returns whatever is sitting at the front of the queue.</p>
+
+                <h4>unshift()</h4>
+                <p>I dunno what's going to happen here, so lets run with it!</p>
+                <div class="codeLines">
+let vegetables = ["Potato", "Tomato", "Pepper"];
+
+alert(vegetables.unshift("Artichoke"));
+
+alert(vegetables);
+
+<button onclick="example5()">Run</button>
+                </div>
+                <h3>Internals</h3>
+
+                <p>An array is a special kind of object. The square brackets used to access a property arr[0] actually come from
+                the object syntax. That’s essentially the same as obj[key], where arr is the object, while numbers are used as keys.</p>
+                
+                <p>They extend objects providing special methods to work with ordered collections of data and also the length property. 
+                But at the core it’s still an object.</p>
+                
+                <p>Remember, there are only eight basic data types in JavaScript (see the Data types chapter for more info). Array is 
+                an object and thus behaves like an object.</p>
+                
+                <p>For instance, it is copied by reference:</p>
+                
+                <div class="codeLines">
+let fruits = ["Banana"]
+
+let arr = fruits; <span class="comment">// copy by reference (two variables reference the same array)</span>
+
+alert( arr === fruits ); <span class="comment">// true</span>
+
+arr.push("Pear"); <span class="comment">// modify the array by reference</span>
+
+alert( fruits ); <span class="comment">// Banana, Pear - 2 items now</span>
+                </div>
+                <p>…But what makes arrays really special is their internal representation. The engine tries to store its elements 
+                in the contiguous memory area, one after another, just as depicted on the illustrations in this chapter, and there
+                are other optimizations as well, to make arrays work really fast.</p>
+                
+                <p>But they all break if we quit working with an array as with an “ordered collection” and start working with it as 
+                if it were a regular object.</p>
+                
+                <p>For instance, technically we can do this:</p>
+                
+                <div class="codeLines">
+let fruits = []; <span class="comment">// make an array</span>
+
+fruits[99999] = 5; <span class="comment">// assign a property with the index far greater than its length</span>
+
+fruits.age = 25; <span class="comment">// create a property with an arbitrary name</span>
+                </div>
+                <p>That’s possible, because arrays are objects at their base. We can add any properties to them.<em>However</em> the engine
+                will see that we’re working with the array as with a regular object. Array-specific optimizations are not suited for 
+                such cases and will be turned off, their benefits disappear.</p>
+                
+                <p>The ways to misuse an array:</p>
+                
+                <ul>
+                    <li>Add a non-numeric property like <code>arr.test = 5</code>.</li>
+                    <li>Make holes, like: add <code>arr[0]</code> and then <code>arr[1000] </code>(and nothing between them).</li>
+                    <li>Fill the array in the reverse order, like <code>arr[1000]</code>, <code>arr[999]</code> and so on.</li>
+                </ul>
+                <p>You MUST think of arrays as special structures to work with the ordered data. They provide special methods 
+                for that. Arrays are carefully tuned inside JavaScript engines to work with contiguous ordered data, please use 
+                them this way. And if you need arbitrary keys, chances are high that you actually require a regular object {}.</p>
+
+                <h3>Performance</h3>
+                <h3>Loops</h3>
+                <h3>A word about length</h3>
+                <h3>new Array()</h3>
+                <h3>Multidimensional arrays</h3>
+                <h3>toString</h3>
+                <h3>Don't compare arrays with ==</h3>
+                <h3>Summary</h3>
             </div>
+            
             <div class="column side" id="column side right"></div>
             
         </div>
 
-        <div class="footer" id="footer">
-            
-        </div>
+        <div class="footer" id="footer"></div>
+
     
 
     </body>
 
     <script src="../root-js/JavaScriptInfoMenu.js"></script>
-    <script src="js/0-index.js"></script>
+    <script src="js/4-arrays.js"></script>
     
 
 </html>

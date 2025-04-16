@@ -67,6 +67,16 @@ if (folder == "Data_Types") {
             "<li><a href='0-index.html'>Home</a></li>" +
             "<li><a href='1-methodsOfPrimitives.html'>Methods of primitives</a></li>" +
             "<li><a href='2-numbers.html'>Numbers</a></li>" +
+            "<li><a href='3-strings.html'>Strings</a></li>" +
+            "<li><a href='4-arrays.html'>Arrays</a></li>" +
+            "<li><a href='5-array methods.html'>Array methods</a></li>" +
+            "<li><a href='6-iterables.html'>Iterables</a></li>" +
+            "<li><a href='7-map and set.html'>Map and Set</a></li>" +
+            "<li><a href='8-weakmap and weakset.html'>WeakMap and WeakSet</a></li>" +
+            "<li><a href='9-Objects.keys, values, entries.html'>Objects.keys, values, entries</a></li>" +
+            "<li><a href='10-Destructuring assignment.html'>Destructuring assignment</a></li>" +
+            "<li><a href='11-date and time.html'>Date and time</a></li>" +
+            "<li><a href='12-JSON methods, toJSON.html'>JSON methods, toJSON</a></li>" +
         "</ol>";
 }
 
