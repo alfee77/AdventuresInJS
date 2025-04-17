@@ -1,8 +1,6 @@
 
 a, h1, h2, h3, h4, h5, p, li{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    
-    
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;    
 }
 * {
     box-sizing: border-box;
@@ -10,6 +8,28 @@ a, h1, h2, h3, h4, h5, p, li{
 
 body {
     margin: 0;
+}
+
+figure {
+    border: thin #c0c0c0 solid;
+    display: flex;
+    flex-flow: column;
+    padding: 5px;
+    max-width: 75%;
+    margin-left: 10%;
+}
+  
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+figcaption {
+    background-color: #222;
+    color: #fff;
+    font: italic smaller sans-serif;
+    padding: 3px;
+    text-align: center;
 }
 
 .header {
@@ -178,17 +198,15 @@ body {
 
 
 .codeLines {
-    /* display: block; */
     min-width: 80%;
     overflow-x: scroll;
-    background: rgb(240, 238, 238);
+    background: rgb(235, 235, 235);
     padding: 2%;
     font-family: monospace;
     color: black;
     white-space: pre;
-    /* outline: thin solid grey; */
-    margin-top: 5%;
-    margin-bottom: 5%;
+    margin-top: 1%;
+    margin-bottom: 1%;
     margin-left: 2%;
     cursor: pointer;
     

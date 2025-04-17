@@ -116,73 +116,50 @@ alert( vegetables.at(-1) ); // Pepper
                     <li>for negative values of i, it steps back from the end of the array.</li>
                 </ul>
             
-                <h3>Queues, stacks and deques</h3>
-                <p>Arrays can be used to facilitate queues, stacks and deques. JavaScript provides 
-                methods to support these data structures, including methods pop/push, shift/unshift.</p>
-                <h4>Queue</h4>
-                <p>In computing science, a queue is something that adds an element to the end of the
-                queue via the <code>push()</code> method, and bumps off the element at the front of the queue via the
-                <code>shift()</code> method. (note the <code>deshift()</code> method allows you to put it, or something 
-                else, back on) Think of a queue as a left-to-right entity, following a first-in last-out rule set:</p>
-                <img src="images/queue.png" alt="">
+                <h3>Stacks and queues</h3>
+                <p>Arrays can be used to facilitate stacks and queues. JavaScript provides methods to support using arrays 
+                in these data structures, including <code>pop()</code>, <code>push()</code>, <code>shift()</code> 
+                and <code>unshift()</code>. The <code>push()</code> and <code>pop()</code> methods are explained below, 
+                in the context of a stack, followed by the <code>shift()</code>, <code>de-shift()</code> and <code>pop()</code> 
+                methods in the context of a queue.</p>
 
                 <h4>Stack</h4>
-                <p>A stack is something that has elements added to the top of it via the <code>push()</code> method, and 
-                then taken off the top via the <code>pop()</code> method. Think of a stack as a top down entity, following 
-                a first-in first-out rule set:</p>
-                <img src="images/stack.png" alt="">
-                <p>Looking at each of these methods in turn.</p>
-                <h4>pop()</h4>
-                <p>See below our example array. If we call the <code>pop()</code> method, it will extract the last item (Pepper) from the list. 
-                The <code>pop()</code> method returns whatever is at the top of the array (in this case, the string "Pepper"), and leaves the array
-                bereft of it's last item:</p>
-                <div class="codeLines">
-let vegetables = ["Potato", "Tomato", "Pepper"];
+                <p>In computing science, a stack is something that has elements added to the top of it via the <code>push()</code> 
+                method, and then taken off the top via the <code>pop()</code> method. Think of a stack as data structure with a first-in
+                first-out rule set. Calling <code>vegetables.push("Carrot")</code> will push a Carrot onto the top of the stack
+                depicted by the <code>vegetables[]</code> array:</p>
+                <figure>
+                    <img src="images/stack-push.png" alt="">
+                    <figcaption>Calling <code> vegetables.push("Carrot")</code> method on a stack</figcaption>
+                </figure>
+                <p>Calling the <code>vegetables.pop()</code> method will pop whatever is on top of the array off (in this case 
+                "Carrot"):</p>
+                <figure>
+                    <img src="images/stack-pop.png" alt="">
+                    <figcaption>Calling <code> vegetables.pop()</code> method on a stack</figcaption>
+                </figure>
+                <h4>Queue</h4>
+                <p>A queue is something that adds an element to the end of the
+                queue via the <code>push()</code> method, and bumps off the element at the front of the queue via the
+                <code>shift()</code> method. (note the <code>deshift()</code> method allows you to put it, or something 
+                else, back on) Think of a queue as a left-to-right entity, following a first-in last-out rule set. Calling 
+                <code>vegetables.push("Carrot")</code> will add a carrot to the back of the queue:</p>
+                <figure>
+                    <img src="images/queue-push.png" alt="">
+                    <figcaption>Calling <code> vegetables.push("Carrot")</code> method on a queue</figcaption>
+                </figure>
+                <p>Calling <code>vegetables.shift()</code> will take whatever is at the front of the queue off, and shift the remaining items
+                up one place in the queue:</p>
+                <figure>
+                    <img src="images/queue-shift.png" alt="">
+                    <figcaption>Calling <code> vegetables.shift()</code> method on a queue</figcaption>
+                </figure>
+                <p>Note how calling <code>push()</code> causes the rest of the array elements to shift address by one. This is 
+                an important consideration when it comes to performance. Pushing/popping doesn't require re-ordering all the items
+                in the array. Shifting and deshifting does!</p>
 
-alert(vegetables.pop());
 
-alert(vegetables);
-
-<button onclick="example2()">Run</button>
-                </div>
-
-                <h4>push()</h4>
-                <p>Sticking with the trusty <code>vegetables[]</code>, calling the push method and passing an argument to it causes 
-                the array to grow!</p>
-                <div class="codeLines">
-let vegetables = ["Potato", "Tomato", "Pepper"];
-
-vegetables.push("Carrot");
-
-alert(vegetables);
-
-<button onclick="example3()">Run</button>
-                </div>
-                <h4>shift()</h4>
-                <p>These <code>vegetables[]</code> have seen some action!. Calling the <code>shift()</code> method rips the fella from the front 
-                of the queue:</p>
-                <div class="codeLines">
-let vegetables = ["Potato", "Tomato", "Pepper"];
-
-alert(vegetables.shift());
-
-alert(vegetables);
-
-<button onclick="example4()">Run</button>
-                </div>
-                <p>Note: <code>shift()</code>, like <code>pop()</code>, returns whatever is sitting at the front of the queue.</p>
-
-                <h4>unshift()</h4>
-                <p>I dunno what's going to happen here, so lets run with it!</p>
-                <div class="codeLines">
-let vegetables = ["Potato", "Tomato", "Pepper"];
-
-alert(vegetables.unshift("Artichoke"));
-
-alert(vegetables);
-
-<button onclick="example5()">Run</button>
-                </div>
+                
                 <h3>Internals</h3>
 
                 <p>An array is a special kind of object. The square brackets used to access a property arr[0] actually come from
@@ -234,11 +211,12 @@ fruits.age = 25; <span class="comment">// create a property with an arbitrary na
                     <li>Make holes, like: add <code>arr[0]</code> and then <code>arr[1000] </code>(and nothing between them).</li>
                     <li>Fill the array in the reverse order, like <code>arr[1000]</code>, <code>arr[999]</code> and so on.</li>
                 </ul>
-                <p>You MUST think of arrays as special structures to work with the ordered data. They provide special methods 
+                <p>You MUST think of arrays as special structures to work with the <em>ordered data</em>. They provide special methods 
                 for that. Arrays are carefully tuned inside JavaScript engines to work with contiguous ordered data, please use 
                 them this way. And if you need arbitrary keys, chances are high that you actually require a regular object {}.</p>
 
                 <h3>Performance</h3>
+                <p><code>push()/pop()</code> are rapid. <code>Shift()/unshift()</code> do not.</p>
                 <h3>Loops</h3>
                 <h3>A word about length</h3>
                 <h3>new Array()</h3>
