@@ -216,11 +216,15 @@ fruits.age = 25; <span class="comment">// create a property with an arbitrary na
                 them this way. And if you need arbitrary keys, chances are high that you actually require a regular object {}.</p>
 
                 <h3>Performance</h3>
-                <p><code>push()/pop()</code> are rapid. <code>Shift()/unshift()</code> do not.</p>
+                <p><code>push()/pop()</code> are rapid. <code>shift()/unshift()</code> do not. Think about it: <code>push()/pop()</code> 
+                lift something from the "top" of the array; the remaining elements remain in their indexed place. <code>shift()/unshift()</code> 
+                <em>do not</em>.
                 <figure>
                     <img src="images/performance.png" alt="">
-                    <figcaption>Calling <code> vegetables.push("Carrot")</code> method on a queue</figcaption>
+                    <figcaption>Array performance</figcaption>
                 </figure>
+                <p>Shifting an element off the "front" of the array causes the others to bump along (contents of array element [1] moves to [0] and 
+                so on). Additionally, the <code>length</code> property needs recalculated and updated.</p>
                 <h3>Loops</h3>
                 <h3>A word about length</h3>
                 <h3>new Array()</h3>
