@@ -12,21 +12,135 @@
         <div class="row">
             <div class="column side" id="column side left"></div>
             <div class="column middle">
-                <h2>Data Types</h2>
+                <h2>Iterables</h2>
+                <p>An iterable is an object capable of returning its members one at a time, allowing it to be looped over in a <code>for…of</code> 
+                loop. Arrays and other built in objects are iterable by default. For…of is great construct for looping through an objects members, 
+                so oftentimes it may be handy to make an object interable.</p>
+                <p>Arrays and strings are some of the types that are already interable by default, but if we want to make an object of our own 
+                creation iterable, then it would be useful to learn how it is done!</p>
+                <h3>Symbol.iterator</h3>
+                <p>You what now!? Well consider the following object, that is intended to represent a range of numbers from 1-5. It would be 
+                handy to be able to iterate over all the numbers in the range such that:</p>
+                <div class="codeLines">
+let range = {
+    from: 1,
+    to: 5
+};
+
+<span class="comment">//We want the for…of to work:</span>
+<span class="comment">//for(let num of range)...num=1,2,3,4,5</span>
+                </div>
+                <p>To make the range object iterable (and thus let <code>for..of</code> work) we need to add a method to the object named <code>Symbol.iterator</code> 
+                (a special built-in symbol just for that).</p>
+                <ul>
+                    <li>When <code>for..of</code> starts, it calls that method once (or errors if not found). The method must return an <code>iterator</code> – an object with the method <code>next()</code>.</li>
+                    <li>Onward, <code>for..of</code> works only with that returned object.</li>
+                    <li>When <code>for..of</code> wants the next value, it calls <code>next()</code> on that object.</li>
+                    <li>The result of <code>next()</code> must have the form <code>{done: Boolean, value: any}</code>, where <code>done=true</code> means that the loop is finished, otherwise value is the next value.</li>
+                </ul>
+                <p>Here’s the full implementation for range with remarks:</p>
+                <div class="codeLines">
+function example1(){
+    let range = {
+        from: 1,
+        to: 1000
+    };
+
+    range[Symbol.iterator] = function(){
+        return{
+            current: this.from,
+            last: this.to,
+
+            next(){
+                if(this.current <= this.last){
+                    return { 
+                        done: false, 
+                        value: this.current++,
+                    };
+                } else {
+                    return {
+                        done: true,
+                    };
+                }
+            }
+        };
+    };
+    
+    <span class="comment">//We want the for…of to work:</span>
+    <span class="comment">//for(let num of range)...num=1,2,3,4,5</span>
+    for(let num of range){
+        console.log(num);
+        //alert(`hello`);
+    }
+}
+
+<button onclick="example1()">Run</button>
+                </div>
+                <p>We can integrate the Symbol.iterator function into the object itself:</p>
+                <div class="codeLines">
+function example2(){
+    let range = {
+        from: 1,
+        to: 1000,
+
+        [Symbol.iterator](){
+            this.current = this.from;
+            return this;
+        },
+    
+        next(){
+            if(this.current <= this.to){
+                return { 
+                    done: false, 
+                    value: this.current++,
+                };
+            } else {
+                return {
+                    done: true,
+                };
+            }
+        }
+    };
+
+    for(let num of range){
+        console.log(num);
+    }
+}
+
+<button onclick="example2()">Run</button>
+                </div>
+                <h3>Summary</h3>
+                <p>Objects that can be used in <code>for..of</code> are called iterable.</p>
+                <ul>
+                    <li>Technically, iterables must implement the method named Symbol.iterator.</li>
+                    <ul>
+                        <li>The result of <code>obj[Symbol.iterator]()</code> is called an iterator. It handles further iteration process.</li>
+                        <li>An iterator must have the method named <code>next()</code> that returns an object <code>{ done: Boolean, value: any }</code>, 
+                        here <code>done:true</code> denotes the end of the iteration process, otherwise the value is the next value.</li>
+                    </ul>
+                        
+                    <li>The Symbol.iterator method is called automatically by for..of, but we also can do it directly.</li>
+                    <li>Built-in iterables like strings or arrays, also implement Symbol.iterator.</li>
+                    <li>String iterator knows about surrogate pairs.</li>
+                </ul>
+                <p>Objects that have indexed properties and length are called array-like. Such objects may also have other properties and methods, but lack the 
+                built-in methods of arrays.</p>
+
+                <p>If we look inside the specification – we’ll see that most built-in methods assume that they work with iterables or array-likes instead of “real” arrays, 
+                because that’s more abstract.</p>
+
+                <p><code>Array.from(obj[, mapFn, thisArg]) </code>makes a real <code>Array</code> from an iterable or array-like obj, and we can then use array methods on it. 
+                The optional arguments mapFn and thisArg allow us to apply a function to each item.</p>
             </div>
             <div class="column side" id="column side right"></div>
-            
         </div>
-
-        <div class="footer" id="footer">
-            
-        </div>
+        <div class="footer" id="footer"></div>
     
 
     </body>
 
     <script src="../root-js/JavaScriptInfoMenu.js"></script>
-    <script src="js/0-index.js"></script>
+    <script src="js/6-iterables.js"></script>
     
 
 </html>

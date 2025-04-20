@@ -226,12 +226,277 @@ fruits.age = 25; <span class="comment">// create a property with an arbitrary na
                 <p>Shifting an element off the "front" of the array causes the others to bump along (contents of array element [1] moves to [0] and 
                 so on). Additionally, the <code>length</code> property needs recalculated and updated.</p>
                 <h3>Loops</h3>
+                <p>One of the oldest ways to cycle array items is the for loop over indexes:</p>
+
+                <div class="codeLines">
+let arr = ["Apple", "Orange", "Pear"];
+
+for (let i = 0; i < arr.length; i++) {
+    alert( arr[i] );
+}
+                </div>
+                <p>But for arrays there is another form of loop, <code>for...of</code>:</p>
+
+                <div class="codeLines">
+let fruits = ["Apple", "Orange", "Plum"];
+
+<span class="comment">// iterates over array elements</span>
+for (let fruit of fruits) {
+  alert( fruit );
+}
+                </div>
+                <p>The <code>for..of</code> doesn’t give access to the number of the current element, just its value, but in most cases that’s enough. And it’s shorter.</p>
+
+                <p>Technically, because arrays are objects, it is also possible to use <code>for..in</code>:</p>
+
+                <div class="codeLines">
+let arr = ["Apple", "Orange", "Pear"];
+
+for (let key in arr) {
+    alert( arr[key] ); <span class="comment">// Apple, Orange, Pear</span>
+}
+                </div>
+                <p>But that’s actually a bad idea. There are potential problems with it:</p>
+
+                <p>The loop <code>for...in</code> iterates over all properties, not only the numeric ones.</p>
+
+                <p>There are so-called “array-like” objects in the browser and in other environments, that look like arrays. That is, they have length and indexes properties, 
+                but they may also have other non-numeric properties and methods, which we usually don’t need. The for..in loop will list them though. So if we need to work 
+                with array-like objects, then these “extra” properties can become a problem.</p>
+
+                <p>The <code>for...in</code> loop is optimized for generic objects, not arrays, and thus is 10-100 times slower. Of course, it’s still very fast. The speedup may
+                only matter in bottlenecks. But still we should be aware of the difference.</p>
+
+                <p>Generally, we shouldn’t use <code>for..in</code> for arrays.</p>
+
                 <h3>A word about length</h3>
+                <p>The length property automatically updates when we modify the array. To be precise, it is actually not the count of 
+                values in the array, but the greatest numeric index plus one.</p>
+
+                <p>For instance, a single element with a large index gives a big length:</p>
+                <div class="codeLines">
+
+let fruits = [];
+fruits[123] = "Apple";
+
+alert( fruits.length ); <span class="comment">// 124</span>
+                </div>
+                <p>Note that we usually don’t use arrays like that.</p>
+
+                <p>Another interesting thing about the length property is that it’s writable.</p>
+
+                <p>If we increase it manually, nothing interesting happens. But if we decrease it, the array is truncated. The process 
+                is irreversible, here’s the example:</p>
+
+                <div class="codeLines">
+let arr = [1, 2, 3, 4, 5];
+
+arr.length = 2; <span class="comment">// truncate to 2 elements</span>
+alert( arr ); <span class="comment">// [1, 2]</span>
+
+arr.length = 5; <span class="comment">// return length back</span>
+alert( arr[3] );<span class="comment"> // undefined: the values do not return</span>
+                </div>
+                <p>So, the simplest way to clear the array is: <code>arr.length = 0</code>;.</p>
+
                 <h3>new Array()</h3>
+                <p>There is one more syntax to create an array:</p>
+
+                <div class="codeLines">
+let arr = new Array("Apple", "Pear", "etc");
+                </div>
+                <p>It’s rarely used, because square brackets [] are shorter. Also, there’s a tricky feature with it.</p>
+
+                <p>If new Array is called with a single argument which is a number, then it creates an array without items, but with the given length.</p>
+
+                <p>Let’s see how one can shoot themselves in the foot:</p>
+
+                <div class="codeLines">
+let arr = new Array(2); <span class="comment">// will it create an array of [2] ?</span>
+
+alert( arr[0] ); <span class="comment">// undefined! no elements.</span>
+
+alert( arr.length ); <span class="comment">// length 2</span>
+                </div>
+                <p>To avoid such surprises, we usually use square brackets, unless we really know what we’re doing.</p>
                 <h3>Multidimensional arrays</h3>
+                <p>Arrays can have items that are also arrays. We can use it for multidimensional arrays, for example to store matrices:</p>
+                <div class="codeLines">
+let matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+];
+
+alert( matrix[0][1] ); <span class="comment">// 2, the second value of the first inner array</span>
+                </div>
                 <h3>toString</h3>
+                <p>Arrays have their own implementation of <code>toString()</code> method that returns a comma-separated list of elements.</p>
+
+                <p>For instance:</p>
+                <div class="codeLines">
+let arr = [1, 2, 3];
+
+alert( arr ); <span class="comment">// 1,2,3</span>
+alert( String(arr) === '1,2,3' ); <span class="comment">// true</span>
+                </div>
+                <p>Also, let’s try this:</p>
+                <div class="codeLines">
+alert( [] + 1 ); <span class="comment">// "1"</span>
+alert( [1] + 1 ); <span class="comment">// "11"</span>
+alert( [1,2] + 1 ); <span class="comment">// "1,21"</span>
+                </div>
+                <p>Arrays do not have <code>Symbol.toPrimitive</code>, neither a viable <code>valueOf</code>, they implement only toString conversion, so 
+                here [] becomes an empty string, [1] becomes "1" and [1,2] becomes "1,2".</p>
+
+                <p>When the binary plus "+" operator adds something to a string, it converts it to a string as well, so the 
+                next step looks like this:</p>
+                <div class="codeLines">
+alert( "" + 1 ); <span class="comment">// "1"</span>
+alert( "1" + 1 ); <span class="comment">// "11"</span>
+alert( "1,2" + 1 ); <span class="comment">// "1,21"</span>
+                </div>
+
                 <h3>Don't compare arrays with ==</h3>
+
                 <h3>Summary</h3>
+                <p>Array is a special kind of object, suited to storing and managing ordered data items.</p>
+
+                <p>The declaration:</p>
+                <div class="codeLines">
+<span class="comment">// square brackets (usual)</span>
+let arr = [item1, item2...];
+
+<span class="comment">// new Array (exceptionally rare)</span>
+let arr = new Array(item1, item2...);
+                </div>
+                <p>The call to new Array(number) creates an array with the given length, but without elements.</p>
+
+                <ul>
+                    <li>The length property is the array length or, to be precise, its last numeric index plus one. It is auto-adjusted by array methods.</li>
+                    <li>If we shorten length manually, the array is truncated.</li>
+                </ul>
+                <p>Getting the elements:</p>
+                <ul>
+                    <li>we can get element by its index, like arr[0]</li>
+                    <li>also we can use at(i) method that allows negative indexes. For negative values of i, it steps back from the end of the array. 
+                    If i >= 0, it works same as arr[i].</li>
+                </ul>
+
+                <p>We can use an array as a deque with the following operations:</p>
+
+                <ul>
+                    <li><code>push(...items)</code> adds items to the end.</li>
+                    <li><code>pop()</code> removes the element from the end and returns it.</li>
+                    <li><code>shift()</code> removes the element from the beginning and returns it.</li>
+                    <li><code>unshift(...items)</code> adds items to the beginning.</li>
+                </ul>
+
+                <p>To loop over the elements of the array:</p>
+
+                <ul>
+                    <li><code>for (let i=0; i<arr.length; i++)</code> – works fastest, old-browser-compatible.</li>
+                    <li><code>for (let item of arr)</code> – the modern syntax for items only,</li>
+                    <li><code>for (let i in arr)</code> – never use.</li>
+                </ul>
+            <p>To compare arrays, don’t use the == operator (as well as >, < and others), as they have no special treatment for arrays. They handle 
+            them as any objects, and it’s not what we usually want.</p>
+
+            <p>Instead you can use for..of loop to compare arrays item-by-item.</p>
+
+            <p>We will continue with arrays and study more methods to add, remove, extract elements and sort arrays in the next chapter Array methods.</p>
+            
+            <h3>Tasks</h3>
+                <div class="task">
+                    <h4>Task 1 - Is array copied?</h4>
+                    <p>importance: 3</p>
+                    <p>What is this code going to show?</p>
+                    <div class="codeLines">
+let fruits = ["Apples", "Pear", "Orange"];
+
+<span class="comment">// push a new value into the "copy"</span>
+let shoppingCart = fruits;
+shoppingCart.push("Banana");
+
+<span class="comment">// what's in fruits?</span>
+alert( fruits.length ); <span class="comment">// ?</span>
+
+<button onclick="task1()">Run</button>
+                    </div>
+                </div>
+                <div class="task">
+                    
+                    <h4>Task 2 - Is array copied?</h4>
+                    <p>importance: 5</p>
+                    <p>Let’s try 5 array operations.</p>
+
+                    <ol>
+                        <li>Create an array styles with items “Jazz” and “Blues”.</li>
+                        <li>Append “Rock-n-Roll” to the end.</li>
+                        <li>Replace the value in the middle with “Classics”. Your code for finding the middle value should work for any arrays with odd length.</li>
+                        <li>Strip off the first value of the array and show it.</li>
+                        <li>Prepend Rap and Reggae to the array.</li>
+                    </ol>
+                    <p>The array in the process:</p>
+                    <div class="codeLines">
+Jazz, Blues
+Jazz, Blues, Rock-n-Roll
+Jazz, Classics, Rock-n-Roll
+Classics, Rock-n-Roll
+Rap, Reggae, Classics, Rock-n-Roll
+                    </div>
+                    <div class="task-solution">
+                        <h4>Solution</h4>
+                        <div class="output">
+                            <button onclick="task2()">Run</button>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="task">
+                    <h4>Task 3 - Sum input numbers</h4>                    
+                    <p>importance: 4</p>
+                    <p>Write the function <code>sumInput()</code> that:</p>
+
+                    <ul>
+                        <li>Asks the user for values using prompt and stores the values in the array.</li>
+                        <li>Finishes asking when the user enters a non-numeric value, an empty string, or presses “Cancel”.</li>
+                        <li>Calculates and returns the sum of array items.</li>
+                    </ul>
+
+                    <p>P.S. A zero 0 is a valid number, please don’t stop the input on zero.</p>
+                    <div class="task-solution">
+                        <h4>Solution</h4>
+                        <div class="codeLines">
+function task3(){
+    arr=[];
+
+    function sumInput(){
+        let input = +prompt(`Enter numbers one at a time: `, `0-10`);
+        let runTot=0;
+        while (!isNaN(input) && input){
+            arr.push(input);
+            input = 0;
+            input = +prompt("Next number: ", `0-10 (remember non-numeric entry to stop!)`);
+        }
+        for(let i of arr){
+            runTot += i;
+        }
+        return runTot;
+    }
+
+    
+    console.log(arr);
+    console.log(sumInput());
+}
+                        </div>
+                        
+                        <div class="output">
+                            <button onclick="task3()">Run</button>
+                        </div>
+                        
+                    </div>
+                </div>
             </div>
             
             <div class="column side" id="column side right"></div>
