@@ -4,6 +4,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="../root-css/styles.css">
+        <link rel="stylesheet" href="../root-css/tablestyles.css">
     </head>
     
     <body>
@@ -88,6 +89,7 @@ alert(str1 == str2); <span class="comment">// true</span>
                 <p>There are other, less common special characters:</p>
 
                 <table>
+                    <caption>Special characters</caption>
                     <tr>
                         <th>Character</th>
                         <th>Description</th>
@@ -150,9 +152,9 @@ alert( `My\n`.length ); <span class="comment">// 3</span>
                 <p>Note that \n is a single “special” character, so the length is indeed 3.</p>
 
                 <div class="info">
-                    <p>ℹ️<strong>length is a property</strong></p>
-                    <p>People with a background in some other languages sometimes mistype by calling str.length() instead of just str.length. That doesn’t work.
-                    Please note that str.length is a numeric property, not a function. There is no need to add parenthesis after it. Not .length(), but .length.</p>
+                    <p>ℹ️<strong><code>length</code> is a property</strong></p>
+                    <p>People with a background in some other languages sometimes mistype by calling <code>str.length()</code> instead of just str.length. That doesn’t work.
+                    Please note that <code>str.length</code> is a numeric property, not a function. There is no need to add parenthesis after it.</p>
                 </div>
 
                 <h3>Accessing characters</h3>
@@ -409,6 +411,7 @@ alert( str.substr(-4, 2) ); <span class="comment">// 'gi', from the 4th position
 
                 <p>Let’s recap these methods to avoid any confusion:</p>
                 <table>
+                    <caption>String methods</caption>
                     <tr>
                         <th>method</th>
                         <th>selects…</th>

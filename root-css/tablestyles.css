@@ -1,0 +1,43 @@
+thead th,
+tfoot th {}
+
+th {
+    text-align: left;
+    column-width: 10rem;
+}
+
+td {
+    padding: 1%;
+}
+
+tbody td {
+    text-align: left;
+}
+
+tfoot th {
+    text-align: right;
+}
+
+/* zebra striping */
+
+tbody tr:nth-child(odd) {
+    background-color: lightgrey;
+}
+
+tbody tr:nth-child(even) {
+    background-color: rgb(233, 233, 233);
+}
+
+table {
+    background-color: darkgray;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: small;
+}
+
+caption {
+    padding: 20px;
+    caption-side: bottom;
+    color: #666;
+    text-align: center;
+    letter-spacing: 1px;
+  }

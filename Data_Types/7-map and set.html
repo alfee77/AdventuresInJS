@@ -94,6 +94,16 @@ alert(JSON.stringify(visitsCountObj));
 
 <button onclick="example3()">Run</button>
             </div>
+            <p>So lets unpick this. We have attempted to use the object <code>ben</code> as a key to the "wrapper" object <code>visitsCountObj</code> and assign the key a visit count of 134.
+            Similarly, we attempt to use the object <code>john</code> to assign <code>visitsCountObj[john]</code> a visit count of 231. So you might reasonably think, as the code
+            above suggests, that the visitsCountObj now has two properties:</p> 
+            <ul>
+                <li>visitsCountObj[ben], and</li>
+                <li>visitsCountObj[john]</li>
+            </ul>
+            <p>with the values 134 and 231 respectively. Wrong! What we have in fact done is create the <code>visitsCountObj</code>, and then assigned it a key of <code>"[object Object]"</code> - 
+            the string equivalent of the object <code>ben</code> - and assigned that key the value 134. Similarly, when we attempt to assign the value 231 to key <code>john</code>, we
+            are actually assigning it to the key of <code>"[object Object]"</code>, therefore overwriting the previously assigned value.</p>
                 
             </div>
             <div class="column side" id="column side right"></div>

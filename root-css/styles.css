@@ -1,5 +1,5 @@
 
-a, h1, h2, h3, h4, h5, p, li{
+a, h1, h2, h3, h4, h5, p, li {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;    
 }
 * {
@@ -8,6 +8,11 @@ a, h1, h2, h3, h4, h5, p, li{
 
 body {
     margin: 0;
+}  
+
+code {
+    font-size:large;
+    background-color: lightgray;
 }
 
 figure {
@@ -176,11 +181,10 @@ figcaption {
     display: flex;
     flex-wrap: wrap;
     min-width: 80%;
-    /* background: rgb(240, 238, 238); */
     padding: 2%;
     color: black;
     outline: thin solid grey;
-    margin-left: 2%;
+    margin: 2%;
     cursor: pointer;
 }
 
