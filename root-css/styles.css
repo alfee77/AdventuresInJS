@@ -79,11 +79,13 @@ figcaption {
 .column {
     float: left;
     padding: 10px;
+    
 }
 
 /* Left and right column */
 .column.side {
-    width: 25%;    
+    width: 25%;
+        
 }
 
 .column.side a {

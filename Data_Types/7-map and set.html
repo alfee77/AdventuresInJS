@@ -12,7 +12,89 @@
         <div class="row">
             <div class="column side" id="column side left"></div>
             <div class="column middle">
-                <h2>Data Types</h2>
+                <h2>Map and Set</h2>
+                <p>Till now, we’ve learned about the following complex data structures:</p>
+                <ul>
+                    <li>Objects are used for storing <em>keyed</em> collections.</li>
+                    <li>Arrays are used for storing <em>ordered</em> collections.</li>
+                </ul>
+                <p>But that’s not enough for real life. That’s why Map and Set also exist.</p>
+
+                <h3>Map</h3>
+                <p>Map is a collection of keyed data items, just like an Object. But the main difference is that Map allows keys of any type.</p>
+
+                <p>Methods and properties are:</p>
+                <ul>
+                    <li><code>new Map()</code> – creates the map.</li>
+                    <li><code>map.set(key, value)</code> – stores the value by the key.</li>
+                    <li><code>map.get(key)</code> – returns the value by the key, undefined if key doesn’t exist in map.</li>
+                    <li><code>map.has(key)</code> – returns true if the key exists, false otherwise.</li>
+                    <li><code>map.delete(key)</code> – removes the element (the key/value pair) by the key.</li>
+                    <li><code>map.clear()</code> – removes everything from the map.</li>
+                    <li><code>map.size</code> – returns the current element count.</li>
+                </ul>
+                <p>For instance:</p>
+                <div class="codeLines">
+let map = new Map();
+
+map.set('1', 'str1');   // a string key
+map.set(1, 'num1');     // a numeric key
+map.set(true, 'bool1'); // a boolean key
+<span class="comment">// remember the regular Object? it would convert keys to string</span>
+<span class="comment">// Map keeps the type, so these two are different:</span>
+
+alert( map.get(1)   ); <span class="comment">// 'num1'</span>
+alert( map.get('1') ); <span class="comment">// 'str1'</span>
+
+alert( map.size ); <span class="comment">// 3</span>
+
+<button onclick="example1()">Run</button>
+                </div>
+                <p>As we can see, unlike objects, keys are not converted to strings. Any type of key is possible.</p>
+                <div class="info">
+                <p>ℹ️<strong><code>map[key]</code> isn’t the right way to use a Map</strong></p>
+                <p>Although <code>map[key]</code> also works, e.g. we can set <code>map[key] = 2</code>, this is treating map as a plain JavaScript object, 
+                so it implies all corresponding limitations (only string/symbol keys and so on).</p>
+
+                <p>So we should use map methods: <code>set</code>, <code>get</code> and so on.</p>
+                </div>
+                <p>Map can also use objects as keys. For instance:</p>
+                <div class="codeLines">
+let john = { name: "John" };
+
+//for every user, let's store their visits count:
+let visitsCountMap = new Map;
+
+//john is the key for the map
+visitsCountMap.set(john, 123);
+
+alert(visitsCountMap.get(john));
+
+<button onclick="example2()">Run</button>
+            </div>
+            <p>Using objects as keys is one of smashing things about the map data type. We can't use objects as keys in objects. 
+            Just to prove the point:</p>
+
+            <div class="codeLines">
+let ben = { name: "Ben" };
+let john = { name: "John" };
+
+let visitsCountObj = {}; <span class="comment">//our example object</span>
+
+<span class="comment">//lets attempt to assign objects as keys:</span>
+visitsCountObj[ben] = 134;
+visitsCountObj[john] = 231;
+
+<span class="comment">//and show what the output is when the object is then referenced via the "object" key:</span>
+alert(`Here's what we get when we call visitsCountObj[ben]: ${visitsCountObj[ben]}`);
+alert(`Here's what we get when we call visitsCountObj[john]: ${visitsCountObj[john]}`);
+
+<span class="comment">//OK this next bit is a little cheeky, given we havent done the JSON tutorial yet, but it will help with the following explainer…</span>
+alert(JSON.stringify(visitsCountObj));
+
+<button onclick="example3()">Run</button>
+            </div>
+                
             </div>
             <div class="column side" id="column side right"></div>
             
@@ -26,7 +108,7 @@
     </body>
 
     <script src="../root-js/JavaScriptInfoMenu.js"></script>
-    <script src="js/0-index.js"></script>
+    <script src="js/map and set.js"></script>
     
 
 </html>
