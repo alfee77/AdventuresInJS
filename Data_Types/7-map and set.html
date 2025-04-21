@@ -103,7 +103,11 @@ alert(JSON.stringify(visitsCountObj));
             </ul>
             <p>with the values 134 and 231 respectively. Wrong! What we have in fact done is create the <code>visitsCountObj</code>, and then assigned it a key of <code>"[object Object]"</code> - 
             the string equivalent of the object <code>ben</code> - and assigned that key the value 134. Similarly, when we attempt to assign the value 231 to key <code>john</code>, we
-            are actually assigning it to the key of <code>"[object Object]"</code>, therefore overwriting the previously assigned value.</p>
+            are actually assigning it to the key of <code>"[object Object]"</code>, therefore overwriting the previously assigned value. If we go ahead and convert the object to a string 
+            (using <code>JSON.stringify()</code>), you can see what the actual object looks like:</p>
+            <div class="output" id="stringifyOutput">
+                
+            </div>
                 
             </div>
             <div class="column side" id="column side right"></div>

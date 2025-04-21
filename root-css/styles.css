@@ -12,7 +12,7 @@ body {
 
 code {
     font-size:large;
-    background-color: lightgray;
+    background-color: rgb(235, 235, 235);
 }
 
 figure {
@@ -189,15 +189,16 @@ figcaption {
 }
 
 .output {
-    display: flex;
-    flex-wrap: wrap;
     min-width: 80%;
-    background: rgb(236, 232, 232);
+    overflow-x: scroll;
+    background: rgb(235, 235, 235);
     padding: 2%;
+    font-family: monospace;
     color: black;
     white-space: pre;
-    outline: solid grey;
-    margin: 2%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 2%;
     cursor: pointer;
 }
 
@@ -215,7 +216,6 @@ figcaption {
     margin-bottom: 1%;
     margin-left: 2%;
     cursor: pointer;
-    
 }
 
 .comment {

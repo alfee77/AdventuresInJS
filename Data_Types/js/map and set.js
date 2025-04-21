@@ -40,6 +40,6 @@ function example3(){
     alert(`Here's what we get when we call visitsCountObj[john]: ${visitsCountObj[john]}`);
     
     //OK this next bit is a little cheeky, given we havent done the JSON tutorial yet...
-    alert(JSON.stringify(visitsCountObj));
+    document.getElementById("stringifyOutput").innerHTML = (JSON.stringify(visitsCountObj));
 
 }
