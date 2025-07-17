@@ -92,7 +92,7 @@ if (folder == "Asynchrony") {
     "</ol>";
 }
 
-if ((document.querySelector("#docname").textContent = "homehome")) {
+if (document.querySelector("#docname")) {
   document.getElementById("column side right").innerHTML =
     "<div class='image-container-right'> <img src='./root-images/me.png' alt='me!'></div>";
 } else {
