@@ -92,12 +92,13 @@ if (folder == "Asynchrony") {
     "</ol>";
 }
 
+document.getElementById("column side right").innerHTML =
+  "<div class='image-container-right'> <img src='../root-images/me.png' alt='me!'></div>";
+
 if (document.querySelector("#docname")) {
   document.getElementById("column side right").innerHTML =
     "<div class='image-container-right'> <img src='./root-images/me.png' alt='me!'></div>";
 } else {
-  document.getElementById("column side right").innerHTML =
-    "<div class='image-container-right'> <img src='../root-images/me.png' alt='me!'></div>";
 }
 
 document.getElementById("footer").innerHTML =
