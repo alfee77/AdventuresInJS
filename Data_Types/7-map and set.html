@@ -71,11 +71,11 @@ visitsCountMap.set(john, 123);
 alert(visitsCountMap.get(john));
 
 <button onclick="example2()">Run</button>
-            </div>
-            <p>Using objects as keys is one of smashing things about the map data type. We can't use objects as keys in objects. 
-            Just to prove the point:</p>
+                </div>
+                <p>Using objects as keys is one of the smashing things about the map data type. We can't use objects as keys in objects. 
+                Just to prove the point:</p>
 
-            <div class="codeLines">
+                <div class="codeLines">
 let ben = { name: "Ben" };
 let john = { name: "John" };
 
@@ -93,22 +93,90 @@ alert(`Here's what we get when we call visitsCountObj[john]: ${visitsCountObj[jo
 alert(JSON.stringify(visitsCountObj));
 
 <button onclick="example3()">Run</button>
-            </div>
-            <p>So lets unpick this. We have attempted to use the object <code>ben</code> as a key to the "wrapper" object <code>visitsCountObj</code> and assign the key a visit count of 134.
-            Similarly, we attempt to use the object <code>john</code> to assign <code>visitsCountObj[john]</code> a visit count of 231. So you might reasonably think, as the code
-            above suggests, that the visitsCountObj now has two properties:</p> 
-            <ul>
-                <li>visitsCountObj[ben], and</li>
-                <li>visitsCountObj[john]</li>
-            </ul>
-            <p>with the values 134 and 231 respectively. Wrong! What we have in fact done is create the <code>visitsCountObj</code>, and then assigned it a key of <code>"[object Object]"</code> - 
-            the string equivalent of the object <code>ben</code> - and assigned that key the value 134. Similarly, when we attempt to assign the value 231 to key <code>john</code>, we
-            are actually assigning it to the key of <code>"[object Object]"</code>, therefore overwriting the previously assigned value. If we go ahead and convert the object to a string 
-            (using <code>JSON.stringify()</code>), you can see what the actual object looks like:</p>
-            <div class="output" id="stringifyOutput">
+                </div>
+                <p>So lets unpick this. We have attempted to use the object <code>ben</code> as a key to the "wrapper" object <code>visitsCountObj</code> and assign the key a visit count of 134.
+                Similarly, we attempt to use the object <code>john</code> to assign <code>visitsCountObj[john]</code> a visit count of 231. So you might reasonably think, as the code
+                above suggests, that the visitsCountObj now has two properties:</p> 
+                <ul>
+                    <li><code>visitsCountObj[ben]</code>, and</li>
+                    <li><code>visitsCountObj[john]</code></li>
+                </ul>
+                <p>with the values 134 and 231 respectively. Wrong! What we have in fact done is create the <code>visitsCountObj</code>, and then assigned it a key of <code>"[object Object]"</code> - 
+                the string equivalent of the object <code>ben</code> - and assigned that key the value 134. Similarly, when we attempt to assign the value 231 to key <code>john</code>, we
+                are actually assigning it to the key of <code>"[object Object]"</code>, therefore overwriting the previously assigned value. If we go ahead and convert the object to a string 
+                (using <code>JSON.stringify()</code>), you can see what the actual object looks like:</p>
+                <div class="output" id="stringifyOutput">
+{"[object Object]":231}
+                </div>
                 
-            </div>
-                
+            
+            <h3>Summary</h3>
+<h4>
+    Map – is a collection of keyed values.
+</h4>
+
+<p>Methods and properties:</p>
+
+<ul>
+    <li><code>new Map([iterable])</code> – creates the map, with optional iterable (e.g. array) of [key,value] pairs for initialization.</li>
+    <li><code>map.set(key, value)</code> – stores the value by the key, returns the map itself.</li>
+    <li><code>map.get(key)</code> – returns the value by the key, undefined if key doesn’t exist in map.</li>
+    <li><code>map.has(key)</code> – returns true if the key exists, false otherwise.</li>
+    <li><code>map.delete(key)</code> – removes the element by the key, returns true if key existed at the moment of the call, otherwise false.</li>
+    <li><code>map.clear() </code>– removes everything from the map.</li>
+    <li><code>map.size</code> – returns the current element count.</li>
+</ul>
+<p>The differences from a regular Object:</p>
+
+<ul>
+    <li>Any keys, objects can be keys.</li>
+    <li>Additional convenient methods, the size property.</li>
+</ul>
+<h4>Set – is a collection of unique values.</h4>
+
+<p>Methods and properties:</p>
+
+<ul>
+    <li><code>new Set([iterable])</code> – creates the set, with optional iterable (e.g. array) of values for initialization.</li>
+    <li><code>set.add(value)</code> – adds a value (does nothing if value exists), returns the set itself.</li>
+    <li><code>set.delete(value)</code> – removes the value, returns true if value existed at the moment of the call, otherwise false.</li>
+    <li><code>set.has(value)</code> – returns true if the value exists in the set, otherwise false.</li>
+    <li><code>set.clear()</code> – removes everything from the set.</li>
+    <li><code>set.size</code> – is the elements count.</li>
+</ul>
+<p>Iteration over Map and Set is always in the insertion order, so we can’t say that these collections are unordered, but we can’t reorder elements or directly get an element by its number.</p>
+
+<h3>Tasks</h3>
+<div class="task">
+    <h4>Task 1 - Filter unique array members</h4>
+    <p>importance: 5</p>
+    <p>Let arr be an array.</p>
+    
+    <p>Create a function unique(arr) that should return an array with unique items of arr.</p>
+    
+    <p>For instance:</p>
+    
+    <div class="codeLines">
+function unique(arr) {
+    <span class="comment">/* your code */</span>
+}
+
+
+let values = ["Hare", "Krishna", "Hare", "Krishna",
+    "Krishna", "Krishna", "Hare", "Hare", ":-O"
+];
+    
+    
+alert( unique(values) ); <span class="comment">// Hare, Krishna, :-O</span>
+    </div>
+    <p>P.S. Here strings are used, but can be values of any type.</p>
+    
+    <p>P.P.S. Use Set to store unique values.</p>
+<div class="task-solution">
+    <h4>Solution</h4>
+    <div class="output"> Jobby </div>
+</div>
+</div>
             </div>
             <div class="column side" id="column side right"></div>
             
