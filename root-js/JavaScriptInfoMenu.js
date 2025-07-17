@@ -96,6 +96,7 @@ document.getElementById("column side right").innerHTML =
   "<div class='image-container-right'> <img src='../root-images/me.png' alt='me!'></div>";
 
 if (document.querySelector("#docname")) {
+  console.log("The fucker is here!!");
   document.getElementById("column side right").innerHTML =
     "<div class='image-container-right'> <img src='./root-images/me.png' alt='me!'></div>";
 } else {
